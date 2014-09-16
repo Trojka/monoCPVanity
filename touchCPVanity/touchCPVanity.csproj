@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{646FAD16-6774-424E-B3E5-FFDE4B611040}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>touchCPVanity</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>touchCPVanity</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;__MOBILE__;__IOS__;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <DefineConstants>__MOBILE__;__IOS__;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;__MOBILE__;__IOS__;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <DefineConstants>__MOBILE__;__IOS__;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <DefineConstants>__MOBILE__;__IOS__;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <BuildIpa>true</BuildIpa>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <DefineConstants>__MOBILE__;__IOS__;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+    <Reference Include="Mono.Data.Sqlite" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="..\monoCPVanity\Data\CodeProjectDatabase.cs">
+      <Link>Data\CodeProjectDatabase.cs</Link>
+    </Compile>
+    <Compile Include="CodeProjectMemberProfileViewController.cs" />
+    <Compile Include="CodeProjectMemberProfileViewController.designer.cs">
+      <DependentUpon>CodeProjectMemberProfileViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeProjectMemberArticlesViewController.cs" />
+    <Compile Include="CodeProjectMemberArticlesViewController.designer.cs">
+      <DependentUpon>CodeProjectMemberArticlesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeProjectMemberListViewController.cs" />
+    <Compile Include="CodeProjectMemberListViewController.designer.cs">
+      <DependentUpon>CodeProjectMemberListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\WebImageRetriever.cs" />
+    <Compile Include="CodeProjectMemberReputationViewController.cs" />
+    <Compile Include="CodeProjectMemberReputationViewController.designer.cs">
+      <DependentUpon>CodeProjectMemberReputationViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeProjectMemberListDataSource.cs" />
+    <Compile Include="CodeProjectRSSFeedViewController.cs" />
+    <Compile Include="CodeProjectRSSFeedViewController.designer.cs">
+      <DependentUpon>CodeProjectRSSFeedViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebPageViewController.cs" />
+    <Compile Include="WebPageViewController.designer.cs">
+      <DependentUpon>WebPageViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeProjectArticleRSSViewController.cs" />
+    <Compile Include="CodeProjectArticleRSSViewController.designer.cs">
+      <DependentUpon>CodeProjectArticleRSSViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeProjectRSSDataSource.cs" />
+    <Compile Include="ArticleCategoryViewController.cs" />
+    <Compile Include="ArticleCategoryViewController.designer.cs">
+      <DependentUpon>ArticleCategoryViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeProjectForumRSSViewController.cs" />
+    <Compile Include="CodeProjectForumRSSViewController.designer.cs">
+      <DependentUpon>CodeProjectForumRSSViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\FileStorageService.cs" />
+    <Compile Include="ForumCategoryViewController.cs" />
+    <Compile Include="ForumCategoryViewController.designer.cs">
+      <DependentUpon>ForumCategoryViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Util\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\portableCPVanity\portableCPVanity.csproj">
+      <Project>{45CBF82E-1974-49DA-870A-C4FF4BC6D497}</Project>
+      <Name>portableCPVanity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ripit\Ripit.csproj">
+      <Project>{6A1DEFE7-38CC-402B-9625-9947D8F5165D}</Project>
+      <Name>Ripit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="MainStoryboard_iPhone.storyboard" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <DotNetNamingPolicy DirectoryNamespaceAssociation="PrefixedFlat" ResourceNamePolicy="FileFormatDefault" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>
