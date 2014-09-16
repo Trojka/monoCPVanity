@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- Add -->
+    <item android:id="@+id/action_member_add"
+          android:icon="@drawable/ic_action_new"
+          android:title="Add" 
+          android:showAsAction="ifRoom" />
+</menu>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory android:title="Me" android:key="me_category">
+        <EditTextPreference 
+            android:key="me_id"
+            android:title="Codeproject Id"
+            android:defaultValue=""/>
+        <EditTextPreference 
+            android:key="me_login"
+            android:title="Login"/>
+        <EditTextPreference 
+            android:key="me_pwd"
+            android:title="Password"/>
+    </PreferenceCategory>
+</PreferenceScreen>
