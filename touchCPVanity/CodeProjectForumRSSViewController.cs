@@ -16,21 +16,6 @@ namespace touchCPVanity
 			ItemFeed = new CodeProjectLoungeFeed ();
 		}
 
-//		public override void DidReceiveMemoryWarning ()
-//		{
-//			base.DidReceiveMemoryWarning ();
-//		}
-//
-//		public override void ViewDidLoad ()
-//		{
-//			base.ViewDidLoad ();
-//		}
-//
-//		public override void ViewDidAppear (bool animated)
-//		{
-//			base.ViewDidAppear (animated);
-//		}
-
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			base.PrepareForSegue (segue, sender);

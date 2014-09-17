@@ -34,7 +34,6 @@ namespace touchCPVanity
 
 				if (articleCategoryController != null) {
 					articleCategoryController.FeedReceiver = this;
-					articleCategoryController.PageURL = ItemFeed [RSSItemTable.IndexPathForSelectedRow.Row].Link;
 				}
 			}
 		}

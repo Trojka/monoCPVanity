@@ -13,10 +13,6 @@ namespace touchCPVanity
 {
 	public partial class CodeProjectMemberProfileViewController : UIViewController
 	{
-//		static bool UserInterfaceIdiomIsPhone {
-//			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-//		}
-
 		public CodeProjectMemberProfileViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -49,11 +45,6 @@ namespace touchCPVanity
 
 			ObjectBuilder objectBuilder = new ObjectBuilder ();
 			objectBuilder.Fill (Member, param);
-
-			//memberArticles = new CodeProjectMemberArticles ();
-			//memberArticles.Id = memberId;
-
-			//objectBuilder.FillList (memberArticles, param, () => new CodeProjectMemberArticle());
 
 			FillScreen ();
 		}

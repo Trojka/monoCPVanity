@@ -49,14 +49,6 @@ namespace be.trojkasoftware.Ripit.Core
 			return listToFill;
 		}
 
-//		public object FillParallel(object objectToFill, Dictionary<String, String> paramList)
-//		{
-//			HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create ("url");
-//			IAsyncResult result = myReq.BeginGetResponse (new AsyncCallback (FinishWebRequest), myReq);
-//
-//			Task.Factory.FromAsync(result, 
-//		}
-
 		public object Fill(object objectToFill, Dictionary<String, String> paramList)
 		{
 
@@ -164,8 +156,6 @@ namespace be.trojkasoftware.Ripit.Core
 
 		private object FillFromSources(object objectToFill, Dictionary<int, string> globalSources)
 		{
-			//Dictionary<string, string> globalText = new Dictionary<string, string> ();
-
 			Type objectType = objectToFill.GetType();
 			foreach (PropertyInfo property in objectType.GetProperties ()) {
 				pageText = "";
@@ -176,32 +166,11 @@ namespace be.trojkasoftware.Ripit.Core
 
 				List<Attribute> propertyAttrList = propertyAttrs.ToList ();
 
-				//				string url = null;
-				//				HttpSourceAttribute httpSource = (HttpSourceAttribute)propertyAttrList.OfType<HttpSourceAttribute>().SingleOrDefault();
-				//				if (httpSource != null) {
-				//					url = httpSource.Url;
-				//				}
-				//				else{
 				SourceRefAttribute sourceRef = (SourceRefAttribute)propertyAttrList.OfType<SourceRefAttribute>().SingleOrDefault();
 				if (sourceRef == null || !globalSources.ContainsKey(sourceRef.SourceRefId)) {
 					throw new Exception ();
 				}
-				//
-				//					url = globalSources [sourceRef.SourceRefId];
-				//				}
-				//
-				//				if (!globalText.ContainsKey (url)) {
-				//					HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create (url);
-				//					IAsyncResult result = myReq.BeginGetResponse (new AsyncCallback (FinishWebRequest), myReq);
-				//
-				//					propertyAttrList.Remove (httpSource);
-				//					allDone.WaitOne ();
-				//					allDone.Reset ();
-				//
-				//					globalText.Add (url, pageText);
-				//				}
 
-				//				string sourceText = globalText[sourceRef.SourceRefId /*url*/];
 				string sourceText = globalSources[sourceRef.SourceRefId];
 				bool foundValue = true;
 				foreach (Attribute textActionAttribute in propertyAttrList.OfType<TextActionInterface>().OrderBy(x => x.Index)) {
@@ -240,14 +209,6 @@ namespace be.trojkasoftware.Ripit.Core
 			responseStream = response.GetResponseStream ();
 
 			allDone.Set();
-
-//			using (System.IO.Stream responseStream = response.GetResponseStream ()) {
-//				using (var reader = new System.IO.StreamReader (responseStream)) {
-//					pageText = reader.ReadToEnd ();
-//
-//					allDone.Set();
-//				}
-//			}
 
 		}
 	}

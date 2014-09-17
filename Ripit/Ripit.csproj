@@ -40,7 +40,6 @@
     <Compile Include="Attributes\DefaultValueAttribute.cs" />
     <Compile Include="Attributes\PropertyCaptureAttribute.cs" />
     <Compile Include="Attributes\CollectionCaptureAttribute.cs" />
-    <Compile Include="Core\RSSFeedReader.cs" />
     <Compile Include="Core\RSSItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
