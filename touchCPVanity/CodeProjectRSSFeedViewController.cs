@@ -61,6 +61,12 @@ namespace touchCPVanity
 			RSSItemTable.ReloadData ();
 		}
 
+		public RSSItem SelectedItem {
+			get {
+				return ItemFeed [RSSItemTable.IndexPathForSelectedRow.Row];
+			}
+		}
+
 		protected string CategoryText {
 			get { return CategoryLabel.Text; }
 			set { CategoryLabel.Text = value; }

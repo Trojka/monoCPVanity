@@ -36,6 +36,13 @@ namespace touchCPVanity
 					articleCategoryController.FeedReceiver = this;
 				}
 			}
+			if (segue.Identifier == "RSSArticle") {
+				var webPageController = segue.DestinationViewController as WebPageViewController;
+
+				if (webPageController != null) {
+					webPageController.PageURL = SelectedItem.Link;
+				}
+			}
 		}
 	}
 }

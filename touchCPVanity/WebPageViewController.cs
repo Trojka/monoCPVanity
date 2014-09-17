@@ -21,7 +21,12 @@ namespace touchCPVanity
 		{
 			base.ViewDidLoad ();
 
-			NSUrlRequest request = NSUrlRequest.FromUrl (NSUrl.FromString (CodeProjectUrlScheme.BaseUrl + PageURL));
+			string targetUrl = PageURL;
+			if(!targetUrl.StartsWith(CodeProjectUrlScheme.BaseUrl)) {
+				targetUrl = CodeProjectUrlScheme.BaseUrl + targetUrl;
+			}
+
+			NSUrlRequest request = NSUrlRequest.FromUrl (NSUrl.FromString (targetUrl));
 			WebView.LoadRequest(request);
 		}
 
