@@ -26,9 +26,8 @@ namespace touchCPVanity
 		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
 			var cell = tableView.DequeueReusableCell ("MemberCell");
-			(cell.ViewWithTag (100) as UILabel).Text = MemberList[indexPath.Row].Name;
 
-			return cell;
+			return FillCellWithMember(cell, MemberList[indexPath.Row]);
 		}
 
 		public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, MonoTouch.Foundation.NSIndexPath indexPath)
@@ -44,6 +43,14 @@ namespace touchCPVanity
 		public override UITableViewCellEditingStyle EditingStyleForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			return UITableViewCellEditingStyle.Delete;
+		}
+
+		public static UITableViewCell FillCellWithMember(UITableViewCell cell, CodeProjectMember member) {
+			(cell.ViewWithTag (100) as UILabel).Text = member.Name;
+			(cell.ViewWithTag (101) as UILabel).Text = "Posts: " + (member.ArticleCount + member.BlogCount);
+			(cell.ViewWithTag (102) as UILabel).Text = member.Reputation;
+
+			return cell;
 		}
 	}
 }
