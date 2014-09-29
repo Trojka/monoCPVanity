@@ -26,7 +26,7 @@ namespace be.trojkasoftware.monoCPVanity.Data
 
 			if (!exists) {
 				var commands = new[]{
-					"CREATE TABLE [Member] (Key integer, Name ntext, ArticleCnt ntext, BlogCnt ntext, Reputation ntext, IsMe integer);"
+					"CREATE TABLE [Member] (Key integer, Name ntext, ArticleCnt integer, BlogCnt integer, Reputation ntext, IsMe integer);"
 				};
 				foreach (var command in commands) {
 					using (var c = connection.CreateCommand ()) {
@@ -91,12 +91,6 @@ namespace be.trojkasoftware.monoCPVanity.Data
 				command.CommandText = "SELECT [Key], [Name], [ArticleCnt], [BlogCnt], [Reputation], [IsMe] FROM [Member] WHERE [Key]=" + memberId;
 				var r = command.ExecuteReader ();
 				while (r.Read ()) {
-//					member.Name = r ["Name"].ToString ();
-//					member.ArticleCount = r ["ArticleCnt"].ToString ();
-//					member.BlogCount = r ["BlogCnt"].ToString ();
-//					member.Reputation = r ["Reputation"].ToString ();
-//					member.IsMe = (r ["IsMe"].ToString () == "1")?true:false;
-
 					FillMemberFromDataReader (member, r);
 				}
 			}		
@@ -118,15 +112,7 @@ namespace be.trojkasoftware.monoCPVanity.Data
 				var r = command.ExecuteReader ();
 				while (r.Read ()) {
 					CodeProjectMember member = new CodeProjectMember ();
-//					object idAsObject = r ["Key"];
-//					member.Id = int.Parse(idAsObject.ToString());
-//					member.Name = r ["Name"].ToString ();
-//					member.ArticleCount = r ["ArticleCnt"].ToString ();
-//					member.BlogCount = r ["BlogCnt"].ToString ();
-//					member.IsMe = (r ["IsMe"].ToString () == "1")?true:false;
-
 					FillMemberFromDataReader (member, r);
-
 					memberList.Add (member);
 				}
 			}		
@@ -140,8 +126,8 @@ namespace be.trojkasoftware.monoCPVanity.Data
 			object idAsObject = r ["Key"];
 			member.Id = int.Parse(idAsObject.ToString());
 			member.Name = r ["Name"].ToString ();
-			member.ArticleCount = r ["ArticleCnt"].ToString ();
-			member.BlogCount = r ["BlogCnt"].ToString ();
+			member.ArticleCount = int.Parse(r ["ArticleCnt"].ToString());
+			member.BlogCount = int.Parse(r ["BlogCnt"].ToString());
 			member.Reputation = r ["Reputation"].ToString ();
 			member.IsMe = (r ["IsMe"].ToString () == "1")?true:false;
 		}

@@ -30,7 +30,7 @@ namespace be.trojkasoftware.portableCPVanity
 		// Articles by Serge Desmedt (Articles: 6, Technical Blogs: 2)
 		[PropertyCapture(@"rticles by [^\(]*\([Aa]rticles?: ?([0-9]*)", 1, true)]
 		[DefaultValue("0")]
-		public string ArticleCount {
+		public int ArticleCount {
 			get;
 			set;
 		}
@@ -39,7 +39,7 @@ namespace be.trojkasoftware.portableCPVanity
 		// Articles by Serge Desmedt (Articles: 6, Technical Blogs: 2)
 		[PropertyCapture(@"rticles by [^\(]*\(([Aa]rticles?: ?[0-9]*, ?)?[Tt]echnical [Bb]logs?: ?([0-9]*)\)", 2, true)]
 		[DefaultValue("0")]
-		public string BlogCount {
+		public int BlogCount {
 			get;
 			set;
 		}
