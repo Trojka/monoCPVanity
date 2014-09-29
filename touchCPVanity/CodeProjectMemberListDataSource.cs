@@ -3,6 +3,7 @@ using MonoTouch.UIKit;
 using System.Collections.Generic;
 using be.trojkasoftware.portableCPVanity;
 using MonoTouch.Foundation;
+using touchCPVanity.Util;
 
 namespace touchCPVanity
 {
@@ -49,6 +50,15 @@ namespace touchCPVanity
 			(cell.ViewWithTag (100) as UILabel).Text = member.Name;
 			(cell.ViewWithTag (101) as UILabel).Text = "Posts: " + (member.ArticleCount + member.BlogCount);
 			(cell.ViewWithTag (102) as UILabel).Text = member.Reputation;
+
+			FileStorageService storage = new FileStorageService ();
+			if (storage.FileExists (member.Id.ToString())) {
+				byte[] imageData = storage.ReadBytes (member.Id.ToString());
+
+				UIImage image = UIImage.LoadFromData (NSData.FromArray (imageData));
+				(cell.ViewWithTag (105) as UIImageView).Image = image;
+
+			}
 
 			return cell;
 		}
