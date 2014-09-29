@@ -197,7 +197,18 @@ namespace be.trojkasoftware.Ripit.Core
 					}
 				}
 
-				property.SetValue (objectToFill, sourceText, null);
+				if (property.PropertyType == typeof(string)) {
+					property.SetValue (objectToFill, sourceText, null);
+				}
+				else if (property.PropertyType == typeof(int)) {
+					int sourceAsInt = 0;
+					if (int.TryParse(sourceText, out sourceAsInt)) {
+						property.SetValue (objectToFill, sourceAsInt, null);
+					}
+					else {
+							throw new InvalidCastException();
+					}
+				}
 			}
 
 			return objectToFill;
