@@ -167,7 +167,7 @@ namespace touchCPVanity
 		{
 			base.ViewDidLoad ();
 
-			this.RefreshBtn.Clicked += Refresh;
+			this.RefreshBtn.Clicked += OnRefreshClicked;
 
 			CodeProjectDatabase db = new CodeProjectDatabase ();
 			MemberList = db.GetMembers();
@@ -179,11 +179,22 @@ namespace touchCPVanity
 
 		}
 
-		void Refresh(object sender, EventArgs E)
+		public override void ViewDidAppear (bool animated)
+		{
+			Refresh ();
+		}
+
+		void OnRefreshClicked(object sender, EventArgs E)
+		{
+			Refresh ();
+		}
+
+		void Refresh()
 		{
 			CodeProjectDatabase db = new CodeProjectDatabase ();
 			MemberList = db.GetMembers();
 
+			MemberListTable.Source = new CodeProjectMemberListDataSource(MemberList);
 			MemberListTable.ReloadData ();
 		}
 
