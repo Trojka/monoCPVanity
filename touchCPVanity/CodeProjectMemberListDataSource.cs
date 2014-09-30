@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using be.trojkasoftware.portableCPVanity;
 using MonoTouch.Foundation;
 using touchCPVanity.Util;
+using be.trojkasoftware.monoCPVanity.Data;
 
 namespace touchCPVanity
 {
@@ -33,7 +34,15 @@ namespace touchCPVanity
 
 		public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, MonoTouch.Foundation.NSIndexPath indexPath)
 		{
-		
+			if(editingStyle == UITableViewCellEditingStyle.Delete)
+			{
+				CodeProjectMember memberToDelete = MemberList [indexPath.Row];
+				CodeProjectDatabase database = new CodeProjectDatabase ();
+				database.DeleteMember (memberToDelete.Id);
+
+				MemberList = database.GetMembers();
+				tableView.ReloadData ();
+			}
 		}
 
 		public override bool CanEditRow (UITableView tableView, NSIndexPath indexPath)
@@ -51,11 +60,11 @@ namespace touchCPVanity
 			(cell.ViewWithTag (101) as UILabel).Text = "Posts: " + (member.ArticleCount + member.BlogCount);
 			(cell.ViewWithTag (102) as UILabel).Text = member.Reputation;
 
-			FileStorageService storage = new FileStorageService ();
-			if (storage.FileExists (member.Id.ToString())) {
-				byte[] imageData = storage.ReadBytes (member.Id.ToString());
+			CodeProjectDatabase database = new CodeProjectDatabase ();
+			byte[] gravatar = database.GetGravatar (member.Id);
+			if (gravatar != null) {
 
-				UIImage image = UIImage.LoadFromData (NSData.FromArray (imageData));
+				UIImage image = UIImage.LoadFromData (NSData.FromArray (gravatar));
 				(cell.ViewWithTag (105) as UIImageView).Image = image;
 
 			}

@@ -85,6 +85,23 @@ namespace be.trojkasoftware.monoCPVanity.Data
 			return true;
 		}
 
+		public void DeleteMember(int memberId)
+		{
+			var connection = new SqliteConnection ("Data Source=" + dbPath);
+			connection.Open ();
+			using (var ic = connection.CreateCommand ()) {
+				ic.CommandText = "DELETE FROM [Member] " +
+								" WHERE [Key]=" + memberId;
+				ic.ExecuteNonQuery ();
+			}
+
+			connection.Close ();
+
+			FileStorageService storage = new FileStorageService ();
+			storage.DeleteFile( memberId.ToString());
+
+		}
+
 		public CodeProjectMember GetMember(int memberId)
 		{
 			var connection = new SqliteConnection ("Data Source=" + dbPath);

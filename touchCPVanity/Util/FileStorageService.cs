@@ -25,6 +25,12 @@ namespace touchCPVanity.Util
 			return File.ReadAllBytes (filePath);
 		}
 
+		public void DeleteFile(string filename)
+		{
+			var filePath = Path.Combine (BaseFolder, filename);
+			File.Delete (filePath);
+		}
+
 		public bool FileExists(string filename)
 		{
 			var filePath = Path.Combine (BaseFolder, filename);
