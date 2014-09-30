@@ -4,6 +4,7 @@ using System.Data;
 using System.IO;
 using Mono.Data.Sqlite;
 using be.trojkasoftware.portableCPVanity;
+using touchCPVanity.Util;
 
 namespace be.trojkasoftware.monoCPVanity.Data
 {
@@ -76,6 +77,11 @@ namespace be.trojkasoftware.monoCPVanity.Data
 
 			connection.Close ();
 
+			FileStorageService storage = new FileStorageService ();
+			if(member.Gravatar != null) {
+				storage.WriteBytes(member.Gravatar, member.Id.ToString());
+			}
+
 			return true;
 		}
 
@@ -98,6 +104,16 @@ namespace be.trojkasoftware.monoCPVanity.Data
 			connection.Close ();
 
 			return member;
+		}
+
+		public byte[] GetGravatar(int memberId)
+		{
+			FileStorageService storage = new FileStorageService ();
+			if (storage.FileExists (memberId.ToString())) {
+				return storage.ReadBytes (memberId.ToString());
+			} else {
+				return null;
+			}
 		}
 
 		public List<CodeProjectMember> GetMembers()

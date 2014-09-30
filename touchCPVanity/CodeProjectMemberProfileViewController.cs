@@ -76,11 +76,14 @@ namespace touchCPVanity
 			this.BlogCountLbl.Text = "Blogs: " + Member.BlogCount;
 			this.AvgBlogRatingLbl.Text = "Average blog rating: " + Member.AverageBlogRating;
 
-			FileStorageService storage = new FileStorageService ();
-			if (storage.FileExists (Member.Id.ToString())) {
-				byte[] imageData = storage.ReadBytes (Member.Id.ToString());
+//			FileStorageService storage = new FileStorageService ();
+//			if (storage.FileExists (Member.Id.ToString())) {
+//				byte[] imageData = storage.ReadBytes (Member.Id.ToString());
+			CodeProjectDatabase db = new CodeProjectDatabase ();
+			byte[] gravatar = db.GetGravatar(Member.Id);
+			if (gravatar != null) {
 
-				UIImage image = UIImage.LoadFromData (NSData.FromArray (imageData));
+				UIImage image = UIImage.LoadFromData (NSData.FromArray (gravatar));
 				this.MemberImage.Image = image;
 
 			} else {
@@ -88,10 +91,11 @@ namespace touchCPVanity
 				imageDownloader.GetImageAsync (new Uri (Member.ImageUrl)).ContinueWith (t => {
 
 					NSData imageData = t.Result.AsPNG();
-					byte[] dataBytes = new byte[imageData.Length];
-					System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, dataBytes, 0, Convert.ToInt32(imageData.Length));
-					storage.WriteBytes(dataBytes, Member.Id.ToString());
+					gravatar = new byte[imageData.Length];
+					System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, gravatar, 0, Convert.ToInt32(imageData.Length));
+					//storage.WriteBytes(dataBytes, Member.Id.ToString());
 
+					Member.Gravatar = gravatar;
 					this.MemberImage.Image = t.Result;
 
 				}, TaskScheduler.FromCurrentSynchronizationContext ());
