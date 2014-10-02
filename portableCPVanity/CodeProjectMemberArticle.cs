@@ -1,5 +1,6 @@
 ﻿using System;
 using be.trojkasoftware.Ripit.Attributes;
+using be.trojkasoftware.Ripit.TypeConverters;
 
 namespace be.trojkasoftware.portableCPVanity
 {
@@ -32,14 +33,14 @@ namespace be.trojkasoftware.portableCPVanity
 
 		[SourceRef(0)]
 		[PropertyCapture(@"osted: ([123]?\d [A-z]* 20[012]\d)", 1, false)]
-		public string DatePosted {
+		public DateTime DatePosted {
 			get;
 			set;
 		}
 
 		[SourceRef(0)]
 		[PropertyCapture(@"pdated: <b>([123]?\d [A-z]* 20[012]\d)", 1, false)]
-		public string DateUpdated {
+		public DateTime DateUpdated {
 			get;
 			set;
 		}

@@ -20,6 +20,7 @@ namespace touchCPVanity
 			var cell = tableView.DequeueReusableCell ("ArticleCell");
 
 			(cell.ViewWithTag (100) as UILabel).Text = MemberArticles[indexPath.Row].Title;
+			(cell.ViewWithTag (101) as UILabel).Text = MemberArticles[indexPath.Row].DateUpdated.ToString("d MMM yyyy");
 
 			return cell;
 		}
