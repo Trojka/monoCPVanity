@@ -209,6 +209,15 @@ namespace be.trojkasoftware.Ripit.Core
 							throw new InvalidCastException();
 					}
 				}
+				else if (property.PropertyType == typeof(DateTime)) {
+					DateTime sourceAsDt = DateTime.Now;
+					if (DateTime.TryParse(sourceText, out sourceAsDt)) {
+						property.SetValue (objectToFill, sourceAsDt, null);
+					}
+					else {
+						throw new InvalidCastException();
+					}
+				}
 			}
 
 			return objectToFill;
