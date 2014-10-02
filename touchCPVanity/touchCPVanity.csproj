@@ -152,6 +152,7 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Util\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\portableCPVanity\portableCPVanity.csproj">
@@ -175,4 +176,10 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\articlesalpha.png" />
+    <BundleResource Include="Resources\communityalpha.png" />
+    <BundleResource Include="Resources\memberalpha.png" />
+  </ItemGroup>
 </Project>
