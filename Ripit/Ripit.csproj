@@ -41,11 +41,13 @@
     <Compile Include="Attributes\PropertyCaptureAttribute.cs" />
     <Compile Include="Attributes\CollectionCaptureAttribute.cs" />
     <Compile Include="Core\RSSItem.cs" />
+    <Compile Include="TypeConverters\DateConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Core\" />
     <Folder Include="Attributes\" />
+    <Folder Include="TypeConverters\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
