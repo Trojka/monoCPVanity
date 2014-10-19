@@ -7,11 +7,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Linq;
-using System.IO;
 using be.trojkasoftware.Ripit.Attributes;
 
 namespace be.trojkasoftware.Ripit.Core
@@ -22,9 +18,20 @@ namespace be.trojkasoftware.Ripit.Core
 		string pageText = "";
 		Stream responseStream = null;
 
-		public IList<T> FillList<T>(IList<T> listToFill, Dictionary<String, String> paramList, Func<T> itemFactory ) where T: class
+		public Task<IList<T>> FillListAsync<T>(IList<T> listToFill, Dictionary<String, String> paramList, Func<T> itemFactory, CancellationToken ct) where T: class
 		{
-			Dictionary<int, string> globalSources = GetSources(listToFill, paramList);
+			Task<IList<T>> returnValue = new Task<IList<T>> (x => FillList (listToFill, paramList, itemFactory, ct), ct);
+			return returnValue;
+		}
+
+		public IList<T> FillList<T>(IList<T> listToFill, Dictionary<String, String> paramList, Func<T> itemFactory) where T: class
+		{
+			return FillList<T>(listToFill, paramList, itemFactory, CancellationToken.None);
+		}
+
+		public IList<T> FillList<T>(IList<T> listToFill, Dictionary<String, String> paramList, Func<T> itemFactory, CancellationToken ct) where T: class
+		{
+			Dictionary<int, string> globalSources = GetSources(listToFill, paramList, CancellationToken.None);
 
 			Type objectType = listToFill.GetType();
 			Attribute[] objectAttrs = (System.Attribute[])objectType.GetCustomAttributes (false);
@@ -36,12 +43,18 @@ namespace be.trojkasoftware.Ripit.Core
 
 			MatchCollection matches = Regex.Matches(globalSources[captureAttribute.Index], captureAttribute.CaptureExpression, RegexOptions.IgnoreCase);
 			foreach (Match match in matches) {
+
+				if (ct != CancellationToken.None && ct.IsCancellationRequested) 
+				{
+					return null;
+				}
+
 				Dictionary<int, string> targetSources = new Dictionary<int, string>();
 				targetSources.Add (0, match.Groups [0].Value);
 
 				T objectToFill = itemFactory ();
 
-				T filledObject = (T)FillFromSources(objectToFill, targetSources);
+				T filledObject = (T)FillFromSources(objectToFill, targetSources, ct);
 
 				listToFill.Add (filledObject);
 			}
@@ -49,18 +62,42 @@ namespace be.trojkasoftware.Ripit.Core
 			return listToFill;
 		}
 
+		public Task<object> FillAsync(object objectToFill, Dictionary<String, String> paramList, CancellationToken ct) 
+		{
+			Task<object> returnValue = new Task<object> (x => Fill (objectToFill, paramList, ct), ct);
+			return returnValue;
+		}
+
 		public object Fill(object objectToFill, Dictionary<String, String> paramList)
 		{
+			return Fill (objectToFill, paramList, CancellationToken.None);
+		}
 
-			Dictionary<int, string> globalSources = GetSources(objectToFill, paramList);
+		public object Fill(object objectToFill, Dictionary<String, String> paramList, CancellationToken ct)
+		{
 
-			return FillFromSources(objectToFill, globalSources);
+			Dictionary<int, string> globalSources = GetSources(objectToFill, paramList, ct);
+			if (ct == CancellationToken.None && globalSources == null)
+				return null;
+
+			return FillFromSources(objectToFill, globalSources, ct);
+		}
+
+		public Task<object> FillFeedAsync(object feedToFill, Dictionary<String, String> paramList, CancellationToken ct)
+		{
+			Task<object> returnValue = new Task<object> (x => FillFeed (feedToFill, paramList, ct), ct);
+			return returnValue;
 		}
 
 		public object FillFeed(object feedToFill, Dictionary<String, String> paramList)
 		{
+			return FillFeed (feedToFill, paramList, CancellationToken.None);
+		}
+
+		public object FillFeed(object feedToFill, Dictionary<String, String> paramList, CancellationToken ct)
+		{
 			List<RSSItem> feedToFillAsRSSFeed = feedToFill as List<RSSItem>;
-			Dictionary<int, string> globalSources = GetSourceUrls(feedToFill, paramList);
+			Dictionary<int, string> globalSources = GetSourceUrls(feedToFill, paramList, ct);
 
 			HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create (globalSources[1]);
 			IAsyncResult reqResult = myReq.BeginGetResponse (new AsyncCallback (FinishWebRequest), myReq);
@@ -96,13 +133,18 @@ namespace be.trojkasoftware.Ripit.Core
 			return results;
 		}
 
-		private Dictionary<int, string> GetSourceUrls(object objectToFill, Dictionary<String, String> paramList)
+		private Dictionary<int, string> GetSourceUrls(object objectToFill, Dictionary<String, String> paramList, CancellationToken ct)
 		{
 			Dictionary<int, string> urlSources = new Dictionary<int, string> ();
 
 			Type objectType = objectToFill.GetType();
 			Attribute[] objectAttrs = (System.Attribute[])objectType.GetCustomAttributes (false);
 			foreach (HttpSourceAttribute httpSource in objectAttrs.ToList().OfType<HttpSourceAttribute>()) {
+
+				if (ct != CancellationToken.None && ct.IsCancellationRequested) 
+				{
+					return null;
+				}
 
 				string mainUrl = httpSource.Url;
 				int startOfParam = httpSource.Url.LastIndexOf ("?");
@@ -130,12 +172,20 @@ namespace be.trojkasoftware.Ripit.Core
 			return urlSources;
 		}
 
-		private Dictionary<int, string> GetSources(object objectToFill, Dictionary<String, String> paramList)
+		private Dictionary<int, string> GetSources(object objectToFill, Dictionary<String, String> paramList, CancellationToken ct)
 		{
-			Dictionary<int, string> urlSources = GetSourceUrls(objectToFill, paramList);
+			Dictionary<int, string> urlSources = GetSourceUrls(objectToFill, paramList, ct);
+			if(urlSources == null) 
+			{
+			}
 			Dictionary<int, string> globalSources = new Dictionary<int, string> ();
 
 			foreach (KeyValuePair<int, string> entry in urlSources) {
+
+				if (ct != CancellationToken.None && ct.IsCancellationRequested) 
+				{
+					return null;
+				}
 
 				HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create (entry.Value);
 				IAsyncResult result = myReq.BeginGetResponse (new AsyncCallback (FinishWebRequest), myReq);
@@ -154,10 +204,16 @@ namespace be.trojkasoftware.Ripit.Core
 			return globalSources;
 		}
 
-		private object FillFromSources(object objectToFill, Dictionary<int, string> globalSources)
+		private object FillFromSources(object objectToFill, Dictionary<int, string> globalSources, CancellationToken ct)
 		{
 			Type objectType = objectToFill.GetType();
 			foreach (PropertyInfo property in objectType.GetProperties ()) {
+
+				if (ct != CancellationToken.None && ct.IsCancellationRequested) 
+				{
+					return null;
+				}
+
 				pageText = "";
 
 				Attribute[] propertyAttrs = (System.Attribute[])property.GetCustomAttributes(false);

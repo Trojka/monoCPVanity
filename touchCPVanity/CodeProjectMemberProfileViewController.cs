@@ -7,6 +7,7 @@ using be.trojkasoftware.Ripit.Core;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.monoCPVanity.Data;
 using touchCPVanity.Util;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace touchCPVanity
@@ -22,6 +23,17 @@ namespace touchCPVanity
 			set;
 		}
 
+		public CodeProjectMember Member {
+			get;
+			set;
+		}
+
+		public UIImage Gravatar {
+			get;
+			set;
+		}
+
+
 		public override void DidReceiveMemoryWarning ()
 		{
 			// Releases the view if it doesn't have a superview.
@@ -34,6 +46,10 @@ namespace touchCPVanity
 		{
 			base.ViewDidLoad ();
 
+			progressView = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.Gray);
+			progressView.Center = new PointF (this.View.Frame.Width / 2, this.View.Frame.Height / 2);
+			this.View.AddSubview (progressView);
+
 			this.SaveBtn.TouchUpInside += HandleTouchUpInside;
 
 
@@ -44,9 +60,19 @@ namespace touchCPVanity
 			Member.Id = MemberId;
 
 			ObjectBuilder objectBuilder = new ObjectBuilder ();
-			objectBuilder.Fill (Member, param);
+			Task<object> fillMemberTask = objectBuilder.FillAsync (Member, param, CancellationToken.None);
 
-			FillScreen ();
+			progressView.StartAnimating ();
+
+			var context = TaskScheduler.FromCurrentSynchronizationContext();
+
+			fillMemberTask.Start ();
+			fillMemberTask
+				.ContinueWith (x => LoadGravatar (x.Result as CodeProjectMember))
+				.ContinueWith (x => MemberLoaded (x.Result as CodeProjectMember), context);
+
+			//objectBuilder.Fill (Member, param);
+			//FillScreen ();
 		}
 
 		void HandleTouchUpInside (object sender, EventArgs ea) {
@@ -67,6 +93,46 @@ namespace touchCPVanity
 			}
 		}
 
+		CodeProjectMember /*UIImage*/ LoadGravatar(CodeProjectMember member) {
+
+			//			FileStorageService storage = new FileStorageService ();
+			//			if (storage.FileExists (Member.Id.ToString())) {
+			//				byte[] imageData = storage.ReadBytes (Member.Id.ToString());
+			CodeProjectDatabase db = new CodeProjectDatabase ();
+			byte[] gravatar = db.GetGravatar(Member.Id);
+			if (gravatar != null) {
+
+				Gravatar = UIImage.LoadFromData (NSData.FromArray (gravatar));
+
+			} else {
+				WebImageRetriever imageDownloader = new WebImageRetriever ();
+				Task imageDownload = imageDownloader.GetImageAsync (new Uri (Member.ImageUrl)).ContinueWith (t => {
+
+					NSData imageData = t.Result.AsPNG();
+					gravatar = new byte[imageData.Length];
+					System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, gravatar, 0, Convert.ToInt32(imageData.Length));
+					//storage.WriteBytes(dataBytes, Member.Id.ToString());
+
+					Member.Gravatar = gravatar;
+					Gravatar = t.Result;
+
+				});
+
+				imageDownload.Wait ();
+			}
+
+			//return image;
+			return member;
+		}
+
+		void MemberLoaded(CodeProjectMember member) {
+			Member = member;
+
+			progressView.StopAnimating ();
+
+			FillScreen ();
+		}
+
 		void FillScreen() {
 
 			this.MemberNameLbl.Text = Member.Name;
@@ -76,36 +142,12 @@ namespace touchCPVanity
 			this.BlogCountLbl.Text = "Blogs: " + Member.BlogCount;
 			this.AvgBlogRatingLbl.Text = "Average blog rating: " + Member.AverageBlogRating;
 
-//			FileStorageService storage = new FileStorageService ();
-//			if (storage.FileExists (Member.Id.ToString())) {
-//				byte[] imageData = storage.ReadBytes (Member.Id.ToString());
-			CodeProjectDatabase db = new CodeProjectDatabase ();
-			byte[] gravatar = db.GetGravatar(Member.Id);
-			if (gravatar != null) {
-
-				UIImage image = UIImage.LoadFromData (NSData.FromArray (gravatar));
-				this.MemberImage.Image = image;
-
-			} else {
-				WebImageRetriever imageDownloader = new WebImageRetriever ();
-				imageDownloader.GetImageAsync (new Uri (Member.ImageUrl)).ContinueWith (t => {
-
-					NSData imageData = t.Result.AsPNG();
-					gravatar = new byte[imageData.Length];
-					System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, gravatar, 0, Convert.ToInt32(imageData.Length));
-					//storage.WriteBytes(dataBytes, Member.Id.ToString());
-
-					Member.Gravatar = gravatar;
-					this.MemberImage.Image = t.Result;
-
-				}, TaskScheduler.FromCurrentSynchronizationContext ());
+			if (Gravatar != null) {
+				this.MemberImage.Image = Gravatar;
 			}
 		}
 
-		public CodeProjectMember Member {
-			get;
-			set;
-		}
+		UIActivityIndicatorView progressView;
 	}
 }
 

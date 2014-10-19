@@ -167,6 +167,10 @@ namespace touchCPVanity
 		{
 			base.ViewDidLoad ();
 
+			progressView = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.Gray);
+			progressView.Center = new PointF (this.View.Frame.Width / 2, this.View.Frame.Height / 2);
+			this.View.AddSubview (progressView);
+
 			this.RefreshBtn.Clicked += OnRefreshClicked;
 
 			CodeProjectDatabase db = new CodeProjectDatabase ();
@@ -186,16 +190,33 @@ namespace touchCPVanity
 
 		void OnRefreshClicked(object sender, EventArgs E)
 		{
-			Refresh ();
+			if (!isLoading) {
+				isLoading = true;
+				Refresh ();
+			} else {
+				isLoading = false;
+				CancelRefresh ();
+			}
 		}
 
 		void Refresh()
 		{
+			progressView.StartAnimating ();
 			CodeProjectDatabase db = new CodeProjectDatabase ();
 			MemberList = db.GetMembers();
 
 			MemberListTable.Source = new CodeProjectMemberListDataSource(MemberList);
 			MemberListTable.ReloadData ();
+
+			RefreshFinished ();
+		}
+
+		void CancelRefresh() {
+			RefreshFinished ();
+		}
+
+		void RefreshFinished() {
+			progressView.StopAnimating ();
 		}
 
 		public List<CodeProjectMember> MemberList {
@@ -204,6 +225,9 @@ namespace touchCPVanity
 		}
 
 		String searchString;
+
+		UIActivityIndicatorView progressView;
+		Boolean isLoading = false;
 	}
 }
 
