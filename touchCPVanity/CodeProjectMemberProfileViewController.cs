@@ -126,10 +126,10 @@ namespace touchCPVanity
 		}
 
 		void MemberLoaded(CodeProjectMember member) {
-			Member = member;
 
 			progressView.StopAnimating ();
 
+			Member = member;
 			FillScreen ();
 		}
 

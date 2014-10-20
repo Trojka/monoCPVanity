@@ -5,6 +5,8 @@ using MonoTouch.UIKit;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.Ripit.Core;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace touchCPVanity
 {
@@ -63,16 +65,38 @@ namespace touchCPVanity
 		{
 			base.ViewDidLoad ();
 
-			MemberArticles = new CodeProjectMemberArticles ();
-			MemberArticles.Id = Member.Id;
+			progressView = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.Gray);
+			progressView.Center = new PointF (this.View.Frame.Width / 2, this.View.Frame.Height / 2);
+			this.View.AddSubview (progressView);
+
+			MemberArticles = new CodeProjectMemberArticles();
+
+			CodeProjectMemberArticles memberArticles = new CodeProjectMemberArticles ();
+			memberArticles.Id = Member.Id;
 
 			Dictionary<String, String> param = new Dictionary<string, string> ();
 			param.Add ("Id", Member.Id.ToString());
 
 			ObjectBuilder objectBuilder = new ObjectBuilder ();
-			objectBuilder.FillList (MemberArticles, param, () => new CodeProjectMemberArticle());
+			Task<IList<CodeProjectMemberArticle>> loadArticleTask = objectBuilder.FillListAsync (MemberArticles, param, () => new CodeProjectMemberArticle(), CancellationToken.None);
+
+			progressView.StartAnimating ();
+
+			var context = TaskScheduler.FromCurrentSynchronizationContext();
+
+			loadArticleTask.Start ();
+			loadArticleTask.ContinueWith (x => ArticlesLoaded (x.Result as CodeProjectMemberArticles), context);
+
 
 			MemberArticlesTable.WeakDataSource = this;
+		}
+
+		void ArticlesLoaded(CodeProjectMemberArticles memberArticles) {
+
+			progressView.StopAnimating ();
+
+			MemberArticles = memberArticles;
+			MemberArticlesTable.ReloadData ();
 		}
 
 		public CodeProjectMember Member {
@@ -84,6 +108,8 @@ namespace touchCPVanity
 			get;
 			set;
 		}
+
+		UIActivityIndicatorView progressView;
 	}
 }
 

@@ -23,16 +23,35 @@ namespace touchCPVanity
 		{
 			base.ViewDidLoad ();
 
+			progressView = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.Gray);
+			progressView.Center = new PointF (this.View.Frame.Width / 2, this.View.Frame.Height / 2);
+			this.View.AddSubview (progressView);
+
 			WebImageRetriever imageDownloader = new WebImageRetriever ();
-			imageDownloader.GetImageAsync (new Uri(Member.ReputationGraph)).ContinueWith (t => {
-				this.ReputationGraph.Image = t.Result;
-			}, TaskScheduler.FromCurrentSynchronizationContext ());
+			Task<UIImage> loadGraphTask = imageDownloader.GetImageAsync (new Uri (Member.ReputationGraph));
+
+			progressView.StartAnimating ();
+
+			var context = TaskScheduler.FromCurrentSynchronizationContext();
+
+			//loadGraphTask.Start ();
+			loadGraphTask.ContinueWith (t => ReputationGraphLoaded(t.Result), context);
 		}
+
+		public void ReputationGraphLoaded(UIImage graph) {
+
+			progressView.StopAnimating ();
+
+			this.ReputationGraph.Image = graph;
+		}
+
 
 		public CodeProjectMember Member {
 			get;
 			set;
 		}
+
+		UIActivityIndicatorView progressView;
 	}
 }
 
