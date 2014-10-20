@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Collections.Generic;
@@ -28,12 +30,30 @@ namespace touchCPVanity
 			set;
 		}
 
-		public virtual void LoadFeed(CodeProjectRssFeed feed) {
+		public virtual Dictionary<string, string> GetBuilderParams() {
+			Dictionary<string, string> paramList = new Dictionary<string, string> ();
+			return paramList;
+		}
+
+		public void LoadFeed(CodeProjectRssFeed feed) {
 			ObjectBuilder builder = new ObjectBuilder ();
 
-			Dictionary<string, string> paramList = new Dictionary<string, string> ();
+			Task<IList<RSSItem>> loadFeedTask = builder.FillFeedAsync (feed, GetBuilderParams(), CancellationToken.None);
 
-			builder.FillFeed (ItemFeed, paramList);
+			progressView.StartAnimating ();
+
+			var context = TaskScheduler.FromCurrentSynchronizationContext();
+
+			loadFeedTask.Start ();
+			loadFeedTask.ContinueWith (x => FeedLoaded(x.Result), context);
+		}
+
+		void FeedLoaded(IList<RSSItem> feed) {
+
+			progressView.StopAnimating ();
+
+			RSSItemTable.Source = new CodeProjectRSSDataSource(ItemFeed);
+			RSSItemTable.ReloadData ();
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -50,15 +70,18 @@ namespace touchCPVanity
 
 		public override void ViewDidAppear (bool animated)
 		{
+			progressView = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.Gray);
+			progressView.Center = new PointF (this.View.Frame.Width / 2, this.View.Frame.Height / 2);
+			this.View.AddSubview (progressView);
+
 			CategoryText = ItemFeed.Name;
+
 			ReloadData ();
 		}
 
 		public void ReloadData()
 		{
 			LoadFeed (ItemFeed);
-			RSSItemTable.Source = new CodeProjectRSSDataSource(ItemFeed);
-			RSSItemTable.ReloadData ();
 		}
 
 		public RSSItem SelectedItem {
@@ -71,6 +94,8 @@ namespace touchCPVanity
 			get { return CategoryLabel.Text; }
 			set { CategoryLabel.Text = value; }
 		}
+
+		UIActivityIndicatorView progressView;
 
 	}
 }

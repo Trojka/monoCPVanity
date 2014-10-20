@@ -3,6 +3,8 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.portableCPVanity.RssFeeds;
 using be.trojkasoftware.Ripit.Core;
@@ -16,13 +18,10 @@ namespace touchCPVanity
 			ItemFeed = CodeProjectArticleFeed.GetFeed(CodeProjectArticleFeed.DefaultArticleCategory);
 		}
 
-		public override void LoadFeed(CodeProjectRssFeed feed) {
-			ObjectBuilder builder = new ObjectBuilder ();
-
+		public override Dictionary<string, string> GetBuilderParams() {
 			Dictionary<string, string> paramList = new Dictionary<string, string> ();
 			paramList.Add ("Id", (ItemFeed as CodeProjectArticleFeed).Id.ToString());
-
-			builder.FillFeed (ItemFeed, paramList);
+			return paramList;
 		}
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)

@@ -1,6 +1,6 @@
 ﻿using System;
 using be.trojkasoftware.Ripit.Attributes;
-using be.trojkasoftware.Ripit.TypeConverters;
+//using be.trojkasoftware.Ripit.TypeConverters;
 
 namespace be.trojkasoftware.portableCPVanity
 {

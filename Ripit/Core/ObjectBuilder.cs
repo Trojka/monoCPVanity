@@ -83,20 +83,20 @@ namespace be.trojkasoftware.Ripit.Core
 			return FillFromSources(objectToFill, globalSources, ct);
 		}
 
-		public Task<object> FillFeedAsync(object feedToFill, Dictionary<String, String> paramList, CancellationToken ct)
+		public Task<IList<RSSItem>> FillFeedAsync(IList<RSSItem> feedToFill, Dictionary<String, String> paramList, CancellationToken ct)
 		{
-			Task<object> returnValue = new Task<object> (x => FillFeed (feedToFill, paramList, ct), ct);
+			Task<IList<RSSItem>> returnValue = new Task<IList<RSSItem>> (x => FillFeed (feedToFill, paramList, ct), ct);
 			return returnValue;
 		}
 
-		public object FillFeed(object feedToFill, Dictionary<String, String> paramList)
+		public IList<RSSItem> FillFeed(IList<RSSItem> feedToFill, Dictionary<String, String> paramList)
 		{
 			return FillFeed (feedToFill, paramList, CancellationToken.None);
 		}
 
-		public object FillFeed(object feedToFill, Dictionary<String, String> paramList, CancellationToken ct)
+		public IList<RSSItem> FillFeed(IList<RSSItem> feedToFill, Dictionary<String, String> paramList, CancellationToken ct)
 		{
-			List<RSSItem> feedToFillAsRSSFeed = feedToFill as List<RSSItem>;
+			//List<RSSItem> feedToFillAsRSSFeed = feedToFill as List<RSSItem>;
 			Dictionary<int, string> globalSources = GetSourceUrls(feedToFill, paramList, ct);
 
 			HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create (globalSources[1]);
@@ -108,7 +108,9 @@ namespace be.trojkasoftware.Ripit.Core
 			List<RSSItem> result = LoadFeed (responseStream);
 			//responseStream.Dispose();
 
-			feedToFillAsRSSFeed.AddRange (result);
+			//feedToFillAsRSSFeed.AddRange (result);
+			foreach(var item in result)
+				feedToFill.Add (item);
 
 			return feedToFill;
 		}
