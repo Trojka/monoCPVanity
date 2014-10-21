@@ -64,7 +64,11 @@
       <Link>Data\CodeProjectDatabase.cs</Link>
     </Compile>
     <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Util\WebImageRetrieverObsolete.cs" />
     <Compile Include="Util\WebImageRetriever.cs" />
+    <Compile Include="..\monoCPVanity\Util\FileStorageService.cs">
+      <Link>Util\FileStorageService.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="be.trojkasoftware.droidCPVanity">
 	<uses-sdk />
-	<application android:label="droidCPVanity" android:theme="@style/AppTheme">
-	</application>
+	<application android:label="droidCPVanity" android:theme="@style/AppTheme"></application>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>
