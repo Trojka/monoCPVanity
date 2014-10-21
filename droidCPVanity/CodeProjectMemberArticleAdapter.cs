@@ -48,7 +48,7 @@ namespace be.trojkasoftware.droidCPVanity
 			var articleVotes = view.FindViewById<TextView> (Resource.Id.textViewVotes);
 
 			articleTitle.Text = list[position].Title;
-			articleDate.Text = list[position].DateUpdated;
+			articleDate.Text = list[position].DateUpdated.ToString("d MMM yyyy");
 			articleScore.Text = list[position].Rating;
 			articleVotes.Text = list[position].Votes;
 

@@ -130,27 +130,27 @@ namespace be.trojkasoftware.droidCPVanity
 			if(member != null)
 				avgBlogRating.Text = "Average blog rating: " + member.AverageBlogRating;
 
-			string memberIconFilenam = member.Id.ToString () + ".png";
-			ImageView memberIcon = profile.FindViewById<ImageView> (Resource.Id.imageViewMemberImage);
-			var dir = new File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), memberIconFilenam);
-			if (!dir.Exists ()) {
-				new WebImageRetriever (memberIcon, memberIconFilenam, true)
-					.Execute (member.ImageUrl);
-			} else {
-				try {
-					var bitmap = BitmapFactory.DecodeFile (dir.AbsolutePath);
-					memberIcon.SetImageBitmap (bitmap);
-				} catch (Exception e) {
-					Log.Error ("Error", e.Message);
-				}
-			}
-
-			ListView articleList = articles.FindViewById<ListView>(Resource.Id.listViewArticles);
-			articleList.Adapter = new CodeProjectMemberArticleAdapter (this, memberArticles);
-
-			ImageView memberReputationGraph = reputation.FindViewById<ImageView> (Resource.Id.imageViewReputationGraph);
-			new WebImageRetriever (memberReputationGraph, null, false)
-				.Execute (member.ReputationGraph);
+//			string memberIconFilenam = member.Id.ToString () + ".png";
+//			ImageView memberIcon = profile.FindViewById<ImageView> (Resource.Id.imageViewMemberImage);
+//			var dir = new File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), memberIconFilenam);
+//			if (!dir.Exists ()) {
+//				new WebImageRetriever (memberIcon, memberIconFilenam, true)
+//					.Execute (member.ImageUrl);
+//			} else {
+//				try {
+//					var bitmap = BitmapFactory.DecodeFile (dir.AbsolutePath);
+//					memberIcon.SetImageBitmap (bitmap);
+//				} catch (Exception e) {
+//					Log.Error ("Error", e.Message);
+//				}
+//			}
+//
+//			ListView articleList = articles.FindViewById<ListView>(Resource.Id.listViewArticles);
+//			articleList.Adapter = new CodeProjectMemberArticleAdapter (this, memberArticles);
+//
+//			ImageView memberReputationGraph = reputation.FindViewById<ImageView> (Resource.Id.imageViewReputationGraph);
+//			new WebImageRetriever (memberReputationGraph, null, false)
+//				.Execute (member.ReputationGraph);
 
 		}
 
