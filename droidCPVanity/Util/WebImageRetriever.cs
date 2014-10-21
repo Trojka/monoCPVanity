@@ -1,70 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
+using System.Threading;
 using System.Text;
-using Android.App;
-using Android.Content;
+using System.IO;
 using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
-using Android.Util;
-using Android.Views;
-using Android.Widget;
-using Java.IO;
-
 
 namespace be.trojkasoftware.droidCPVanity.Util
 {
-	//http://stackoverflow.com/questions/2471935/how-to-load-an-imageview-by-url-in-android
-	public class WebImageRetriever : AsyncTask<string, int, Bitmap>
+	public class WebImageRetriever
 	{
-		ImageView bmImage;
-		string fileName;
-		bool saveFile;
-
-		public WebImageRetriever(ImageView bmImage, string fileName, bool saveFile = false) {
-			this.bmImage = bmImage;
-			this.fileName = fileName;
-			this.saveFile = saveFile;
+		public WebImageRetriever ()
+		{
 		}
 
-		protected override Bitmap RunInBackground(params string[] urls) {
-			String urlDisplay = urls[0];
-			Bitmap image = null;
-			try
-			{
-				byte[] data;
-				using(var webClient = new WebClient())
-				{
-					data = webClient.DownloadData(urlDisplay);
-				}
-				image = BitmapFactory.DecodeByteArray(data, 0, data.Length);
-			} catch (Exception e) {
-				Log.Error("Error", e.Message);
-			}
-			return image;
+		public Task<Bitmap> GetImageAsync(Uri uri)
+		{
+			var req = WebRequest.Create (uri);
+
+			var getTask = Task.Factory.FromAsync<WebResponse> (
+				req.BeginGetResponse, req.EndGetResponse, null);
+
+			return getTask.ContinueWith (task => {
+				var res = task.Result;
+				Stream stream = res.GetResponseStream ();
+
+				return BitmapFactory.DecodeStream(stream);
+			});
 		}
-
-		protected override void OnPostExecute(Bitmap result) {
-			if (saveFile) {
-				var dir = new File (Android.OS.Environment.GetExternalStoragePublicDirectory (Android.OS.Environment.DirectoryPictures), fileName);
-				var parentDir = dir.ParentFile;
-				if (!parentDir.Exists ()) {
-					parentDir.Mkdirs ();
-				}
-
-				try {
-					var os = new System.IO.FileStream (dir.Path, System.IO.FileMode.OpenOrCreate);
-					result.Compress (Bitmap.CompressFormat.Png, 100, os);
-					os.Close ();
-				} catch (Exception e) {
-					Log.Error ("Error", e.Message);
-				}
-			}
-
-			bmImage.SetImageBitmap(result);
-		}	
 	}
 }
 
