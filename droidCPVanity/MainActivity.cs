@@ -40,14 +40,14 @@ namespace be.trojkasoftware.droidCPVanity
 
 			currentScreen = Screen.MemberList;
 
-			ISharedPreferences settings = PreferenceManager.GetDefaultSharedPreferences (this);
-			String myId = settings.GetString ("me_id", String.Empty);
-
-			if (String.IsNullOrEmpty (myId)) {
-				var intent = new Intent (this, typeof(CodeProjectSettingsActivity));
-				//intent.AddFlags (ActivityFlags.ClearTop);
-				StartActivity (intent);
-			}
+//			ISharedPreferences settings = PreferenceManager.GetDefaultSharedPreferences (this);
+//			String myId = settings.GetString ("me_id", String.Empty);
+//
+//			if (String.IsNullOrEmpty (myId)) {
+//				var intent = new Intent (this, typeof(CodeProjectSettingsActivity));
+//				//intent.AddFlags (ActivityFlags.ClearTop);
+//				StartActivity (intent);
+//			}
 		}
 
 		public bool OnNavigationItemSelected (int itemPosition, long itemId)
@@ -113,6 +113,16 @@ namespace be.trojkasoftware.droidCPVanity
 			default:
 				return base.OnOptionsItemSelected(item);
 			}
+		}
+
+		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
+		{
+			Fragment fragment = this.FragmentManager.FindFragmentById (Resource.Id.frameLayoutFragmentContainer);
+			if (fragment is CodeProjectMemberListFragment) {
+				(fragment as CodeProjectMemberListFragment).LoadMembers ();
+			}
+
+			base.OnActivityResult (requestCode, resultCode, data);
 		}
 
 		private Screen currentScreen = Screen.MemberList;
