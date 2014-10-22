@@ -22,11 +22,7 @@ namespace be.trojkasoftware.droidCPVanity
 		public override void OnActivityCreated(Bundle savedInstanceState) {
 			base.OnActivityCreated(savedInstanceState);
 
-			CodeProjectDatabase db = new CodeProjectDatabase ();
-			members = db.GetMembers();
-
-			ListAdapter = new CodeProjectMemberAdapter(this.Activity, members);
-
+			LoadMembers ();
 		}
 
 		public override void OnListItemClick (ListView l, View v, int position, long id)
@@ -34,11 +30,18 @@ namespace be.trojkasoftware.droidCPVanity
 			var intent = new Intent (this.Activity, typeof(CodeProjectMemberDetailActivity));
 
 			Bundle bundle = new Bundle ();
-			bundle.PutInt (CodeProjectMemberDetailActivity.MemberId, members[position].Id);
+			bundle.PutInt (CodeProjectMemberDetailActivity.MemberIdKey, members[position].Id);
 
 			intent.PutExtras(bundle);
 
 			StartActivity (intent);
+		}
+
+		public void LoadMembers() {
+			CodeProjectDatabase db = new CodeProjectDatabase ();
+			members = db.GetMembers ();
+
+			ListAdapter = new CodeProjectMemberAdapter (this.Activity, members);
 		}
 
 		List<CodeProjectMember> members;
