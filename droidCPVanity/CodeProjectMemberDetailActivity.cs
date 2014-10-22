@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -24,6 +26,21 @@ namespace be.trojkasoftware.droidCPVanity
 	[MetaData(("android.app.searchable"), Resource = "@xml/searchable")]
 	public class CodeProjectMemberDetailActivity : Activity
 	{
+		public int MemberId {
+			get;
+			set;
+		}
+
+		public CodeProjectMember Member {
+			get;
+			set;
+		}
+
+		public Bitmap Gravatar {
+			get;
+			set;
+		}
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -57,31 +74,41 @@ namespace be.trojkasoftware.droidCPVanity
 
 		private void HandleIntent(Intent intent)
 		{
-			int memberId;
 			if (Intent.ActionSearch == intent.Action) {
 				String query = intent.GetStringExtra (SearchManager.Query);
 
-				memberId = int.Parse (query);
+				MemberId = int.Parse (query);
 			} else {
-				memberId = intent.Extras.GetInt (MemberId);
+				MemberId = intent.Extras.GetInt (MemberIdKey);
 			}
 
-			ObjectBuilder objectBuilder = new ObjectBuilder ();
 
 			Dictionary<String, String> param = new Dictionary<string, string> ();
-			param.Add ("Id", memberId.ToString());
+			param.Add ("Id", MemberId.ToString());
 
-			member = new CodeProjectMember ();
-			member.Id = memberId;
+			Member = new CodeProjectMember ();
+			Member.Id = MemberId;
 
-			objectBuilder.Fill (member, param);
+			ObjectBuilder objectBuilder = new ObjectBuilder ();
+			Task<object> fillMemberTask = objectBuilder.FillAsync (Member, param, CancellationToken.None);
 
-			memberArticles = new CodeProjectMemberArticles ();
-			memberArticles.Id = memberId;
+			var context = TaskScheduler.FromCurrentSynchronizationContext();
 
-			objectBuilder.FillList (memberArticles, param, () => new CodeProjectMemberArticle());
+			fillMemberTask.Start ();
+			fillMemberTask
+				.ContinueWith (x => LoadGravatar (x.Result as CodeProjectMember))
+				.ContinueWith (x => MemberLoaded (x.Result as CodeProjectMember), context);
 
-			FillScreen ();
+//			ObjectBuilder objectBuilder = new ObjectBuilder ();
+//
+//			objectBuilder.Fill (member, param);
+//
+//			memberArticles = new CodeProjectMemberArticles ();
+//			memberArticles.Id = memberId;
+//
+//			objectBuilder.FillList (memberArticles, param, () => new CodeProjectMemberArticle());
+//
+//			FillScreen ();
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -96,39 +123,90 @@ namespace be.trojkasoftware.droidCPVanity
 		{
 			switch (item.ItemId) {
 			case Resource.Id.action_member_add:
-				CodeProjectDatabase db = new CodeProjectDatabase ();
-				db.AddMember (member, false);
+				SaveCurrentMember ();
 				return true;
 			default:
 				return base.OnOptionsItemSelected(item);
 			}
 		}
 
+		private void SaveCurrentMember()
+		{
+			CodeProjectDatabase db = new CodeProjectDatabase ();
+			db.AddMember (Member, false);
+		}
+
+		private CodeProjectMember /*UIImage*/ LoadGravatar(CodeProjectMember member) {
+
+			//			FileStorageService storage = new FileStorageService ();
+			//			if (storage.FileExists (Member.Id.ToString())) {
+			//				byte[] imageData = storage.ReadBytes (Member.Id.ToString());
+			CodeProjectDatabase db = new CodeProjectDatabase ();
+			byte[] gravatar = db.GetGravatar(Member.Id);
+			if (gravatar != null) {
+
+				//Gravatar = UIImage.LoadFromData (NSData.FromArray (gravatar));
+				Gravatar = BitmapFactory.DecodeByteArray (gravatar, 0, gravatar.Length);
+
+			} else {
+				WebImageRetriever imageDownloader = new WebImageRetriever ();
+				Task imageDownload = imageDownloader.GetImageAsync (new Uri (Member.ImageUrl)).ContinueWith (t => {
+
+//					NSData imageData = t.Result.AsPNG();
+//					gravatar = new byte[imageData.Length];
+//					System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, gravatar, 0, Convert.ToInt32(imageData.Length));
+//					//storage.WriteBytes(dataBytes, Member.Id.ToString());
+
+					Member.Gravatar = gravatar;
+					Gravatar = t.Result;
+
+				});
+
+				imageDownload.Wait ();
+			}
+
+			//return image;
+			return member;
+		}
+
+		void MemberLoaded(CodeProjectMember member) {
+
+			Member = member;
+			FillScreen ();
+		}
+
 		private void FillScreen()
 		{
 			TextView memberName = profile.FindViewById<TextView>(Resource.Id.textViewMemberName);
-			if(member != null)
-				memberName.Text = member.Name;
+			if(Member != null)
+				memberName.Text = Member.Name;
 
 			TextView memberReputation = profile.FindViewById<TextView>(Resource.Id.textViewMemberReputation);
-			if(member != null)
-				memberReputation.Text = member.Reputation;
+			if(Member != null)
+				memberReputation.Text = Member.Reputation;
 
 			TextView memberArticleCnt = profile.FindViewById<TextView>(Resource.Id.textViewArticleCnt);
-			if(member != null)
-				memberArticleCnt.Text = "Articles: " + member.ArticleCount;
+			if(Member != null)
+				memberArticleCnt.Text = "Articles: " + Member.ArticleCount;
 
 			TextView avgArticleRating = profile.FindViewById<TextView>(Resource.Id.textViewArticleRating);
-			if(member != null)
-				avgArticleRating.Text = "Average article rating: " + member.AverageArticleRating;
+			if(Member != null)
+				avgArticleRating.Text = "Average article rating: " + Member.AverageArticleRating;
 
 			TextView memberBlogCnt = profile.FindViewById<TextView>(Resource.Id.textViewBlogCnt);
-			if(member != null)
-				memberBlogCnt.Text = "Blogs: " + member.BlogCount;
+			if(Member != null)
+				memberBlogCnt.Text = "Blogs: " + Member.BlogCount;
 
 			TextView avgBlogRating = profile.FindViewById<TextView>(Resource.Id.textViewBlogRating);
-			if(member != null)
-				avgBlogRating.Text = "Average blog rating: " + member.AverageBlogRating;
+			if(Member != null)
+				avgBlogRating.Text = "Average blog rating: " + Member.AverageBlogRating;
+
+
+			if (Gravatar != null) {
+				ImageView memberIcon = profile.FindViewById<ImageView> (Resource.Id.imageViewMemberImage);
+				memberIcon.SetImageBitmap (Gravatar);
+				//this.MemberImage.Image = Gravatar;
+			}
 
 //			string memberIconFilenam = member.Id.ToString () + ".png";
 //			ImageView memberIcon = profile.FindViewById<ImageView> (Resource.Id.imageViewMemberImage);
@@ -154,10 +232,10 @@ namespace be.trojkasoftware.droidCPVanity
 
 		}
 
-		public static string MemberId = "CodeProjectMemberId";
+		public static string MemberIdKey = "CodeProjectMemberId";
 
 		HorizontalPager pager = null;
-		CodeProjectMember member = null;
+		//CodeProjectMember member = null;
 		CodeProjectMemberArticles memberArticles = null;
 
 		View profile;
