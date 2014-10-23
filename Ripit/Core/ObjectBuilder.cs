@@ -100,7 +100,7 @@ namespace be.trojkasoftware.Ripit.Core
 			Dictionary<int, string> globalSources = GetSourceUrls(feedToFill, paramList, ct);
 
 			HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create (globalSources[1]);
-			IAsyncResult reqResult = myReq.BeginGetResponse (new AsyncCallback (FinishWebRequest), myReq);
+			/*IAsyncResult reqResult =*/ myReq.BeginGetResponse (new AsyncCallback (FinishWebRequest), myReq);
 
 			allDone.WaitOne ();
 			allDone.Reset ();
@@ -120,7 +120,7 @@ namespace be.trojkasoftware.Ripit.Core
 			// http://stackoverflow.com/questions/5889954/linq-to-xml-parse-rss-feed
 			List<RSSItem> results = null;
 
-			XNamespace ns = "http://purl.org/rss/1.0/";
+			//XNamespace ns = "http://purl.org/rss/1.0/";
 			XDocument xdoc = XDocument.Load(url);
 			results = (from feed in xdoc.Descendants(/*ns +*/ "item")
 				//orderby int.Parse(feed.Element(/*ns +*/  "guid").Value) descending
@@ -190,7 +190,7 @@ namespace be.trojkasoftware.Ripit.Core
 				}
 
 				HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create (entry.Value);
-				IAsyncResult result = myReq.BeginGetResponse (new AsyncCallback (FinishWebRequest), myReq);
+				/*IAsyncResult result = */ myReq.BeginGetResponse (new AsyncCallback (FinishWebRequest), myReq);
 
 				allDone.WaitOne ();
 				allDone.Reset ();
