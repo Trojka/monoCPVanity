@@ -115,7 +115,6 @@
     <Compile Include="CodeProjectMemberListViewController.designer.cs">
       <DependentUpon>CodeProjectMemberListViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Util\WebImageRetriever.cs" />
     <Compile Include="CodeProjectMemberReputationViewController.cs" />
     <Compile Include="CodeProjectMemberReputationViewController.designer.cs">
       <DependentUpon>CodeProjectMemberReputationViewController.cs</DependentUpon>
@@ -142,11 +141,17 @@
     <Compile Include="CodeProjectForumRSSViewController.designer.cs">
       <DependentUpon>CodeProjectForumRSSViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Util\FileStorageService.cs" />
     <Compile Include="ForumCategoryViewController.cs" />
     <Compile Include="ForumCategoryViewController.designer.cs">
       <DependentUpon>ForumCategoryViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="..\monoCPVanity\Util\FileStorageService.cs">
+      <Link>Util\FileStorageService.cs</Link>
+    </Compile>
+    <Compile Include="..\monoCPVanity\Util\WebImageRetriever.cs">
+      <Link>Util\WebImageRetriever.cs</Link>
+    </Compile>
+    <Compile Include="Util\WebImageRetriever.ios.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

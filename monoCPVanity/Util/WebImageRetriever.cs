@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Net;
+using System.Threading;
+using System.Text;
+using System.IO;
+using MonoTouch.UIKit;
+using MonoTouch.Foundation;
 
 namespace touchCPVanity.Util
 {
 	public partial class WebImageRetriever
 	{
+		public WebImageRetriever ()
+		{
+		}
+
 		public Task<Stream> GetImageStreamAsync(Uri uri) {
 			var req = WebRequest.Create (uri);
 
@@ -22,6 +28,7 @@ namespace touchCPVanity.Util
 				return res.GetResponseStream ();
 			});
 		}
+
 	}
 }
 

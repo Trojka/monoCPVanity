@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+
 
 namespace touchCPVanity.Util
 {
