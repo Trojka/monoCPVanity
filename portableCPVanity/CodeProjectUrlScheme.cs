@@ -4,11 +4,7 @@ namespace be.trojkasoftware.portableCPVanity
 {
 	public class CodeProjectUrlScheme
 	{
-		public static string BaseUrl {
-			get {
-				return "http://www.codeproject.com";
-			}
-		}
+		public static string BaseUrl = "http://www.codeproject.com";
 	}
 }
 
