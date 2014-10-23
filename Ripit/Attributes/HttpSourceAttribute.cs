@@ -11,10 +11,10 @@ namespace be.trojkasoftware.Ripit.Attributes
 			Url = url;
 		}
 
-		public HttpSourceAttribute (string url)
-			:this(0, url)
-		{
-		}
+//		public HttpSourceAttribute (string url)
+//			:this(0, url)
+//		{
+//		}
 
 		public int Id {
 			get;

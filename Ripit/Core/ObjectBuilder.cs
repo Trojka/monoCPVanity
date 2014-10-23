@@ -24,10 +24,10 @@ namespace be.trojkasoftware.Ripit.Core
 			return returnValue;
 		}
 
-		public IList<T> FillList<T>(IList<T> listToFill, Dictionary<String, String> paramList, Func<T> itemFactory) where T: class
-		{
-			return FillList<T>(listToFill, paramList, itemFactory, CancellationToken.None);
-		}
+//		public IList<T> FillList<T>(IList<T> listToFill, Dictionary<String, String> paramList, Func<T> itemFactory) where T: class
+//		{
+//			return FillList<T>(listToFill, paramList, itemFactory, CancellationToken.None);
+//		}
 
 		public IList<T> FillList<T>(IList<T> listToFill, Dictionary<String, String> paramList, Func<T> itemFactory, CancellationToken ct) where T: class
 		{
@@ -41,7 +41,7 @@ namespace be.trojkasoftware.Ripit.Core
 				return listToFill;
 			}
 
-			MatchCollection matches = Regex.Matches(globalSources[captureAttribute.Index], captureAttribute.CaptureExpression, RegexOptions.IgnoreCase);
+			MatchCollection matches = Regex.Matches(globalSources[0 /*captureAttribute.Index*/], captureAttribute.CaptureExpression, RegexOptions.IgnoreCase);
 			foreach (Match match in matches) {
 
 				if (ct != CancellationToken.None && ct.IsCancellationRequested) 
@@ -89,10 +89,10 @@ namespace be.trojkasoftware.Ripit.Core
 			return returnValue;
 		}
 
-		public IList<RSSItem> FillFeed(IList<RSSItem> feedToFill, Dictionary<String, String> paramList)
-		{
-			return FillFeed (feedToFill, paramList, CancellationToken.None);
-		}
+//		public IList<RSSItem> FillFeed(IList<RSSItem> feedToFill, Dictionary<String, String> paramList)
+//		{
+//			return FillFeed (feedToFill, paramList, CancellationToken.None);
+//		}
 
 		public IList<RSSItem> FillFeed(IList<RSSItem> feedToFill, Dictionary<String, String> paramList, CancellationToken ct)
 		{
@@ -231,7 +231,7 @@ namespace be.trojkasoftware.Ripit.Core
 
 				string sourceText = globalSources[sourceRef.SourceRefId];
 				bool foundValue = true;
-				foreach (Attribute textActionAttribute in propertyAttrList.OfType<TextActionInterface>().OrderBy(x => x.Index)) {
+				foreach (Attribute textActionAttribute in propertyAttrList/*.OfType<TextActionInterface>().OrderBy(x => x.Index)*/) {
 					if((textActionAttribute is PropertyCaptureAttribute) && foundValue)
 					{
 						PropertyCaptureAttribute capture = (PropertyCaptureAttribute)textActionAttribute;
