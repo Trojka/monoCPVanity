@@ -22,19 +22,6 @@ namespace touchCPVanity.Util
 
 					return UIImage.LoadFromData (data, 1);
 				});
-
-			//			var req = WebRequest.Create (uri);
-			//
-			//			var getTask = Task.Factory.FromAsync<WebResponse> (
-			//				req.BeginGetResponse, req.EndGetResponse, null);
-			//
-			//			return getTask.ContinueWith (task => {
-			//				var res = task.Result;
-			//				Stream stream = res.GetResponseStream ();
-			//				NSData data = NSData.FromStream (stream);
-			//
-			//				return UIImage.LoadFromData (data, 1);
-			//			});
 		}
 	}
 }

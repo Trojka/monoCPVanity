@@ -29,63 +29,45 @@ namespace touchCPVanity
 		[Export("tableView:numberOfRowsInSection:")]
 		public int RowsInSection (UITableView tableView, int section)
 		{
-//			if (tableView == MemberListTable) {
-//				return MemberList.Count;
-//			} else {
-				if ((MemberList != null) && !String.IsNullOrEmpty(searchString)) {
-					int searchId;
+			if ((MemberList != null) && !String.IsNullOrEmpty(searchString)) {
+				int searchId;
 
-					if (int.TryParse (searchString, out searchId)) {
-						return MemberList.Where (x => x.Id == searchId).Count () + 1;
-					} 
-					else {
-						return MemberList.Where (x => x.Name.ToUpper().Contains(searchString.ToUpper())).Count () + 1;
-					}
-				} else {
-					return 1;
+				if (int.TryParse (searchString, out searchId)) {
+					return MemberList.Where (x => x.Id == searchId).Count () + 1;
+				} 
+				else {
+					return MemberList.Where (x => x.Name.ToUpper().Contains(searchString.ToUpper())).Count () + 1;
 				}
-//			}
-
+			} else {
+				return 1;
+			}
 		}
 
 		[Export("tableView:cellForRowAtIndexPath:")]
 		public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-//			if (tableView == MemberListTable) {
-//				var cell = tableView.DequeueReusableCell ("TableCell");
-//				var cellStyle = UITableViewCellStyle.Default;
-//
-//				if (cell == null) {
-//					cell = new UITableViewCell (cellStyle, "TableCell");
-//				}
-//
-//				cell.TextLabel.Text = MemberList[indexPath.Row].Name;
-//
-//				return cell;
-//			} else {
-				if (indexPath.Item == 0) {
-					var cell = MemberListTable.DequeueReusableCell ("AddMemberCell");
+			if (indexPath.Item == 0) {
+				var cell = MemberListTable.DequeueReusableCell ("AddMemberCell");
 
-					(cell.ViewWithTag (100) as UILabel).Text = "Load member " + searchString;
+				(cell.ViewWithTag (100) as UILabel).Text = "Load member " + searchString;
 
-					return cell;
+				return cell;
+			} else {
+				var cell = MemberListTable.DequeueReusableCell ("MemberCell");
+
+				int searchId;
+				CodeProjectMember member = null;
+
+				if (int.TryParse (searchString, out searchId)) {
+					member = MemberList.Where (x => x.Id == searchId).ToList () [indexPath.Item - 1];
 				} else {
-					var cell = MemberListTable.DequeueReusableCell ("MemberCell");
-
-					int searchId;
-					CodeProjectMember member = null;
-
-					if (int.TryParse (searchString, out searchId)) {
-						member = MemberList.Where (x => x.Id == searchId).ToList () [indexPath.Item - 1];
-					} else {
-						member = MemberList.Where (x => x.Name.ToUpper ().Contains (searchString.ToUpper ())).ToList () [indexPath.Item - 1];
-					}
-
-					CodeProjectMemberListDataSource.FillCellWithMember(cell, member);
-
-					return cell;
+					member = MemberList.Where (x => x.Name.ToUpper ().Contains (searchString.ToUpper ())).ToList () [indexPath.Item - 1];
 				}
-//			}
+
+				CodeProjectMemberListDataSource.FillCellWithMember(cell, member);
+
+				return cell;
+			}
 		}
 
 		[Export("tableView:canEditRowAtIndexPath:")]

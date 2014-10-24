@@ -34,7 +34,6 @@ namespace touchCPVanity
 
 			var context = TaskScheduler.FromCurrentSynchronizationContext();
 
-			//loadGraphTask.Start ();
 			loadGraphTask.ContinueWith (t => ReputationGraphLoaded(t.Result), context);
 		}
 

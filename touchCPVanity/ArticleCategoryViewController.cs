@@ -28,8 +28,6 @@ namespace touchCPVanity
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-
-			//TableView.Source = new ArticleCategoryDataSource ();
 		}
 
 		public override int NumberOfSections (UITableView tableView)

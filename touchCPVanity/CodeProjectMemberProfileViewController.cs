@@ -70,9 +70,6 @@ namespace touchCPVanity
 			fillMemberTask
 				.ContinueWith (x => LoadGravatar (x.Result as CodeProjectMember))
 				.ContinueWith (x => MemberLoaded (x.Result as CodeProjectMember), context);
-
-			//objectBuilder.Fill (Member, param);
-			//FillScreen ();
 		}
 
 		void HandleTouchUpInside (object sender, EventArgs ea) {
@@ -111,7 +108,6 @@ namespace touchCPVanity
 					NSData imageData = t.Result.AsPNG();
 					gravatar = new byte[imageData.Length];
 					System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, gravatar, 0, Convert.ToInt32(imageData.Length));
-					//storage.WriteBytes(dataBytes, Member.Id.ToString());
 
 					Member.Gravatar = gravatar;
 					Gravatar = t.Result;
@@ -121,7 +117,6 @@ namespace touchCPVanity
 				imageDownload.Wait ();
 			}
 
-			//return image;
 			return member;
 		}
 
