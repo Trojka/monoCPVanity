@@ -27,10 +27,10 @@ namespace be.trojkasoftware.droidCPVanity
 
 		public override void OnListItemClick (ListView l, View v, int position, long id)
 		{
-			var intent = new Intent (this.Activity, typeof(CodeProjectMemberDetailActivity));
+			var intent = new Intent (this.Activity, typeof(CodeProjectMemberProfileActivity));
 
 			Bundle bundle = new Bundle ();
-			bundle.PutInt (CodeProjectMemberDetailActivity.MemberIdKey, members[position].Id);
+			bundle.PutInt (CodeProjectMemberProfileActivity.MemberIdKey, members[position].Id);
 
 			intent.PutExtras(bundle);
 
