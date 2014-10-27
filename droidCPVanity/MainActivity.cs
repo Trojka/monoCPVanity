@@ -11,7 +11,7 @@ using Android.Preferences;
 namespace be.trojkasoftware.droidCPVanity
 {
 	[Activity (Label = "droidCPVanity", MainLauncher = true)]
-	[MetaData ("android.app.default_searchable", Value = "be.trojkasoftware.droidcpvanity.CodeProjectMemberDetailActivity")]
+	[MetaData ("android.app.default_searchable", Value = "be.trojkasoftware.droidcpvanity.CodeProjectMemberProfileActivity")]
 	public class MainActivity : Activity, ActionBar.IOnNavigationListener
 	{
 		enum Screen {
