@@ -54,10 +54,7 @@
     <Compile Include="HorizontalPager.cs" />
     <Compile Include="CodeProjectArticleFeedFragment.cs" />
     <Compile Include="CodeProjectLoungeFeedFragment.cs" />
-    <Compile Include="CodeProjectMemberDetailActivity.cs" />
     <Compile Include="CodeProjectMemberListFragment.cs" />
-    <Compile Include="CodeProjectSettingsActivity.cs" />
-    <Compile Include="CodeProjectSettingsFragment.cs" />
     <Compile Include="CodeProjectMemberAdapter.cs" />
     <Compile Include="CodeProjectMemberArticleAdapter.cs" />
     <Compile Include="..\monoCPVanity\Data\CodeProjectDatabase.cs">
@@ -69,6 +66,7 @@
     <Compile Include="..\monoCPVanity\Util\FileStorageService.cs">
       <Link>Util\FileStorageService.cs</Link>
     </Compile>
+    <Compile Include="CodeProjectMemberProfileActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -94,12 +92,13 @@
     <AndroidResource Include="Resources\menu\main_actions.xml" />
     <AndroidResource Include="Resources\xml\searchable.xml" />
     <AndroidResource Include="Resources\drawable\ic_action_new.png" />
-    <AndroidResource Include="Resources\menu\codeproject_member_actions.xml" />
     <AndroidResource Include="Resources\xml\preferences.xml" />
     <AndroidResource Include="Resources\layout\SettingsLayout.xml" />
     <AndroidResource Include="Resources\layout\CodeProjectMemberListItem.axml" />
     <AndroidResource Include="Resources\drawable\member_div2.png" />
     <AndroidResource Include="Resources\layout\CodeProjectMemberArticlesItem.axml" />
+    <AndroidResource Include="Resources\menu\codeproject_member_profile_actions.xml" />
+    <AndroidResource Include="Resources\drawable\articles24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
