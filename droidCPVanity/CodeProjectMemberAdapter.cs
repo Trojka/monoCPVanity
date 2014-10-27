@@ -7,6 +7,7 @@ using Android.App;
 using Java.IO;
 using Android.Graphics;
 using Android.Util;
+using be.trojkasoftware.monoCPVanity.Data;
 
 
 namespace be.trojkasoftware.droidCPVanity
@@ -42,25 +43,33 @@ namespace be.trojkasoftware.droidCPVanity
 			var view = convertView ?? activity.LayoutInflater.Inflate (
 				Resource.Layout.CodeProjectMemberListItem, parent, false);
 			var memberName = view.FindViewById<TextView> (Resource.Id.textViewMemberName);
-			var memberArticleCnt = view.FindViewById<TextView> (Resource.Id.textViewArticleCnt);
-			var memberBlogCnt = view.FindViewById<TextView> (Resource.Id.textViewBlogCnt);
+			var memberReputation = view.FindViewById<TextView> (Resource.Id.textViewReputation);
+			var memberPostCnt = view.FindViewById<TextView> (Resource.Id.textViewPostCnt);
 			var memberIcon = view.FindViewById<ImageView> (Resource.Id.imageViewMemberImage);
 
 			memberName.Text = list[position].Name;
-			memberArticleCnt.Text = "Articles: " + list[position].ArticleCount;
-			memberBlogCnt.Text = "Blogs: " + list[position].BlogCount;
+			memberReputation.Text = list[position].Reputation;
+			memberPostCnt.Text = "Posts: " + (list[position].ArticleCount + list[position].BlogCount);
 
-			string memberIconFilenam = list[position].Id.ToString () + ".png";
-			var dir = new File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), memberIconFilenam);
-			if (dir.Exists ()) {
-				try {
-					var bitmap = BitmapFactory.DecodeFile (dir.AbsolutePath);
-					var scaledBitmap = Bitmap.CreateScaledBitmap(bitmap, bitmap.Width/2, bitmap.Height/2, false);
-					memberIcon.SetImageBitmap (scaledBitmap);
-				} catch (Exception e) {
-					Log.Error ("Error", e.Message);
-				}
+			CodeProjectDatabase database = new CodeProjectDatabase ();
+			byte[] gravatar = database.GetGravatar (list[position].Id);
+			if (gravatar != null) {
+
+				Bitmap image = BitmapFactory.DecodeByteArray (gravatar, 0, gravatar.Length);
+				memberIcon.SetImageBitmap (image);
 			}
+
+//			string memberIconFilenam = list[position].Id.ToString () + ".png";
+//			var dir = new File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), memberIconFilenam);
+//			if (dir.Exists ()) {
+//				try {
+//					var bitmap = BitmapFactory.DecodeFile (dir.AbsolutePath);
+//					var scaledBitmap = Bitmap.CreateScaledBitmap(bitmap, bitmap.Width/2, bitmap.Height/2, false);
+//					memberIcon.SetImageBitmap (scaledBitmap);
+//				} catch (Exception e) {
+//					Log.Error ("Error", e.Message);
+//				}
+//			}
 
 			return view;
 		}

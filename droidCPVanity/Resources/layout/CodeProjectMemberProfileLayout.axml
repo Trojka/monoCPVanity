@@ -7,13 +7,13 @@
     android:minHeight="25px">
     <TextView
         android:text="Profile"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView1"
         android:gravity="center_horizontal"
         android:textStyle="bold"
-        android:typeface="normal" />
+        android:typeface="normal"
+        android:textSize="48dp" />
     <RelativeLayout
         android:minWidth="25px"
         android:minHeight="25px"
@@ -25,7 +25,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/textViewMemberName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp" />
         <ImageView
             android:src="@drawable/member_unknown"
             android:layout_width="wrap_content"
@@ -39,35 +40,53 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp" />
     <TextView
         android:text="MemberReputation"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewMemberReputation" />
+        android:id="@+id/textViewMemberReputation"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="5dp" />
     <TextView
         android:text="Articles:"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewArticleCnt" />
+        android:id="@+id/textViewArticleCnt"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp" />
     <TextView
         android:text="Average article rating:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewArticleRating" />
+        android:id="@+id/textViewArticleRating"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp" />
     <TextView
-        android:text="Technical Blogs: x"
+        android:text="Blogs:"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewBlogCnt" />
+        android:id="@+id/textViewBlogCnt"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp" />
     <TextView
-        android:text="Average blogs rating: 0.00"
+        android:text="Average blog rating:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewBlogRating" />
+        android:id="@+id/textViewBlogRating"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp" />
 </LinearLayout>

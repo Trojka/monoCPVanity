@@ -18,6 +18,7 @@ using be.trojkasoftware.monoCPVanity.Data;
 using Android.Graphics;
 using Android.Util;
 using be.trojkasoftware.droidCPVanity.Util;
+using System.IO;
 
 namespace be.trojkasoftware.droidCPVanity
 {
@@ -48,6 +49,14 @@ namespace be.trojkasoftware.droidCPVanity
 			ActionBar.SetDisplayHomeAsUpEnabled (true);
 
 			SetContentView (Resource.Layout.CodeProjectMemberProfileLayout);
+
+			memberName = /*profile*/ this.FindViewById<TextView>(Resource.Id.textViewMemberName);
+			memberName.Text = "";
+
+			memberReputation = /*profile*/ this.FindViewById<TextView>(Resource.Id.textViewMemberReputation);
+			memberReputation.Text = "";
+
+			memberIcon = /*profile*/ this.FindViewById<ImageView> (Resource.Id.imageViewMemberImage);
 
 //			SetContentView (Resource.Layout.CodeProjectMemberLayout);
 //
@@ -154,10 +163,13 @@ namespace be.trojkasoftware.droidCPVanity
 				WebImageRetriever imageDownloader = new WebImageRetriever ();
 				Task imageDownload = imageDownloader.GetImageAsync (new Uri (Member.ImageUrl)).ContinueWith (t => {
 
-//					NSData imageData = t.Result.AsPNG();
-//					gravatar = new byte[imageData.Length];
-//					System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, gravatar, 0, Convert.ToInt32(imageData.Length));
-//					//storage.WriteBytes(dataBytes, Member.Id.ToString());
+					//NSData imageData = t.Result.
+					//gravatar = new byte[imageData.Length];
+					//System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, gravatar, 0, Convert.ToInt32(imageData.Length));
+
+					MemoryStream stream = new MemoryStream();
+					t.Result.Compress(Bitmap.CompressFormat.Png, 0, stream);
+					gravatar = stream.ToArray();
 
 					Member.Gravatar = gravatar;
 					Gravatar = t.Result;
@@ -179,33 +191,22 @@ namespace be.trojkasoftware.droidCPVanity
 
 		private void FillScreen()
 		{
-			TextView memberName = /*profile*/ this.FindViewById<TextView>(Resource.Id.textViewMemberName);
-			if(Member != null)
-				memberName.Text = Member.Name;
-
-			TextView memberReputation = /*profile*/ this.FindViewById<TextView>(Resource.Id.textViewMemberReputation);
-			if(Member != null)
-				memberReputation.Text = Member.Reputation;
+			memberName.Text = Member.Name;
+			memberReputation.Text = Member.Reputation;
 
 			TextView memberArticleCnt = /*profile*/ this.FindViewById<TextView>(Resource.Id.textViewArticleCnt);
-			if(Member != null)
-				memberArticleCnt.Text = "Articles: " + Member.ArticleCount;
+			memberArticleCnt.Text = "Articles: " + Member.ArticleCount;
 
 			TextView avgArticleRating = /*profile*/ this.FindViewById<TextView>(Resource.Id.textViewArticleRating);
-			if(Member != null)
-				avgArticleRating.Text = "Average article rating: " + Member.AverageArticleRating;
+			avgArticleRating.Text = "Average article rating: " + Member.AverageArticleRating;
 
 			TextView memberBlogCnt = /*profile*/ this.FindViewById<TextView>(Resource.Id.textViewBlogCnt);
-			if(Member != null)
-				memberBlogCnt.Text = "Blogs: " + Member.BlogCount;
+			memberBlogCnt.Text = "Blogs: " + Member.BlogCount;
 
 			TextView avgBlogRating = /*profile*/ this.FindViewById<TextView>(Resource.Id.textViewBlogRating);
-			if(Member != null)
-				avgBlogRating.Text = "Average blog rating: " + Member.AverageBlogRating;
-
+			avgBlogRating.Text = "Average blog rating: " + Member.AverageBlogRating;
 
 			if (Gravatar != null) {
-				ImageView memberIcon = /*profile*/ this.FindViewById<ImageView> (Resource.Id.imageViewMemberImage);
 				memberIcon.SetImageBitmap (Gravatar);
 				//this.MemberImage.Image = Gravatar;
 			}
@@ -235,6 +236,10 @@ namespace be.trojkasoftware.droidCPVanity
 		}
 
 		public static string MemberIdKey = "CodeProjectMemberId";
+
+		TextView memberName;
+		TextView memberReputation;
+		ImageView memberIcon;
 
 		//HorizontalPager pager = null;
 		//CodeProjectMember member = null;
