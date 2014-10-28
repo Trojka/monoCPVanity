@@ -7,6 +7,7 @@ using Android.App;
 using Java.IO;
 using Android.Graphics;
 using Android.Util;
+using Android.Content.Res;
 using be.trojkasoftware.monoCPVanity.Data;
 
 
@@ -51,12 +52,21 @@ namespace be.trojkasoftware.droidCPVanity
 			memberReputation.Text = list[position].Reputation;
 			memberPostCnt.Text = "Posts: " + (list[position].ArticleCount + list[position].BlogCount);
 
+			int textAppearanceLarge = TextAppearanceHeight (Android.Resource.Attribute.TextAppearanceLarge);
+			int textAppearanceSmall = TextAppearanceHeight (Android.Resource.Attribute.TextAppearanceSmall);
+
+			int bitmapSize = textAppearanceLarge + textAppearanceSmall;
+			//memberIcon.SetMaxHeight(textAppearanceLarge + textAppearanceSmall);
+			//memberIcon.SetMaxWidth(textAppearanceLarge + textAppearanceSmall);
+			//memberIcon.RequestLayout ();
+
 			CodeProjectDatabase database = new CodeProjectDatabase ();
 			byte[] gravatar = database.GetGravatar (list[position].Id);
 			if (gravatar != null) {
 
 				Bitmap image = BitmapFactory.DecodeByteArray (gravatar, 0, gravatar.Length);
-				memberIcon.SetImageBitmap (image);
+				memberIcon.SetImageBitmap (Bitmap.CreateScaledBitmap(image, bitmapSize, bitmapSize, false));
+				image.Recycle();
 			}
 
 //			string memberIconFilenam = list[position].Id.ToString () + ".png";
@@ -81,6 +91,19 @@ namespace be.trojkasoftware.droidCPVanity
 		}
 
 		#endregion
+
+		int TextAppearanceHeight(int textAppearance) {
+
+			TypedValue typedValue = new TypedValue(); 
+			activity.Theme.ResolveAttribute(textAppearance, typedValue, true);
+			int[] textSizeAttr = new int[] { Android.Resource.Attribute.TextSize };
+			int indexOfAttrTextSize = 0;
+			TypedArray a = activity.ObtainStyledAttributes(typedValue.Data, textSizeAttr);
+			int textSize = a.GetDimensionPixelSize(indexOfAttrTextSize, -1);
+			a.Recycle();
+
+			return textSize;
+		}
 
 		Activity activity;
 		List<CodeProjectMember> list;

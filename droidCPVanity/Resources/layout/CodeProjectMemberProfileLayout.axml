@@ -19,7 +19,8 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout1">
+        android:id="@+id/relativeLayout1"
+        android:layout_weight="50">
         <TextView
             android:text="MemberName"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -28,65 +29,70 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10dp" />
         <ImageView
-            android:src="@drawable/member_unknown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/textViewMemberName"
             android:id="@+id/imageViewMemberImage"
             android:layout_alignParentRight="true" />
     </RelativeLayout>
-    <TextView
-        android:text="Reputation"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp" />
-    <TextView
-        android:text="MemberReputation"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewMemberReputation"
-        android:paddingTop="5dp"
-        android:paddingLeft="10dp"
-        android:paddingBottom="5dp" />
-    <TextView
-        android:text="Articles:"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewArticleCnt"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp" />
-    <TextView
-        android:text="Average article rating:"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewArticleRating"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:paddingLeft="10dp" />
-    <TextView
-        android:text="Blogs:"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewBlogCnt"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="10dp" />
-    <TextView
-        android:text="Average blog rating:"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewBlogRating"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:paddingLeft="10dp" />
+        android:layout_weight="50">
+        <TextView
+            android:text="Reputation"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+        <TextView
+            android:text="MemberReputation"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewMemberReputation"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="5dp" />
+        <TextView
+            android:text="Articles:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewArticleCnt"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp" />
+        <TextView
+            android:text="Average article rating:"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewArticleRating"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="10dp" />
+        <TextView
+            android:text="Blogs:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewBlogCnt"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp" />
+        <TextView
+            android:text="Average blog rating:"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewBlogRating"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="10dp" />
+    </LinearLayout>
 </LinearLayout>
