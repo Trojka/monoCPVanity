@@ -87,17 +87,20 @@ namespace be.trojkasoftware.droidCPVanity
 			// aapt resource value: 0x7f080009
 			public const int GridLayout1 = 2131230729;
 			
-			// aapt resource value: 0x7f080017
-			public const int action_member_add = 2131230743;
-			
 			// aapt resource value: 0x7f080018
-			public const int action_member_articles = 2131230744;
-			
-			// aapt resource value: 0x7f08001a
-			public const int action_refresh = 2131230746;
+			public const int action_member_add = 2131230744;
 			
 			// aapt resource value: 0x7f080019
-			public const int action_search = 2131230745;
+			public const int action_member_articles = 2131230745;
+			
+			// aapt resource value: 0x7f080017
+			public const int action_member_reputation = 2131230743;
+			
+			// aapt resource value: 0x7f08001b
+			public const int action_refresh = 2131230747;
+			
+			// aapt resource value: 0x7f08001a
+			public const int action_search = 2131230746;
 			
 			// aapt resource value: 0x7f080016
 			public const int frameLayoutFragmentContainer = 2131230742;
@@ -225,10 +228,13 @@ namespace be.trojkasoftware.droidCPVanity
 		{
 			
 			// aapt resource value: 0x7f070000
-			public const int codeproject_member_profile_actions = 2131165184;
+			public const int codeproject_member_articles_actions = 2131165184;
 			
 			// aapt resource value: 0x7f070001
-			public const int main_actions = 2131165185;
+			public const int codeproject_member_profile_actions = 2131165185;
+			
+			// aapt resource value: 0x7f070002
+			public const int main_actions = 2131165186;
 			
 			static Menu()
 			{

@@ -11,7 +11,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Java.IO;
-
 using be.trojkasoftware.Ripit.Core;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.monoCPVanity.Data;
@@ -22,7 +21,7 @@ using System.IO;
 
 namespace be.trojkasoftware.droidCPVanity
 {
-	[Activity (Label = "droidCPVanity", ParentActivity = typeof(MainActivity))]	
+	[Activity (Label = "CPVanity", ParentActivity = typeof(MainActivity))]	
 	[IntentFilter(new[]{Intent.ActionSearch})]
 	[MetaData(("android.app.searchable"), Resource = "@xml/searchable")]
 	public class CodeProjectMemberProfileActivity : Activity
@@ -136,6 +135,9 @@ namespace be.trojkasoftware.droidCPVanity
 			case Resource.Id.action_member_add:
 				SaveCurrentMember ();
 				return true;
+			case Resource.Id.action_member_articles:
+				GotoMemberArticles ();
+				return true;
 			default:
 				return base.OnOptionsItemSelected(item);
 			}
@@ -145,6 +147,19 @@ namespace be.trojkasoftware.droidCPVanity
 		{
 			CodeProjectDatabase db = new CodeProjectDatabase ();
 			db.AddMember (Member, false);
+		}
+
+		private void GotoMemberArticles()
+		{
+			var intent = new Intent (this, typeof(CodeProjectMemberArticlesActivity));
+
+			Bundle bundle = new Bundle ();
+			bundle.PutInt (CodeProjectMemberProfileActivity.MemberIdKey, Member.Id);
+			bundle.PutString (CodeProjectMemberProfileActivity.MemberReputationGraphKey, Member.ReputationGraph);
+
+			intent.PutExtras(bundle);
+
+			StartActivity (intent);
 		}
 
 		private CodeProjectMember /*UIImage*/ LoadGravatar(CodeProjectMember member) {
@@ -236,6 +251,7 @@ namespace be.trojkasoftware.droidCPVanity
 		}
 
 		public static string MemberIdKey = "CodeProjectMemberId";
+		public static string MemberReputationGraphKey = "CodeProjectMemberReputationGraph";
 
 		TextView memberName;
 		TextView memberReputation;

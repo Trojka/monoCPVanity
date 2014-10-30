@@ -67,6 +67,8 @@
       <Link>Util\FileStorageService.cs</Link>
     </Compile>
     <Compile Include="CodeProjectMemberProfileActivity.cs" />
+    <Compile Include="CodeProjectMemberArticlesActivity.cs" />
+    <Compile Include="CodeProjectMemberReputationActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -99,6 +101,8 @@
     <AndroidResource Include="Resources\layout\CodeProjectMemberArticlesItem.axml" />
     <AndroidResource Include="Resources\menu\codeproject_member_profile_actions.xml" />
     <AndroidResource Include="Resources\drawable\articles24.png" />
+    <AndroidResource Include="Resources\drawable\member_null.png" />
+    <AndroidResource Include="Resources\menu\codeproject_member_articles_actions.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
