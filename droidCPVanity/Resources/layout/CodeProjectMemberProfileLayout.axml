@@ -29,8 +29,9 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10dp" />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/member_null"
+            android:layout_width="150px"
+            android:layout_height="150px"
             android:layout_toRightOf="@id/textViewMemberName"
             android:id="@+id/imageViewMemberImage"
             android:layout_alignParentRight="true" />
