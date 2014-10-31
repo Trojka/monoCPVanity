@@ -16,14 +16,12 @@ using be.trojkasoftware.monoCPVanity.Data;
 
 namespace be.trojkasoftware.droidCPVanity
 {
-	[Activity (Label = "CPVanity", ParentActivity = typeof(CodeProjectMemberArticlesActivity))]			
+	[Activity (Label = "CPVanity")]			
 	public class CodeProjectMemberReputationActivity : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
-			ActionBar.SetDisplayHomeAsUpEnabled (true);
 
 			SetContentView (Resource.Layout.CodeProjectMemberReputationLayout);
 

@@ -16,14 +16,12 @@ using System.Threading.Tasks;
 
 namespace be.trojkasoftware.droidCPVanity
 {
-	[Activity (Label = "CPVanity", ParentActivity = typeof(CodeProjectMemberProfileActivity))]			
+	[Activity (Label = "CPVanity")]			
 	public class CodeProjectMemberArticlesActivity : Activity
 	{
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
-			ActionBar.SetDisplayHomeAsUpEnabled (true);
 
 			SetContentView (Resource.Layout.CodeProjectMemberArticlesLayout);
 
@@ -69,6 +67,7 @@ namespace be.trojkasoftware.droidCPVanity
 			case Resource.Id.action_member_reputation:
 				GotoMemberReputation ();
 				return true;
+			case Android.Resource.Id.Home:
 			default:
 				return base.OnOptionsItemSelected(item);
 			}
@@ -77,7 +76,6 @@ namespace be.trojkasoftware.droidCPVanity
 		private void GotoMemberReputation()
 		{
 			var intent = new Intent (this, typeof(CodeProjectMemberReputationActivity));
-
 
 			Bundle bundle = new Bundle ();
 			bundle.PutInt (CodeProjectMemberProfileActivity.MemberIdKey, MemberId);

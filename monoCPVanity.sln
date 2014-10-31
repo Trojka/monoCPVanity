@@ -87,6 +87,6 @@ Global
 		{D8409FDB-CA16-4111-8893-FF6B2C9A0434}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = droidCPVanity\droidCPVanity.csproj
+		StartupItem = touchCPVanity\touchCPVanity.csproj
 	EndGlobalSection
 EndGlobal
