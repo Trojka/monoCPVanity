@@ -87,23 +87,23 @@ namespace be.trojkasoftware.droidCPVanity
 			// aapt resource value: 0x7f080009
 			public const int GridLayout1 = 2131230729;
 			
-			// aapt resource value: 0x7f080018
-			public const int action_member_add = 2131230744;
+			// aapt resource value: 0x7f08001c
+			public const int action_member_add = 2131230748;
 			
-			// aapt resource value: 0x7f080019
-			public const int action_member_articles = 2131230745;
-			
-			// aapt resource value: 0x7f080017
-			public const int action_member_reputation = 2131230743;
+			// aapt resource value: 0x7f08001d
+			public const int action_member_articles = 2131230749;
 			
 			// aapt resource value: 0x7f08001b
-			public const int action_refresh = 2131230747;
+			public const int action_member_reputation = 2131230747;
+			
+			// aapt resource value: 0x7f08001f
+			public const int action_refresh = 2131230751;
+			
+			// aapt resource value: 0x7f08001e
+			public const int action_search = 2131230750;
 			
 			// aapt resource value: 0x7f08001a
-			public const int action_search = 2131230746;
-			
-			// aapt resource value: 0x7f080016
-			public const int frameLayoutFragmentContainer = 2131230742;
+			public const int frameLayoutFragmentContainer = 2131230746;
 			
 			// aapt resource value: 0x7f08000a
 			public const int imageViewMemberImage = 2131230730;
@@ -116,6 +116,9 @@ namespace be.trojkasoftware.droidCPVanity
 			
 			// aapt resource value: 0x7f080007
 			public const int listViewArticles = 2131230727;
+			
+			// aapt resource value: 0x7f080019
+			public const int listViewFeed = 2131230745;
 			
 			// aapt resource value: 0x7f08000e
 			public const int memberListView = 2131230734;
@@ -147,6 +150,9 @@ namespace be.trojkasoftware.droidCPVanity
 			// aapt resource value: 0x7f080002
 			public const int textViewDate = 2131230722;
 			
+			// aapt resource value: 0x7f080018
+			public const int textViewFeedName = 2131230744;
+			
 			// aapt resource value: 0x7f08000b
 			public const int textViewMemberName = 2131230731;
 			
@@ -158,6 +164,12 @@ namespace be.trojkasoftware.droidCPVanity
 			
 			// aapt resource value: 0x7f08000c
 			public const int textViewReputation = 2131230732;
+			
+			// aapt resource value: 0x7f080017
+			public const int textViewRssItemDescription = 2131230743;
+			
+			// aapt resource value: 0x7f080016
+			public const int textViewRssItemTitle = 2131230742;
 			
 			// aapt resource value: 0x7f080003
 			public const int textViewScore = 2131230723;
@@ -182,37 +194,40 @@ namespace be.trojkasoftware.droidCPVanity
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int CodeProjectArticleFeedLayout = 2130903040;
+			public const int CodeProjectLoungeFeedLayout = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int CodeProjectLoungeFeedLayout = 2130903041;
+			public const int CodeProjectMemberArticlesItem = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int CodeProjectMemberArticlesItem = 2130903042;
+			public const int CodeProjectMemberArticlesLayout = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int CodeProjectMemberArticlesLayout = 2130903043;
+			public const int CodeProjectMemberLayout = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int CodeProjectMemberLayout = 2130903044;
+			public const int CodeProjectMemberListItem = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int CodeProjectMemberListItem = 2130903045;
+			public const int CodeProjectMemberListLayout = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int CodeProjectMemberListLayout = 2130903046;
+			public const int CodeProjectMemberProfileLayout = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int CodeProjectMemberProfileLayout = 2130903047;
+			public const int CodeProjectMemberReputationLayout = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int CodeProjectMemberReputationLayout = 2130903048;
+			public const int CodeProjectRssFeedItem = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int MainLayout = 2130903049;
+			public const int CodeProjectRssFeedLayout = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
-			public const int SettingsLayout = 2130903050;
+			public const int MainLayout = 2130903050;
+			
+			// aapt resource value: 0x7f03000b
+			public const int SettingsLayout = 2130903051;
 			
 			static Layout()
 			{

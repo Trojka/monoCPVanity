@@ -7,7 +7,7 @@
         android:text="Feed Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1"
+        android:id="@+id/textViewFeedName"
         android:gravity="center_horizontal"
         android:textStyle="bold"
         android:typeface="normal"
@@ -15,6 +15,6 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_below="@id/textView1"
-        android:id="@+id/listViewRssFeed" />
+        android:layout_below="@id/textViewFeedName"
+        android:id="@+id/listViewFeed" />
 </RelativeLayout>

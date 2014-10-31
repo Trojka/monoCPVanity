@@ -1,13 +1,13 @@
 ﻿using System;
-using Android.Widget;
-using Android.Content;
 using System.Collections.Generic;
-using be.trojkasoftware.portableCPVanity;
 using Android.App;
-using Java.IO;
+using Android.Content;
+using Android.Content.Res;
 using Android.Graphics;
 using Android.Util;
-using Android.Content.Res;
+using Android.Widget;
+using Java.IO;
+using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.monoCPVanity.Data;
 
 

@@ -9,6 +9,10 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using be.trojkasoftware.portableCPVanity;
+using be.trojkasoftware.portableCPVanity.RssFeeds;
+using be.trojkasoftware.Ripit.Core;
+
 
 namespace be.trojkasoftware.droidCPVanity
 {
@@ -23,7 +27,11 @@ namespace be.trojkasoftware.droidCPVanity
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-			view = inflater.Inflate (Resource.Layout.CodeProjectArticleFeedLayout, null);
+			view = inflater.Inflate (Resource.Layout.CodeProjectRssFeedLayout, null);
+
+			var textView = view.FindViewById<TextView>(Resource.Id.textViewFeedName);
+			var listView = view.FindViewById<ListView> (Resource.Id.listViewFeed);
+			listView.Adapter = new CodeProjectRssFeedAdapter (this.Activity, new CodeProjectLoungeFeed ());
 
 			return view;
 		}

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:minWidth="25px"
-    android:minHeight="25px"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/relativeLayout1">
@@ -15,8 +13,6 @@
         android:typeface="normal"
         android:textSize="48dp" />
     <ListView
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_below="@id/textView1"
