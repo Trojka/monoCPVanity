@@ -64,5 +64,6 @@
   </ProjectExtensions>
   <ItemGroup>
     <Folder Include="RssFeeds\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 </Project>

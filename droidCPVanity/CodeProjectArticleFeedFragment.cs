@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -25,16 +27,60 @@ namespace be.trojkasoftware.droidCPVanity
 //			base.OnActivityCreated (savedInstanceState);
 //		}
 
+		public CodeProjectRssFeed ItemFeed 
+		{
+			get;
+			set;
+		}
+
+//		public virtual Dictionary<string, string> GetBuilderParams() {
+//			Dictionary<string, string> paramList = new Dictionary<string, string> ();
+//			return paramList;
+//		}
+
+		public /*override*/ Dictionary<string, string> GetBuilderParams() {
+			Dictionary<string, string> paramList = new Dictionary<string, string> ();
+			paramList.Add ("Id", (ItemFeed as CodeProjectArticleFeed).Id.ToString());
+			return paramList;
+		}
+
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			view = inflater.Inflate (Resource.Layout.CodeProjectRssFeedLayout, null);
 
-			var textView = view.FindViewById<TextView>(Resource.Id.textViewFeedName);
-			var listView = view.FindViewById<ListView> (Resource.Id.listViewFeed);
-			listView.Adapter = new CodeProjectRssFeedAdapter (this.Activity, new CodeProjectLoungeFeed ());
+			textView = view.FindViewById<TextView>(Resource.Id.textViewFeedName);
+			listView = view.FindViewById<ListView> (Resource.Id.listViewFeed);
+
+			ItemFeed = CodeProjectArticleFeed.GetFeed(CodeProjectArticleFeed.DefaultArticleCategory);
+
+			LoadFeed (ItemFeed);
 
 			return view;
 		}
+
+		public void LoadFeed(CodeProjectRssFeed feed) {
+			ObjectBuilder builder = new ObjectBuilder ();
+
+			Task<IList<RSSItem>> loadFeedTask = builder.FillFeedAsync (feed, GetBuilderParams(), CancellationToken.None);
+
+			var context = TaskScheduler.FromCurrentSynchronizationContext();
+
+			loadFeedTask.Start ();
+			loadFeedTask.ContinueWith (x => FeedLoaded(x.Result), context);
+		}
+
+		void FeedLoaded(IList<RSSItem> feed) {
+
+			//progressView.StopAnimating ();
+
+			textView.Text = ItemFeed.Name;
+			listView.Adapter = new CodeProjectRssFeedAdapter (this.Activity, ItemFeed);
+			//RSSItemTable.Source = new CodeProjectRSSDataSource(ItemFeed);
+			//RSSItemTable.ReloadData ();
+		}
+
+		TextView textView;
+		ListView listView;
 	}
 }
 

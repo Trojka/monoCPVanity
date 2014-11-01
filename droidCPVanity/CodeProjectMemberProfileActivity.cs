@@ -16,7 +16,7 @@ using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.monoCPVanity.Data;
 using Android.Graphics;
 using Android.Util;
-using be.trojkasoftware.droidCPVanity.Util;
+using be.trojkasoftware.monoCPVanity.Util;
 using System.IO;
 
 namespace be.trojkasoftware.droidCPVanity

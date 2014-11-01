@@ -6,17 +6,12 @@ using System.Net;
 using System.Threading;
 using System.Text;
 using System.IO;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
 
-namespace touchCPVanity.Util
+
+namespace be.trojkasoftware.monoCPVanity.Util
 {
 	public partial class WebImageRetriever
 	{
-		public WebImageRetriever ()
-		{
-		}
-
 		public Task<Stream> GetImageStreamAsync(Uri uri) {
 			var req = WebRequest.Create (uri);
 

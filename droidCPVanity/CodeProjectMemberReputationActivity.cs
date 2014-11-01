@@ -9,7 +9,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using be.trojkasoftware.portableCPVanity;
-using be.trojkasoftware.droidCPVanity.Util;
+using be.trojkasoftware.monoCPVanity.Util;
 using System.Threading.Tasks;
 using Android.Graphics;
 using be.trojkasoftware.monoCPVanity.Data;

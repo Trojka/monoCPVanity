@@ -6,7 +6,7 @@ using MonoTouch.UIKit;
 using be.trojkasoftware.Ripit.Core;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.monoCPVanity.Data;
-using touchCPVanity.Util;
+using be.trojkasoftware.monoCPVanity.Util;
 using System.Threading;
 using System.Threading.Tasks;
 

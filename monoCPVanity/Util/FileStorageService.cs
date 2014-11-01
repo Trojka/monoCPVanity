@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace touchCPVanity.Util
+namespace be.trojkasoftware.monoCPVanity.Util
 {
 	public class FileStorageService
 	{

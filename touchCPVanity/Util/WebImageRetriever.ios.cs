@@ -9,11 +9,10 @@ using System.Threading.Tasks;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-namespace touchCPVanity.Util
+namespace be.trojkasoftware.monoCPVanity.Util
 {
 	partial class WebImageRetriever
 	{
-
 		public Task<UIImage> GetImageAsync(Uri uri)
 		{
 			return GetImageStreamAsync (uri)

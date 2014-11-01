@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="HorizontalPager.cs" />
     <Compile Include="CodeProjectArticleFeedFragment.cs" />
     <Compile Include="CodeProjectLoungeFeedFragment.cs" />
     <Compile Include="CodeProjectMemberListFragment.cs" />
@@ -62,7 +61,6 @@
     </Compile>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Util\WebImageRetrieverObsolete.cs" />
-    <Compile Include="Util\WebImageRetriever.cs" />
     <Compile Include="..\monoCPVanity\Util\FileStorageService.cs">
       <Link>Util\FileStorageService.cs</Link>
     </Compile>
@@ -70,6 +68,10 @@
     <Compile Include="CodeProjectMemberArticlesActivity.cs" />
     <Compile Include="CodeProjectMemberReputationActivity.cs" />
     <Compile Include="CodeProjectRssFeedAdapter.cs" />
+    <Compile Include="Util\WebImageRetriever.Android.cs" />
+    <Compile Include="..\monoCPVanity\Util\WebImageRetriever.cs">
+      <Link>Util\WebImageRetriever.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

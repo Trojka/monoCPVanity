@@ -4,7 +4,7 @@ using System.Data;
 using System.IO;
 using Mono.Data.Sqlite;
 using be.trojkasoftware.portableCPVanity;
-using touchCPVanity.Util;
+using be.trojkasoftware.monoCPVanity.Util;
 
 namespace be.trojkasoftware.monoCPVanity.Data
 {

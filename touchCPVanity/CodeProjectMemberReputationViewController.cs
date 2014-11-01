@@ -3,7 +3,7 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using be.trojkasoftware.portableCPVanity;
-using touchCPVanity.Util;
+using be.trojkasoftware.monoCPVanity.Util;
 using System.Threading.Tasks;
 
 namespace touchCPVanity
