@@ -124,10 +124,6 @@
     <Compile Include="CodeProjectRSSFeedViewController.designer.cs">
       <DependentUpon>CodeProjectRSSFeedViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="WebPageViewController.cs" />
-    <Compile Include="WebPageViewController.designer.cs">
-      <DependentUpon>WebPageViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="CodeProjectArticleRSSViewController.cs" />
     <Compile Include="CodeProjectArticleRSSViewController.designer.cs">
       <DependentUpon>CodeProjectArticleRSSViewController.cs</DependentUpon>

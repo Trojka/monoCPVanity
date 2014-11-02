@@ -49,6 +49,12 @@ namespace touchCPVanity
 			return height;		
 		}
 
+		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		{
+			UIApplication.SharedApplication.OpenUrl (NSUrl.FromString (RSSItemList[indexPath.Row].Link));
+			tableView.DeselectRow (indexPath, true);
+		}
+
 		private float HeightOfText(string text,int width)
 		{
 			UIFont font = UIFont.SystemFontOfSize(15.0f);

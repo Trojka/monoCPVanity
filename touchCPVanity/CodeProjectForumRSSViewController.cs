@@ -15,7 +15,7 @@ namespace touchCPVanity
 	{
 		public CodeProjectForumRSSViewController (IntPtr handle) : base (handle)
 		{
-			ItemFeed = new CodeProjectLoungeFeed ();
+			viewModel.ItemFeed = new CodeProjectLoungeFeed ();
 		}
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
@@ -29,13 +29,13 @@ namespace touchCPVanity
 					forumCategoryController.FeedReceiver = this;
 				}
 			}
-			if (segue.Identifier == "RSSForum") {
-				var webPageController = segue.DestinationViewController as WebPageViewController;
-
-				if (webPageController != null) {
-					webPageController.PageURL = SelectedItem.Link;
-				}
-			}
+//			if (segue.Identifier == "RSSForum") {
+//				var webPageController = segue.DestinationViewController as WebPageViewController;
+//
+//				if (webPageController != null) {
+//					webPageController.PageURL = SelectedItem.Link;
+//				}
+//			}
 		}
 
 	}

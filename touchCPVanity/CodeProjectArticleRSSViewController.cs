@@ -15,14 +15,14 @@ namespace touchCPVanity
 	{
 		public CodeProjectArticleRSSViewController (IntPtr handle) : base (handle)
 		{
-			ItemFeed = CodeProjectArticleFeed.GetFeed(CodeProjectArticleFeed.DefaultArticleCategory);
+			viewModel.ItemFeed = CodeProjectArticleFeed.GetFeed(CodeProjectArticleFeed.DefaultArticleCategory);
 		}
 
-		public override Dictionary<string, string> GetBuilderParams() {
-			Dictionary<string, string> paramList = new Dictionary<string, string> ();
-			paramList.Add ("Id", (ItemFeed as CodeProjectArticleFeed).Id.ToString());
-			return paramList;
-		}
+//		public override Dictionary<string, string> GetBuilderParams() {
+//			Dictionary<string, string> paramList = new Dictionary<string, string> ();
+//			paramList.Add ("Id", (ItemFeed as CodeProjectArticleFeed).Id.ToString());
+//			return paramList;
+//		}
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
@@ -35,13 +35,13 @@ namespace touchCPVanity
 					articleCategoryController.FeedReceiver = this;
 				}
 			}
-			if (segue.Identifier == "RSSArticle") {
-				var webPageController = segue.DestinationViewController as WebPageViewController;
-
-				if (webPageController != null) {
-					webPageController.PageURL = SelectedItem.Link;
-				}
-			}
+//			if (segue.Identifier == "RSSArticle") {
+//				var webPageController = segue.DestinationViewController as WebPageViewController;
+//
+//				if (webPageController != null) {
+//					webPageController.PageURL = SelectedItem.Link;
+//				}
+//			}
 		}
 	}
 }

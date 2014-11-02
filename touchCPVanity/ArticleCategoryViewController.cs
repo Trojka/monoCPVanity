@@ -52,7 +52,7 @@ namespace touchCPVanity
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			TableView.DeselectRow (indexPath, false);
-			this.FeedReceiver.ItemFeed = CodeProjectArticleFeed.GetFeed(CodeProjectArticleFeed.Categories[indexPath.Row].Id);
+			this.FeedReceiver.SetItemFeed(CodeProjectArticleFeed.GetFeed(CodeProjectArticleFeed.Categories[indexPath.Row].Id));
 
 			this.NavigationController.PopViewControllerAnimated (true);
 		}

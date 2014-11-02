@@ -45,6 +45,9 @@
     <Compile Include="RssFeeds\CodeProjectRSSFeed.cs" />
     <Compile Include="RssFeeds\CodeProjectCodingHorrorsFeed.cs" />
     <Compile Include="RssFeeds\CommunityRssCategories.cs" />
+    <Compile Include="ViewModels\ArticleFeedViewModel.cs" />
+    <Compile Include="ViewModels\CodeProjectRssFeedViewModel.cs" />
+    <Compile Include="ViewModels\CodeProjectMemberProfileViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

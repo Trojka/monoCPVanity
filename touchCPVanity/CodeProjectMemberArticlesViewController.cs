@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace touchCPVanity
 {
-	public partial class CodeProjectMemberArticlesViewController : UIViewController
+	public partial class CodeProjectMemberArticlesViewController : UIViewController//, IUITableViewDelegate, IUITableViewDataSource
 	{
 		public CodeProjectMemberArticlesViewController (IntPtr handle) : base (handle)
 		{
@@ -33,6 +33,15 @@ namespace touchCPVanity
 			return MemberArticles.Count;
 		}
 
+		[Export("tableView:didSelectRowAtIndexPath:")]
+		public void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		{
+			string articleLink = CodeProjectUrlScheme.BaseUrl + MemberArticles [indexPath.Row].Link;
+			UIApplication.SharedApplication.OpenUrl (NSUrl.FromString (articleLink));
+			tableView.DeselectRow (indexPath, true);
+		}
+
+
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			base.PrepareForSegue (segue, sender);
@@ -45,15 +54,15 @@ namespace touchCPVanity
 					memberReputationController.Member = Member;
 				}
 			}
-			if (segue.Identifier == "MemberArticleSegue") {
-
-				var memberArticleViewController = segue.DestinationViewController as WebPageViewController;
-
-				if (memberArticleViewController != null) {
-					NSIndexPath indexPath =  MemberArticlesTable.IndexPathForSelectedRow;
-					memberArticleViewController.PageURL = MemberArticles [indexPath.Row].Link;
-				}
-			}
+//			if (segue.Identifier == "MemberArticleSegue") {
+//
+//				var memberArticleViewController = segue.DestinationViewController as WebPageViewController;
+//
+//				if (memberArticleViewController != null) {
+//					NSIndexPath indexPath =  MemberArticlesTable.IndexPathForSelectedRow;
+//					memberArticleViewController.PageURL = MemberArticles [indexPath.Row].Link;
+//				}
+//			}
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -89,6 +98,7 @@ namespace touchCPVanity
 
 
 			MemberArticlesTable.WeakDataSource = this;
+			MemberArticlesTable.WeakDelegate = this;
 		}
 
 		void ArticlesLoaded(CodeProjectMemberArticles memberArticles) {

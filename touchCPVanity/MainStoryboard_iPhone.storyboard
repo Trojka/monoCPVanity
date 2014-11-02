@@ -300,9 +300,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="MFX-Kf-h4E" kind="push" identifier="MemberArticleSegue" id="vfs-tk-e3u"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -324,10 +321,10 @@
             </objects>
             <point key="canvasLocation" x="2051" y="-507"/>
         </scene>
-        <!--Web Page View Controller-->
+        <!--View Controller-->
         <scene sceneID="9pt-2b-ogF">
             <objects>
-                <viewController id="MFX-Kf-h4E" customClass="WebPageViewController" sceneMemberID="viewController">
+                <viewController id="MFX-Kf-h4E" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JUH-sR-Wf1"/>
                         <viewControllerLayoutGuide type="bottom" id="ZzU-FP-Zok"/>
@@ -508,9 +505,6 @@
                                                 <constraint firstItem="avC-Wi-QGA" firstAttribute="leading" secondItem="swu-Nk-bjb" secondAttribute="leading" constant="20" id="ysq-L8-emP"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="R6M-Lk-di8" kind="push" identifier="RSSArticle" id="SRJ-ym-acV"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -538,10 +532,10 @@
             </objects>
             <point key="canvasLocation" x="995" y="964"/>
         </scene>
-        <!--Web Page View Controller-->
+        <!--View Controller-->
         <scene sceneID="MSM-rV-g20">
             <objects>
-                <viewController id="R6M-Lk-di8" customClass="WebPageViewController" sceneMemberID="viewController">
+                <viewController id="R6M-Lk-di8" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jXK-Jf-Jiv"/>
                         <viewControllerLayoutGuide type="bottom" id="INt-j8-HHX"/>
@@ -696,9 +690,6 @@
                                                 <constraint firstItem="wVB-UU-gq8" firstAttribute="top" secondItem="q9o-8m-8fe" secondAttribute="bottom" constant="3" id="tqh-SI-Z4k"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="hY6-Ri-pAT" kind="push" identifier="RSSForum" id="QHW-7w-2ig"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -726,10 +717,10 @@
             </objects>
             <point key="canvasLocation" x="995" y="2452"/>
         </scene>
-        <!--Web Page View Controller-->
+        <!--View Controller-->
         <scene sceneID="qaW-3x-Iev">
             <objects>
-                <viewController id="hY6-Ri-pAT" customClass="WebPageViewController" sceneMemberID="viewController">
+                <viewController id="hY6-Ri-pAT" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6vu-Bw-YHT"/>
                         <viewControllerLayoutGuide type="bottom" id="TF6-6m-uZ2"/>
