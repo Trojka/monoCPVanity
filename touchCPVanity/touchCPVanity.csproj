@@ -148,12 +148,22 @@
       <Link>Util\WebImageRetriever.cs</Link>
     </Compile>
     <Compile Include="Util\WebImageRetriever.ios.cs" />
+    <Compile Include="..\monoCPVanity\ViewModels\ArticleFeedViewModel.cs">
+      <Link>ViewModels\ArticleFeedViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\monoCPVanity\ViewModels\CodeProjectMemberProfileViewModel.cs">
+      <Link>ViewModels\CodeProjectMemberProfileViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\monoCPVanity\ViewModels\CodeProjectRssFeedViewModel.cs">
+      <Link>ViewModels\CodeProjectRssFeedViewModel.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Util\" />
     <Folder Include="Resources\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\portableCPVanity\portableCPVanity.csproj">

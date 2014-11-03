@@ -26,6 +26,7 @@ namespace touchCPVanity
 		}
 
 		public void SetItemFeed (CodeProjectRssFeed feed) {
+			viewModel.ItemFeed = feed;
 		}
 
 //		public CodeProjectRssFeed ItemFeed 
@@ -81,7 +82,7 @@ namespace touchCPVanity
 			CategoryLabel.Text = viewModel.ItemFeed.Name;
 
 			progressView.StartAnimating ();
-			viewModel.ReloadData ();
+			viewModel.LoadFeed ();
 
 //			ReloadData ();
 		}

@@ -136,7 +136,7 @@ namespace touchCPVanity
 			var memberProfileController = segue.DestinationViewController as CodeProjectMemberProfileViewController;
 
 			if (memberProfileController != null) {
-				memberProfileController.MemberId = memberId;
+				memberProfileController.SetMemberId(memberId);
 			}
 		}
 

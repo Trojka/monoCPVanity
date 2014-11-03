@@ -27,13 +27,13 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
 		public void ReloadData()
 		{
-			LoadFeed (ItemFeed);
+			LoadFeed (/*ItemFeed*/);
 		}
 
-		public void LoadFeed(CodeProjectRssFeed feed) {
+		public void LoadFeed(/*CodeProjectRssFeed feed*/) {
 			ObjectBuilder builder = new ObjectBuilder ();
 
-			Task<IList<RSSItem>> loadFeedTask = builder.FillFeedAsync (feed, GetBuilderParams(), CancellationToken.None);
+			Task<IList<RSSItem>> loadFeedTask = builder.FillFeedAsync (ItemFeed, GetBuilderParams(), CancellationToken.None);
 
 			var context = TaskScheduler.FromCurrentSynchronizationContext();
 
