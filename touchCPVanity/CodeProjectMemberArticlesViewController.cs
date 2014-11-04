@@ -7,6 +7,7 @@ using be.trojkasoftware.Ripit.Core;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace touchCPVanity
 {
@@ -14,6 +15,8 @@ namespace touchCPVanity
 	{
 		public CodeProjectMemberArticlesViewController (IntPtr handle) : base (handle)
 		{
+			viewModel = new CodeProjectMemberArticlesViewModel ();
+			viewModel.ArticlesLoaded += this.ArticlesLoaded;
 		}
 
 		[Export("tableView:cellForRowAtIndexPath:")]
@@ -21,8 +24,8 @@ namespace touchCPVanity
 		{
 			var cell = tableView.DequeueReusableCell ("ArticleCell");
 
-			(cell.ViewWithTag (100) as UILabel).Text = MemberArticles[indexPath.Row].Title;
-			(cell.ViewWithTag (101) as UILabel).Text = MemberArticles[indexPath.Row].DateUpdated.ToString("d MMM yyyy");
+			(cell.ViewWithTag (100) as UILabel).Text = viewModel.MemberArticles[indexPath.Row].Title;
+			(cell.ViewWithTag (101) as UILabel).Text = viewModel.MemberArticles[indexPath.Row].DateUpdated.ToString("d MMM yyyy");
 
 			return cell;
 		}
@@ -30,13 +33,13 @@ namespace touchCPVanity
 		[Export("tableView:numberOfRowsInSection:")]
 		public int RowsInSection (UITableView tableView, int section)
 		{
-			return MemberArticles.Count;
+			return viewModel.MemberArticles.Count;
 		}
 
 		[Export("tableView:didSelectRowAtIndexPath:")]
 		public void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			string articleLink = CodeProjectUrlScheme.BaseUrl + MemberArticles [indexPath.Row].Link;
+			string articleLink = CodeProjectUrlScheme.BaseUrl + viewModel.MemberArticles [indexPath.Row].Link;
 			UIApplication.SharedApplication.OpenUrl (NSUrl.FromString (articleLink));
 			tableView.DeselectRow (indexPath, true);
 		}
@@ -51,7 +54,7 @@ namespace touchCPVanity
 				var memberReputationController = segue.DestinationViewController as CodeProjectMemberReputationViewController;
 
 				if (memberReputationController != null) {
-					memberReputationController.Member = Member;
+					memberReputationController.Member = viewModel.Member;
 				}
 			}
 //			if (segue.Identifier == "MemberArticleSegue") {
@@ -78,48 +81,40 @@ namespace touchCPVanity
 			progressView.Center = new PointF (this.View.Frame.Width / 2, this.View.Frame.Height / 2);
 			this.View.AddSubview (progressView);
 
-			MemberArticles = new CodeProjectMemberArticles();
-
-			CodeProjectMemberArticles memberArticles = new CodeProjectMemberArticles ();
-			memberArticles.Id = Member.Id;
-
-			Dictionary<String, String> param = new Dictionary<string, string> ();
-			param.Add ("Id", Member.Id.ToString());
-
-			ObjectBuilder objectBuilder = new ObjectBuilder ();
-			Task<IList<CodeProjectMemberArticle>> loadArticleTask = objectBuilder.FillListAsync (MemberArticles, param, () => new CodeProjectMemberArticle(), CancellationToken.None);
-
 			progressView.StartAnimating ();
 
 			var context = TaskScheduler.FromCurrentSynchronizationContext();
 
-			loadArticleTask.Start ();
-			loadArticleTask.ContinueWith (x => ArticlesLoaded (x.Result as CodeProjectMemberArticles), context);
-
-
-			MemberArticlesTable.WeakDataSource = this;
-			MemberArticlesTable.WeakDelegate = this;
+			viewModel.LoadMemberArticles (context);
 		}
 
 		void ArticlesLoaded(CodeProjectMemberArticles memberArticles) {
 
 			progressView.StopAnimating ();
 
-			MemberArticles = memberArticles;
+			MemberArticlesTable.WeakDataSource = this;
+			MemberArticlesTable.WeakDelegate = this;
+
+			//MemberArticles = memberArticles;
 			MemberArticlesTable.ReloadData ();
 		}
 
-		public CodeProjectMember Member {
-			get;
-			set;
+		public void SetMember(CodeProjectMember member) {
+			viewModel.Member = member;
 		}
 
-		public CodeProjectMemberArticles MemberArticles {
-			get;
-			set;
-		}
+//		public CodeProjectMember Member {
+//			get;
+//			set;
+//		}
+//
+//		public CodeProjectMemberArticles MemberArticles {
+//			get;
+//			set;
+//		}
 
 		UIActivityIndicatorView progressView;
+		CodeProjectMemberArticlesViewModel viewModel;
 	}
 }
 

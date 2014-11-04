@@ -64,6 +64,7 @@ namespace touchCPVanity
 			progressView.StartAnimating ();
 
 			var context = TaskScheduler.FromCurrentSynchronizationContext();
+
 			viewModel.LoadMember(context);
 
 //			Dictionary<String, String> param = new Dictionary<string, string> ();
