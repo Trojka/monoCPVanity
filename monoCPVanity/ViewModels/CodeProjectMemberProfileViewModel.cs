@@ -9,13 +9,13 @@ using System.IO;
 
 namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
-	public delegate void GravatarLoaded(byte[] gravatar);
+	//public delegate void GravatarLoaded(byte[] gravatar);
 
 	public delegate void MemberLoaded(CodeProjectMember member);
 
 	public class CodeProjectMemberProfileViewModel
 	{
-		public GravatarLoaded GravatarLoaded;
+		//public GravatarLoaded GravatarLoaded;
 
 		public MemberLoaded MemberLoaded;
 
@@ -37,7 +37,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 			db.AddMember (Member, false);
 		}
 
-		public void LoadMember() {
+		public void LoadMember(TaskScheduler uiContext) {
 			Dictionary<String, String> param = new Dictionary<string, string> ();
 			param.Add ("Id", MemberId.ToString());
 
@@ -49,12 +49,12 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
 			//progressView.StartAnimating ();
 
-			var context = TaskScheduler.FromCurrentSynchronizationContext();
+			//var context = TaskScheduler.FromCurrentSynchronizationContext();
 
 			fillMemberTask.Start ();
 			fillMemberTask
 				.ContinueWith (x => LoadGravatar (x.Result as CodeProjectMember))
-				.ContinueWith (x => MemberLoaded (x.Result), context);
+				.ContinueWith (x => MemberLoaded (x.Result), uiContext);
 		}
 
 		CodeProjectMember /*UIImage*/ LoadGravatar(CodeProjectMember member) {
@@ -66,14 +66,16 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 			byte[] gravatar = db.GetGravatar(member.Id);
 			if (gravatar != null) {
 
-				GravatarLoaded (gravatar);
+//				GravatarLoaded (gravatar);
 //				Gravatar = UIImage.LoadFromData (NSData.FromArray (gravatar));
 
 			} else {
 				WebImageRetriever imageDownloader = new WebImageRetriever ();
 				Task imageDownload = imageDownloader.GetImageStreamAsync (new Uri (member.ImageUrl)).ContinueWith (t => {
 
-					GravatarLoaded (ReadFully(t.Result));
+					gravatar = ReadFully(t.Result);
+//					GravatarLoaded (ReadFully(t.Result));
+
 //					NSData imageData = t.Result.AsPNG();
 //					gravatar = new byte[imageData.Length];
 //					System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, gravatar, 0, Convert.ToInt32(imageData.Length));
@@ -86,6 +88,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 				imageDownload.Wait ();
 			}
 
+			member.Gravatar = gravatar;
 			return member;
 		}
 
