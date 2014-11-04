@@ -6,10 +6,11 @@ using be.trojkasoftware.monoCPVanity.Data;
 using be.trojkasoftware.monoCPVanity.Util;
 using System.Threading;
 using System.IO;
+using System.Linq;
 
 namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
-	public delegate void ArticlesLoaded(CodeProjectMemberArticles memberArticles);
+	public delegate void ArticlesLoaded(/*CodeProjectMemberArticles memberArticles*/);
 
 	public class CodeProjectMemberArticlesViewModel
 	{
@@ -20,27 +21,35 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 			set;
 		}
 
-		public CodeProjectMemberArticles MemberArticles {
-			get;
-			set;
+//		public CodeProjectMemberArticles MemberArticles {
+//			get;
+//			set;
+//		}
+
+		public List<CodeProjectMemberArticleViewModel> MemberArticles {
+			get {
+				return memberArticles.Select (x => new CodeProjectMemberArticleViewModel (x)).ToList ();
+			}
 		}
 
 		public void LoadMemberArticles(TaskScheduler uiContext) {
-			MemberArticles = new CodeProjectMemberArticles();
+			memberArticles = new CodeProjectMemberArticles();
 
-			CodeProjectMemberArticles memberArticles = new CodeProjectMemberArticles ();
-			memberArticles.Id = Member.Id;
+//			CodeProjectMemberArticles memberArticles = new CodeProjectMemberArticles ();
+//			memberArticles.Id = Member.Id;
 
 			Dictionary<String, String> param = new Dictionary<string, string> ();
 			param.Add ("Id", Member.Id.ToString());
 
 			ObjectBuilder objectBuilder = new ObjectBuilder ();
-			Task<IList<CodeProjectMemberArticle>> loadArticleTask = objectBuilder.FillListAsync (MemberArticles, param, () => new CodeProjectMemberArticle(), CancellationToken.None);
+			Task<IList<CodeProjectMemberArticle>> loadArticleTask = objectBuilder.FillListAsync (memberArticles, param, () => new CodeProjectMemberArticle(), CancellationToken.None);
 
 
 			loadArticleTask.Start ();
-			loadArticleTask.ContinueWith (x => ArticlesLoaded (x.Result as CodeProjectMemberArticles), uiContext);
+			loadArticleTask.ContinueWith (x => ArticlesLoaded (/*x.Result as CodeProjectMemberArticles*/), uiContext);
 		}
+
+		CodeProjectMemberArticles memberArticles;
 	}
 }
 

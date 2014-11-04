@@ -11,7 +11,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
 	//public delegate void GravatarLoaded(byte[] gravatar);
 
-	public delegate void MemberLoaded(CodeProjectMember member);
+	public delegate void MemberLoaded(/*CodeProjectMember member*/);
 
 	public class CodeProjectMemberProfileViewModel
 	{
@@ -53,17 +53,17 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
 			fillMemberTask.Start ();
 			fillMemberTask
-				.ContinueWith (x => LoadGravatar (x.Result as CodeProjectMember))
-				.ContinueWith (x => MemberLoaded (x.Result), uiContext);
+				.ContinueWith (x => LoadGravatar (/*x.Result as CodeProjectMember*/))
+				.ContinueWith (x => MemberLoaded (/*x.Result*/), uiContext);
 		}
 
-		CodeProjectMember /*UIImage*/ LoadGravatar(CodeProjectMember member) {
+		CodeProjectMember /*UIImage*/ LoadGravatar(/*CodeProjectMember member*/) {
 
 			//			FileStorageService storage = new FileStorageService ();
 			//			if (storage.FileExists (Member.Id.ToString())) {
 			//				byte[] imageData = storage.ReadBytes (Member.Id.ToString());
 			var db = new CodeProjectDatabase ();
-			byte[] gravatar = db.GetGravatar(member.Id);
+			byte[] gravatar = db.GetGravatar(Member.Id);
 			if (gravatar != null) {
 
 //				GravatarLoaded (gravatar);
@@ -71,7 +71,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
 			} else {
 				WebImageRetriever imageDownloader = new WebImageRetriever ();
-				Task imageDownload = imageDownloader.GetImageStreamAsync (new Uri (member.ImageUrl)).ContinueWith (t => {
+				Task imageDownload = imageDownloader.GetImageStreamAsync (new Uri (Member.ImageUrl)).ContinueWith (t => {
 
 					gravatar = t.Result; //ReadFully(t.Result);
 //					GravatarLoaded (ReadFully(t.Result));
@@ -88,8 +88,8 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 				imageDownload.Wait ();
 			}
 
-			member.Gravatar = gravatar;
-			return member;
+			Member.Gravatar = gravatar;
+			return Member;
 		}
 
 //		public static byte[] ReadFully (Stream stream)

@@ -163,6 +163,9 @@
     <Compile Include="..\monoCPVanity\ViewModels\CodeProjectMemberReputationViewModel.cs">
       <Link>ViewModels\CodeProjectMemberReputationViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\monoCPVanity\ViewModels\CodeProjectMemberArticleViewModel.cs">
+      <Link>ViewModels\CodeProjectMemberArticleViewModel.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

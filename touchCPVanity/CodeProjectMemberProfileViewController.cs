@@ -131,39 +131,39 @@ namespace touchCPVanity
 //			return member;
 //		}
 
-		void GravatarLoaded(byte[] gravatar) {
-//			NSData imageData = t.Result.AsPNG();
-//			gravatar = new byte[imageData.Length];
-//			System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, gravatar, 0, Convert.ToInt32(imageData.Length));
+//		void GravatarLoaded(byte[] gravatar) {
+////			NSData imageData = t.Result.AsPNG();
+////			gravatar = new byte[imageData.Length];
+////			System.Runtime.InteropServices.Marshal.Copy(imageData.Bytes, gravatar, 0, Convert.ToInt32(imageData.Length));
+////
+////			Member.Gravatar = gravatar;
+////			Gravatar = t.Result;
 //
-//			Member.Gravatar = gravatar;
-//			Gravatar = t.Result;
+////			NSData data = NSData.FromArray(gravatar);
+////			this.MemberImage.Image = UIImage.LoadFromData (data, 1);
+//
+//		}
 
-//			NSData data = NSData.FromArray(gravatar);
-//			this.MemberImage.Image = UIImage.LoadFromData (data, 1);
-
-		}
-
-		void MemberLoaded(CodeProjectMember member) {
+		void MemberLoaded(/*CodeProjectMember member*/) {
 
 			//Member = member;
 
 			progressView.StopAnimating ();
 
-			FillScreen (member);
+			FillScreen (/*member*/);
 		}
 
-		void FillScreen(CodeProjectMember member) {
+		void FillScreen(/*CodeProjectMember member*/) {
 
-			this.MemberNameLbl.Text = member.Name;
-			this.MemberReputationLbl.Text = member.Reputation;
-			this.ArticleCountLbl.Text = "Articles: " + member.ArticleCount;
-			this.AvgArticleRatingLbl.Text = "Average article rating: " + member.AverageArticleRating;
-			this.BlogCountLbl.Text = "Blogs: " + member.BlogCount;
-			this.AvgBlogRatingLbl.Text = "Average blog rating: " + member.AverageBlogRating;
+			this.MemberNameLbl.Text = viewModel.Member.Name;
+			this.MemberReputationLbl.Text = viewModel.Member.Reputation;
+			this.ArticleCountLbl.Text = "Articles: " + viewModel.Member.ArticleCount;
+			this.AvgArticleRatingLbl.Text = "Average article rating: " + viewModel.Member.AverageArticleRating;
+			this.BlogCountLbl.Text = "Blogs: " + viewModel.Member.BlogCount;
+			this.AvgBlogRatingLbl.Text = "Average blog rating: " + viewModel.Member.AverageBlogRating;
 
-			if (member.Gravatar != null) {
-				NSData data = NSData.FromArray (member.Gravatar);
+			if (viewModel.Member.Gravatar != null) {
+				NSData data = NSData.FromArray (viewModel.Member.Gravatar);
 				this.MemberImage.Image = UIImage.LoadFromData (data, 1);
 			}
 

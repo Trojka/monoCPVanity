@@ -25,7 +25,7 @@ namespace touchCPVanity
 			var cell = tableView.DequeueReusableCell ("ArticleCell");
 
 			(cell.ViewWithTag (100) as UILabel).Text = viewModel.MemberArticles[indexPath.Row].Title;
-			(cell.ViewWithTag (101) as UILabel).Text = viewModel.MemberArticles[indexPath.Row].DateUpdated.ToString("d MMM yyyy");
+			(cell.ViewWithTag (101) as UILabel).Text = viewModel.MemberArticles [indexPath.Row].DateUpdated; //.ToString("d MMM yyyy");
 
 			return cell;
 		}
@@ -39,7 +39,7 @@ namespace touchCPVanity
 		[Export("tableView:didSelectRowAtIndexPath:")]
 		public void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			string articleLink = CodeProjectUrlScheme.BaseUrl + viewModel.MemberArticles [indexPath.Row].Link;
+			string articleLink = viewModel.MemberArticles [indexPath.Row].Link;
 			UIApplication.SharedApplication.OpenUrl (NSUrl.FromString (articleLink));
 			tableView.DeselectRow (indexPath, true);
 		}
@@ -88,7 +88,7 @@ namespace touchCPVanity
 			viewModel.LoadMemberArticles (context);
 		}
 
-		void ArticlesLoaded(CodeProjectMemberArticles memberArticles) {
+		void ArticlesLoaded(/*List<CodeProjectMemberArticleViewModel> memberArticles*/) {
 
 			progressView.StopAnimating ();
 
