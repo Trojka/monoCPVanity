@@ -5,6 +5,7 @@ using MonoTouch.UIKit;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.monoCPVanity.Util;
 using System.Threading.Tasks;
+using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace touchCPVanity
 {
@@ -12,6 +13,8 @@ namespace touchCPVanity
 	{
 		public CodeProjectMemberReputationViewController (IntPtr handle) : base (handle)
 		{
+			viewModel = new CodeProjectMemberReputationViewModel ();
+			viewModel.ReputationGraphLoaded += this.ReputationGraphLoaded;
 		}
 			
 		public override void DidReceiveMemoryWarning ()
@@ -27,30 +30,44 @@ namespace touchCPVanity
 			progressView.Center = new PointF (this.View.Frame.Width / 2, this.View.Frame.Height / 2);
 			this.View.AddSubview (progressView);
 
-			WebImageRetriever imageDownloader = new WebImageRetriever ();
-			Task<UIImage> loadGraphTask = imageDownloader.GetImageAsync (new Uri (Member.ReputationGraph));
-
 			progressView.StartAnimating ();
 
 			var context = TaskScheduler.FromCurrentSynchronizationContext();
 
-			loadGraphTask.ContinueWith (t => ReputationGraphLoaded(t.Result), context);
+			viewModel.LoadMemberReputation (context);
+
+//			WebImageRetriever imageDownloader = new WebImageRetriever ();
+//			Task<UIImage> loadGraphTask = imageDownloader.GetImageAsync (new Uri (Member.ReputationGraph));
+//
+//			loadGraphTask.ContinueWith (t => ReputationGraphLoaded(t.Result), context);
 		}
 
-		public void ReputationGraphLoaded(UIImage graph) {
+		public void ReputationGraphLoaded(byte[] graph) {
 
 			progressView.StopAnimating ();
 
-			this.ReputationGraph.Image = graph;
+			NSData data = NSData.FromArray (graph);
+			this.ReputationGraph.Image = UIImage.LoadFromData (data, 1);
 		}
 
+//		public void ReputationGraphLoaded(UIImage graph) {
+//
+//			progressView.StopAnimating ();
+//
+//			this.ReputationGraph.Image = graph;
+//		}
 
-		public CodeProjectMember Member {
-			get;
-			set;
+		public void SetMember(CodeProjectMember member) {
+			viewModel.Member = member;
 		}
+
+//		public CodeProjectMember Member {
+//			get;
+//			set;
+//		}
 
 		UIActivityIndicatorView progressView;
+		CodeProjectMemberReputationViewModel viewModel;
 	}
 }
 

@@ -11,17 +11,17 @@ using MonoTouch.Foundation;
 
 namespace be.trojkasoftware.monoCPVanity.Util
 {
-	partial class WebImageRetriever
-	{
-		public Task<UIImage> GetImageAsync(Uri uri)
-		{
-			return GetImageStreamAsync (uri)
-				.ContinueWith (t => {
-					NSData data = NSData.FromStream (t.Result);
-
-					return UIImage.LoadFromData (data, 1);
-				});
-		}
-	}
+//	partial class WebImageRetriever
+//	{
+//		public Task<UIImage> GetImageAsync(Uri uri)
+//		{
+//			return GetImageStreamAsync (uri)
+//				.ContinueWith (t => {
+//					NSData data = NSData.FromStream (t.Result);
+//
+//					return UIImage.LoadFromData (data, 1);
+//				});
+//		}
+//	}
 }
 

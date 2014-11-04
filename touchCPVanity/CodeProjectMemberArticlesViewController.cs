@@ -54,7 +54,7 @@ namespace touchCPVanity
 				var memberReputationController = segue.DestinationViewController as CodeProjectMemberReputationViewController;
 
 				if (memberReputationController != null) {
-					memberReputationController.Member = viewModel.Member;
+					memberReputationController.SetMember(viewModel.Member);
 				}
 			}
 //			if (segue.Identifier == "MemberArticleSegue") {

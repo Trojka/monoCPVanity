@@ -73,7 +73,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 				WebImageRetriever imageDownloader = new WebImageRetriever ();
 				Task imageDownload = imageDownloader.GetImageStreamAsync (new Uri (member.ImageUrl)).ContinueWith (t => {
 
-					gravatar = ReadFully(t.Result);
+					gravatar = t.Result; //ReadFully(t.Result);
 //					GravatarLoaded (ReadFully(t.Result));
 
 //					NSData imageData = t.Result.AsPNG();
@@ -92,20 +92,20 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 			return member;
 		}
 
-		public static byte[] ReadFully (Stream stream)
-		{
-			byte[] buffer = new byte[32768];
-			using (MemoryStream ms = new MemoryStream())
-			{
-				while (true)
-				{
-					int read = stream.Read (buffer, 0, buffer.Length);
-					if (read <= 0)
-						return ms.ToArray();
-					ms.Write (buffer, 0, read);
-				}
-			}
-		}
+//		public static byte[] ReadFully (Stream stream)
+//		{
+//			byte[] buffer = new byte[32768];
+//			using (MemoryStream ms = new MemoryStream())
+//			{
+//				while (true)
+//				{
+//					int read = stream.Read (buffer, 0, buffer.Length);
+//					if (read <= 0)
+//						return ms.ToArray();
+//					ms.Write (buffer, 0, read);
+//				}
+//			}
+//		}
 	}
 }
 
