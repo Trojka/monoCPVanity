@@ -22,6 +22,8 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
 		public virtual Dictionary<string, string> GetBuilderParams() {
 			Dictionary<string, string> paramList = new Dictionary<string, string> ();
+			if(ItemFeed is CodeProjectArticleFeed)
+				paramList.Add ("Id", (ItemFeed as CodeProjectArticleFeed).Id.ToString());
 			return paramList;
 		}
 

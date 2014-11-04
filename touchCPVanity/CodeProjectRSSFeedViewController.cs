@@ -82,6 +82,7 @@ namespace touchCPVanity
 			CategoryLabel.Text = viewModel.ItemFeed.Name;
 
 			progressView.StartAnimating ();
+
 			viewModel.LoadFeed ();
 
 //			ReloadData ();
