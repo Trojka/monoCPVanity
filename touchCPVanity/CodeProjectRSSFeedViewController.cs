@@ -83,7 +83,9 @@ namespace touchCPVanity
 
 			progressView.StartAnimating ();
 
-			viewModel.LoadFeed ();
+			var context = TaskScheduler.FromCurrentSynchronizationContext();
+
+			viewModel.LoadFeed (context);
 
 //			ReloadData ();
 		}

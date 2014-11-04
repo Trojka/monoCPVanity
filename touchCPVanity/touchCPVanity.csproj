@@ -157,6 +157,9 @@
     <Compile Include="..\monoCPVanity\ViewModels\CodeProjectRssFeedViewModel.cs">
       <Link>ViewModels\CodeProjectRssFeedViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\monoCPVanity\ViewModels\CodeProjectMemberArticlesViewModel.cs">
+      <Link>ViewModels\CodeProjectMemberArticlesViewModel.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

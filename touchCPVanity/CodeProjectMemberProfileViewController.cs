@@ -96,7 +96,7 @@ namespace touchCPVanity
 			var memberArticlesController = segue.DestinationViewController as CodeProjectMemberArticlesViewController;
 
 			if (memberArticlesController != null) {
-				memberArticlesController.Member = viewModel.Member;
+				memberArticlesController.SetMember(viewModel.Member);
 			}
 		}
 

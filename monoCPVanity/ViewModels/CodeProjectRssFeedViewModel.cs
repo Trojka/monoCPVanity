@@ -27,20 +27,20 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 			return paramList;
 		}
 
-		public void ReloadData()
-		{
-			LoadFeed (/*ItemFeed*/);
-		}
+//		public void ReloadData(TaskScheduler uiContext)
+//		{
+//			LoadFeed (uiContext);
+//		}
 
-		public void LoadFeed(/*CodeProjectRssFeed feed*/) {
+		public void LoadFeed(TaskScheduler uiContext/*CodeProjectRssFeed feed*/) {
 			ObjectBuilder builder = new ObjectBuilder ();
 
 			Task<IList<RSSItem>> loadFeedTask = builder.FillFeedAsync (ItemFeed, GetBuilderParams(), CancellationToken.None);
 
-			var context = TaskScheduler.FromCurrentSynchronizationContext();
+			//var context = TaskScheduler.FromCurrentSynchronizationContext();
 
 			loadFeedTask.Start ();
-			loadFeedTask.ContinueWith (x => FeedLoaded(x.Result), context);
+			loadFeedTask.ContinueWith (x => FeedLoaded(x.Result), uiContext);
 		}
 
 //		void FeedLoaded(IList<RSSItem> feed) {
