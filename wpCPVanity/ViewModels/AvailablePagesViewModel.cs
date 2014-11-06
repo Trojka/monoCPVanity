@@ -9,8 +9,9 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using wpCPVanity;
 
-namespace wpCPVanity.XamlViewModels
+namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
     public class AvailablePagesViewModel : CodeprojectBaseViewModel
     {

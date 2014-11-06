@@ -12,22 +12,4 @@ using System.Collections.ObjectModel;
 
 namespace wpCPVanity.XamlViewModels
 {
-    public class CodeprojectMemberListViewModel : CodeprojectBaseViewModel
-    {
-
-        public ObservableCollection<CodeprojectMemberViewModel> Members { get; set; }
-
-        public DataTemplate ItemDataTemplate
-        {
-            get
-            {
-                return App.Current.Resources["MemberListTemplate"] as DataTemplate;
-            }
-        }
-
-        public override void OnLoad()
-        {
-            //throw new NotImplementedException();
-        }
-    }
 }

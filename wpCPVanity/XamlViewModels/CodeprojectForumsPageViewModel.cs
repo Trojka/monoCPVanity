@@ -10,6 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace wpCPVanity.XamlViewModels
 {

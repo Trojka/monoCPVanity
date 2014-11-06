@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using wpCPVanity.XamlViewModels;
+using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace wpCPVanity
 {
@@ -26,7 +27,6 @@ namespace wpCPVanity
         public void AttachDataSource()
         {
             var viewModel = new CodeprojectMemberPageViewModel(this.GotoPage);
-            //viewModel.GotoPageAction = this.GotoPage;
             this.DataContext = viewModel;
         }
 

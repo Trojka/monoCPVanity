@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using wpCPVanity.XamlViewModels;
+using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace wpCPVanity
 {
@@ -19,6 +20,21 @@ namespace wpCPVanity
         public CodeprojectMemberProfilePage()
         {
             InitializeComponent();
+
+            AttachDataSource();
+        }
+
+        public void AttachDataSource()
+        {
+            viewModel = new CodeprojectMemberProfilePageViewModel();
+            this.DataContext = viewModel;
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            String id = NavigationContext.QueryString["id"];
+            viewModel.MemberId = int.Parse(id);
         }
 
         private void Pivoter_UnloadingPivotItem(object sender, PivotItemEventArgs e)
@@ -32,5 +48,7 @@ namespace wpCPVanity
                 (e.Item.DataContext as CodeprojectBaseViewModel).OnLoad();
             }
         }
+
+        CodeprojectMemberProfilePageViewModel viewModel;
     }
 }

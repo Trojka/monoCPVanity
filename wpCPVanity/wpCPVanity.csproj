@@ -109,14 +109,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ButtonCommandBinding.cs" />
     <Compile Include="Util\FileStorageService.WP7.cs" />
-    <Compile Include="XamlViewModels\AvailablePagesViewModel.cs" />
+    <Compile Include="ViewModels\CodeprojectBaseViewModel.cs" />
+    <Compile Include="ViewModels\CodeProjectMemberListViewModel.WP7.cs" />
+    <Compile Include="ViewModels\AvailablePagesViewModel.cs" />
+    <Compile Include="ViewModels\CodeProjectMemberProfileViewModel.WP7.cs" />
     <Compile Include="XamlViewModels\CodeprojectArticlesPageViewModel.cs" />
-    <Compile Include="XamlViewModels\CodeprojectBaseViewModel.cs" />
     <Compile Include="XamlViewModels\CodeprojectForumsPageViewModel.cs" />
     <Compile Include="XamlViewModels\CodeprojectMemberPageViewModel.cs" />
-    <Compile Include="XamlViewModels\CodeprojectMemberViewModel.cs" />
-    <Compile Include="XamlViewModels\CodeprojectMemberListViewModel.cs" />
-    <Compile Include="XamlViewModels\GotoPageViewModel.cs" />
+    <Compile Include="ViewModels\CodeprojectMemberViewModel.cs" />
+    <Compile Include="ViewModels\GotoPageViewModel.cs" />
+    <Compile Include="XamlViewModels\CodeprojectMemberProfilePageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

@@ -10,6 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace wpCPVanity.XamlViewModels
 {
@@ -27,11 +28,8 @@ namespace wpCPVanity.XamlViewModels
 
             Items.Add(availablePagesWM);
 
-            var memberListPage = new CodeprojectMemberListViewModel();
-            memberListPage.Name = "Members";
-            memberListPage.Members = new ObservableCollection<CodeprojectMemberViewModel>();
-            memberListPage.Members.Add(new CodeprojectMemberViewModel(){ Name = "Serge Desmedt"});
-            memberListPage.Members.Add(new CodeprojectMemberViewModel(){ Name = "Detje Maerten"});
+            var memberListPage = new CodeprojectMemberListViewModel(gotoPageAction);
+            memberListPage.Load();
 
             Items.Add(memberListPage);
         }

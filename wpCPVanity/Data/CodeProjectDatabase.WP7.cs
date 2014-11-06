@@ -16,6 +16,12 @@ namespace be.trojkasoftware.monoCPVanity.Data
 {
     public class CodeProjectDatabase
     {
+        public CodeProjectDatabase()
+        {
+            members.Add(new CodeProjectMember() { Id=15715,  Name = "Serge Desmedt" });
+            members.Add(new CodeProjectMember() { Id=1, Name = "Bernadette Maerten" });
+        }
+
 		public bool AddMember(CodeProjectMember member, bool isMe)
 		{
             return true;
@@ -37,8 +43,9 @@ namespace be.trojkasoftware.monoCPVanity.Data
 
         public List<CodeProjectMember> GetMembers()
 		{
-            return null;
+            return members;
         }
 
+        private List<CodeProjectMember> members = new List<CodeProjectMember>();
     }
 }

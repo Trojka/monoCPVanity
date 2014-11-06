@@ -11,15 +11,4 @@ using System.Windows.Shapes;
 
 namespace wpCPVanity.XamlViewModels
 {
-    public abstract class CodeprojectBaseViewModel
-    {
-        public string Name { get; set; }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-
-        public abstract void OnLoad();
-    }
 }

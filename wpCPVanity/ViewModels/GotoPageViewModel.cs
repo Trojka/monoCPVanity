@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 using wpCPVanity.Util;
 using System.Windows.Navigation;
 
-namespace wpCPVanity.XamlViewModels
+namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
 
     // http://stackoverflow.com/questions/14423847/windows-phone-mvvm-button-command-can-execute-and-command-paramtere

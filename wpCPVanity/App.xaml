@@ -23,11 +23,19 @@
             </ListBox>
         </DataTemplate>
         <DataTemplate x:Key="MemberItem">
-            <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
+            <StackPanel>
+                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
+                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}"/>
+            </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="MemberListTemplate">
             <ListBox Name="ContentsListBox" ItemsSource="{Binding Members}" Margin="25,0,0,0" ItemTemplate="{StaticResource MemberItem}">
             </ListBox>
+        </DataTemplate>
+        <DataTemplate x:Key="MemberProfileTemplate">
+            <StackPanel>
+                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
+            </StackPanel>
         </DataTemplate>
     </Application.Resources>
 

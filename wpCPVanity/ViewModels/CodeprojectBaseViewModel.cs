@@ -8,15 +8,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
 
-namespace wpCPVanity.XamlViewModels
+namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
-    public class CodeprojectMemberViewModel : INotifyPropertyChanged
+    public abstract class CodeprojectBaseViewModel
     {
         public string Name { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public abstract void OnLoad();
     }
 }
