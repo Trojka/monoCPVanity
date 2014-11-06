@@ -53,7 +53,7 @@ namespace touchCPVanity
 //			loadFeedTask.ContinueWith (x => FeedLoaded(x.Result), context);
 //		}
 
-		void FeedLoaded(IList<RSSItem> feed) {
+		void FeedLoaded(/*IList<RSSItem> feed*/) {
 
 			progressView.StopAnimating ();
 

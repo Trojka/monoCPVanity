@@ -169,12 +169,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Util\" />
-    <Folder Include="Resources\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\portableCPVanity\portableCPVanity.csproj">
       <Project>{45CBF82E-1974-49DA-870A-C4FF4BC6D497}</Project>
       <Name>portableCPVanity</Name>

@@ -100,7 +100,7 @@ namespace touchCPVanity
 		}
 
 		public void SetMember(CodeProjectMember member) {
-			viewModel.Member = member;
+			viewModel.MemberId = member.Id;
 		}
 
 //		public CodeProjectMember Member {

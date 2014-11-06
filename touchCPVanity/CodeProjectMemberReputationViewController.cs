@@ -58,7 +58,7 @@ namespace touchCPVanity
 //		}
 
 		public void SetMember(CodeProjectMember member) {
-			viewModel.Member = member;
+			viewModel.MemberReputationGraph = member.ReputationGraph;
 		}
 
 //		public CodeProjectMember Member {
