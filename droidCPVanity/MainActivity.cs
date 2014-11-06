@@ -97,9 +97,11 @@ namespace be.trojkasoftware.droidCPVanity
 
 			if(currentScreen == Screen.MemberList) {
 				menu.FindItem(Resource.Id.action_search).SetVisible(true);
+				menu.FindItem(Resource.Id.action_category).SetVisible(false);
 			}
 			else {
 				menu.FindItem(Resource.Id.action_search).SetVisible(false);
+				menu.FindItem(Resource.Id.action_category).SetVisible(true);
 			}
 
 			return true;
@@ -109,6 +111,12 @@ namespace be.trojkasoftware.droidCPVanity
 		{
 			switch (item.ItemId) {
 			case Resource.Id.action_search:
+				return true;
+			case Resource.Id.action_category:
+				Fragment fragment = this.FragmentManager.FindFragmentById (Resource.Id.frameLayoutFragmentContainer);
+				if (fragment is CodeProjectRSSFeedFragment) {
+					(fragment as CodeProjectRSSFeedFragment).SelectCategory ();
+				}
 				return true;
 			default:
 				return base.OnOptionsItemSelected(item);

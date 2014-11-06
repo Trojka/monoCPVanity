@@ -10,9 +10,9 @@ using Android.Views;
 using Android.Widget;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.Ripit.Core;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace be.trojkasoftware.droidCPVanity
 {
@@ -27,30 +27,46 @@ namespace be.trojkasoftware.droidCPVanity
 
 			memberArticlesView = this.FindViewById<ListView>(Resource.Id.listViewArticles);
 
+			// Not really happy with this but it'll have to do
 			MemberId = Intent.Extras.GetInt (CodeProjectMemberProfileActivity.MemberIdKey);
 			MemberReputationGraph = Intent.Extras.GetString (CodeProjectMemberProfileActivity.MemberReputationGraphKey);
 
-			MemberArticles = new CodeProjectMemberArticles();
+			spinner = this.FindViewById<ProgressBar>(Resource.Id.progressBar1);
+			spinner.Visibility = ViewStates.Gone;
 
-			CodeProjectMemberArticles memberArticles = new CodeProjectMemberArticles ();
-			memberArticles.Id = MemberId;
+			viewModel = new CodeProjectMemberArticlesViewModel ();
+			viewModel.ArticlesLoaded += this.ArticlesLoaded;
 
-			Dictionary<String, String> param = new Dictionary<string, string> ();
-			param.Add ("Id", MemberId.ToString());
-
-			ObjectBuilder objectBuilder = new ObjectBuilder ();
-			Task<IList<CodeProjectMemberArticle>> loadArticleTask = objectBuilder.FillListAsync (MemberArticles, param, () => new CodeProjectMemberArticle(), CancellationToken.None);
+			spinner.Visibility = ViewStates.Visible;
 
 			var context = TaskScheduler.FromCurrentSynchronizationContext();
 
-			loadArticleTask.Start ();
-			loadArticleTask.ContinueWith (x => ArticlesLoaded (x.Result as CodeProjectMemberArticles), context);
+			viewModel.MemberId = MemberId;
+			viewModel.LoadMemberArticles (context);
+
+//			MemberArticles = new CodeProjectMemberArticles();
+//
+//			CodeProjectMemberArticles memberArticles = new CodeProjectMemberArticles ();
+//			memberArticles.Id = MemberId;
+//
+//			Dictionary<String, String> param = new Dictionary<string, string> ();
+//			param.Add ("Id", MemberId.ToString());
+//
+//			ObjectBuilder objectBuilder = new ObjectBuilder ();
+//			Task<IList<CodeProjectMemberArticle>> loadArticleTask = objectBuilder.FillListAsync (MemberArticles, param, () => new CodeProjectMemberArticle(), CancellationToken.None);
+//
+//			var context = TaskScheduler.FromCurrentSynchronizationContext();
+//
+//			loadArticleTask.Start ();
+//			loadArticleTask.ContinueWith (x => ArticlesLoaded (x.Result as CodeProjectMemberArticles), context);
 
 		}
 
-		void ArticlesLoaded(CodeProjectMemberArticles memberArticles) {
+		void ArticlesLoaded(/*CodeProjectMemberArticles memberArticles*/) {
 
-			memberArticlesView.Adapter = new CodeProjectMemberArticleAdapter (this, memberArticles);;
+			spinner.Visibility = ViewStates.Gone;
+
+			memberArticlesView.Adapter = new CodeProjectMemberArticleAdapter (this, viewModel.MemberArticles);
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -96,12 +112,15 @@ namespace be.trojkasoftware.droidCPVanity
 			set;
 		}
 
-		public CodeProjectMemberArticles MemberArticles {
-			get;
-			set;
-		}
+//		public CodeProjectMemberArticles MemberArticles {
+//			get;
+//			set;
+//		}
 
 		ListView memberArticlesView;
+		ProgressBar spinner;
+
+		CodeProjectMemberArticlesViewModel viewModel;
 	}
 }
 

@@ -9,28 +9,29 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using be.trojkasoftware.portableCPVanity;
+using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace be.trojkasoftware.droidCPVanity
 {
 	public class CodeProjectMemberArticleAdapter : BaseAdapter
 	{
-		public CodeProjectMemberArticleAdapter (Activity activity, List<CodeProjectMemberArticle> list)
+		public CodeProjectMemberArticleAdapter (Activity activity, List<CodeProjectMemberArticleViewModel> list)
 		{
 			this.activity = activity;
 			this.list = list;
 		}
 
-		public CodeProjectMemberArticle GetMember(int position)
-		{
-			return list[position];
-		}
+//		public CodeProjectMemberArticle GetMember(int position)
+//		{
+//			return list[position];
+//		}
 
 		#region implemented abstract members of BaseAdapter
 
-		public override Java.Lang.Object GetItem (int position)
-		{
-			return null;
-		}
+//		public override Java.Lang.Object GetItem (int position)
+//		{
+//			return null;
+//		}
 
 		public override long GetItemId (int position)
 		{
@@ -48,9 +49,9 @@ namespace be.trojkasoftware.droidCPVanity
 			var articleVotes = view.FindViewById<TextView> (Resource.Id.textViewVotes);
 
 			articleTitle.Text = list[position].Title;
-			articleDate.Text = list[position].DateUpdated.ToString("d MMM yyyy");
-			articleScore.Text = list[position].Rating;
-			articleVotes.Text = list[position].Votes;
+			articleDate.Text = list[position].DateUpdated; //.ToString("d MMM yyyy");
+			//articleScore.Text = list[position].Rating;
+			//articleVotes.Text = list[position].Votes;
 
 			return view;
 		}
@@ -64,6 +65,6 @@ namespace be.trojkasoftware.droidCPVanity
 		#endregion
 
 		Activity activity;
-		List<CodeProjectMemberArticle> list;	}
+		List<CodeProjectMemberArticleViewModel> list;	}
 }
 

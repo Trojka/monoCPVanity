@@ -13,6 +13,7 @@ using be.trojkasoftware.monoCPVanity.Util;
 using System.Threading.Tasks;
 using Android.Graphics;
 using be.trojkasoftware.monoCPVanity.Data;
+using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace be.trojkasoftware.droidCPVanity
 {
@@ -26,20 +27,36 @@ namespace be.trojkasoftware.droidCPVanity
 			SetContentView (Resource.Layout.CodeProjectMemberReputationLayout);
 
 			memberReputationGraph = FindViewById<ImageView> (Resource.Id.imageViewReputationGraph);
+			memberReputationGraph.SetImageBitmap (null);
 
-			MemberReputationGraph = Intent.Extras.GetString (CodeProjectMemberProfileActivity.MemberReputationGraphKey);
+			spinner = this.FindViewById<ProgressBar>(Resource.Id.progressBar1);
+			spinner.Visibility = ViewStates.Gone;
 
-			WebImageRetriever imageDownloader = new WebImageRetriever ();
-			Task<Bitmap> loadGraphTask = imageDownloader.GetImageAsync (new Uri (MemberReputationGraph));
+			viewModel = new CodeProjectMemberReputationViewModel ();
+			viewModel.ReputationGraphLoaded += this.ReputationGraphLoaded;
+
+			viewModel.MemberReputationGraph = Intent.Extras.GetString (CodeProjectMemberProfileActivity.MemberReputationGraphKey);
+
+			spinner.Visibility = ViewStates.Visible;
 
 			var context = TaskScheduler.FromCurrentSynchronizationContext();
 
-			loadGraphTask.ContinueWith (t => ReputationGraphLoaded(t.Result), context);
+			viewModel.LoadMemberReputation (context);
+
+//			WebImageRetriever imageDownloader = new WebImageRetriever ();
+//			Task<Bitmap> loadGraphTask = imageDownloader.GetImageAsync (new Uri (MemberReputationGraph));
+//
+//			var context = TaskScheduler.FromCurrentSynchronizationContext();
+//
+//			loadGraphTask.ContinueWith (t => ReputationGraphLoaded(t.Result), context);
 		}
 
-		public void ReputationGraphLoaded(Bitmap graph) {
+		public void ReputationGraphLoaded(byte[] graph) {
 
-			this.memberReputationGraph.SetImageBitmap(graph);
+			spinner.Visibility = ViewStates.Gone;
+
+			Bitmap bitmap = BitmapFactory.DecodeByteArray (graph, 0, graph.Length);
+			this.memberReputationGraph.SetImageBitmap(bitmap);
 		}
 
 		public string MemberReputationGraph {
@@ -48,6 +65,9 @@ namespace be.trojkasoftware.droidCPVanity
 		}
 			
 		ImageView memberReputationGraph;
+		ProgressBar spinner;
+
+		CodeProjectMemberReputationViewModel viewModel;
 	}
 }
 

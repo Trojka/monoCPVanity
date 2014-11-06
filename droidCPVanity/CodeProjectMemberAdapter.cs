@@ -21,17 +21,17 @@ namespace be.trojkasoftware.droidCPVanity
 			this.list = list;
 		}
 
-		public CodeProjectMember GetMember(int position)
-		{
-			return list[position];
-		}
+//		public CodeProjectMember GetMember(int position)
+//		{
+//			return list[position];
+//		}
 
 		#region implemented abstract members of BaseAdapter
 
-		public override Java.Lang.Object GetItem (int position)
-		{
-			return null;
-		}
+//		public override Java.Lang.Object GetItem (int position)
+//		{
+//			return null;
+//		}
 
 		public override long GetItemId (int position)
 		{

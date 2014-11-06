@@ -16,7 +16,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 	{
 		public ArticlesLoaded ArticlesLoaded;
 
-		public CodeProjectMember Member {
+		public int MemberId {
 			get;
 			set;
 		}
@@ -39,7 +39,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 //			memberArticles.Id = Member.Id;
 
 			Dictionary<String, String> param = new Dictionary<string, string> ();
-			param.Add ("Id", Member.Id.ToString());
+			param.Add ("Id", MemberId.ToString());
 
 			ObjectBuilder objectBuilder = new ObjectBuilder ();
 			Task<IList<CodeProjectMemberArticle>> loadArticleTask = objectBuilder.FillListAsync (memberArticles, param, () => new CodeProjectMemberArticle(), CancellationToken.None);

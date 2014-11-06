@@ -15,15 +15,20 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 	{
 		public ReputationGraphLoaded ReputationGraphLoaded;
 
-		public CodeProjectMember Member {
+		public string MemberReputationGraph {
 			get;
 			set;
 		}
 
+//		public CodeProjectMember Member {
+//			get;
+//			set;
+//		}
+
 		public void LoadMemberReputation(TaskScheduler uiContext) {
 			WebImageRetriever imageDownloader = new WebImageRetriever ();
 
-			Task<byte[]> loadGraphTask = imageDownloader.GetImageStreamAsync (new Uri (Member.ReputationGraph));
+			Task<byte[]> loadGraphTask = imageDownloader.GetImageStreamAsync (new Uri (MemberReputationGraph));
 
 			loadGraphTask.ContinueWith (t => ReputationGraphLoaded(t.Result), uiContext);
 		}

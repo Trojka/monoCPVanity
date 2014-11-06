@@ -15,9 +15,21 @@
         android:typeface="normal"
         android:textSize="48dp" />
     <ImageView
-        android:src="@drawable/ReputationGraph"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/imageViewReputationGraph"
         android:scaleType="centerInside" />
+<!--<ImageView
+        android:src="@drawable/ReputationGraph"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageViewReputationGraph"
+        android:scaleType="centerInside" />-->
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 </RelativeLayout>

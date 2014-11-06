@@ -12,4 +12,10 @@
           android:icon="@drawable/ic_action_refresh"
           android:title="Refresh" 
           android:showAsAction="ifRoom" />
+    
+    <!-- Category -->
+    <item android:id="@+id/action_category"
+          android:icon="@drawable/ic_action_overview"
+          android:title="Category" 
+          android:showAsAction="ifRoom" />
 </menu>

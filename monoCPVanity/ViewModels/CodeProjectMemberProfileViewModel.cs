@@ -13,7 +13,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
 	public delegate void MemberLoaded(/*CodeProjectMember member*/);
 
-	public class CodeProjectMemberProfileViewModel
+	public partial class CodeProjectMemberProfileViewModel
 	{
 		//public GravatarLoaded GravatarLoaded;
 

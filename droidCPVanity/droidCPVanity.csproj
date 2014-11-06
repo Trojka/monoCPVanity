@@ -72,6 +72,29 @@
     <Compile Include="..\monoCPVanity\Util\WebImageRetriever.cs">
       <Link>Util\WebImageRetriever.cs</Link>
     </Compile>
+    <Compile Include="Util\FileStorageService.Android.cs" />
+    <Compile Include="..\monoCPVanity\ViewModels\ArticleFeedViewModel.cs">
+      <Link>ViewModels\ArticleFeedViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\monoCPVanity\ViewModels\CodeProjectMemberArticlesViewModel.cs">
+      <Link>ViewModels\CodeProjectMemberArticlesViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\monoCPVanity\ViewModels\CodeProjectMemberArticleViewModel.cs">
+      <Link>ViewModels\CodeProjectMemberArticleViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\monoCPVanity\ViewModels\CodeProjectMemberProfileViewModel.cs">
+      <Link>ViewModels\CodeProjectMemberProfileViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\monoCPVanity\ViewModels\CodeProjectMemberReputationViewModel.cs">
+      <Link>ViewModels\CodeProjectMemberReputationViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\monoCPVanity\ViewModels\CodeProjectRssFeedViewModel.cs">
+      <Link>ViewModels\CodeProjectRssFeedViewModel.cs</Link>
+    </Compile>
+    <Compile Include="CodeProjectRSSFeedFragment.cs" />
+    <Compile Include="..\monoCPVanity\ViewModels\CodeProjectArticleFeedCategoryViewModel.cs">
+      <Link>ViewModels\CodeProjectArticleFeedCategoryViewModel.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -88,7 +111,6 @@
     <AndroidResource Include="Resources\layout\CodeProjectMemberProfileLayout.axml" />
     <AndroidResource Include="Resources\drawable\member_unknown.png" />
     <AndroidResource Include="Resources\layout\CodeProjectMemberReputationLayout.axml" />
-    <AndroidResource Include="Resources\drawable\ReputationGraph.png" />
     <AndroidResource Include="Resources\layout\CodeProjectMemberArticlesLayout.axml" />
     <AndroidResource Include="Resources\layout\CodeProjectMemberListLayout.axml" />
     <AndroidResource Include="Resources\drawable\ic_action_refresh.png" />
@@ -97,7 +119,6 @@
     <AndroidResource Include="Resources\xml\searchable.xml" />
     <AndroidResource Include="Resources\drawable\ic_action_new.png" />
     <AndroidResource Include="Resources\xml\preferences.xml" />
-    <AndroidResource Include="Resources\layout\SettingsLayout.xml" />
     <AndroidResource Include="Resources\layout\CodeProjectMemberListItem.axml" />
     <AndroidResource Include="Resources\drawable\member_div2.png" />
     <AndroidResource Include="Resources\layout\CodeProjectMemberArticlesItem.axml" />
@@ -107,6 +128,7 @@
     <AndroidResource Include="Resources\menu\codeproject_member_articles_actions.xml" />
     <AndroidResource Include="Resources\layout\CodeProjectRssFeedLayout.axml" />
     <AndroidResource Include="Resources\layout\CodeProjectRssFeedItem.axml" />
+    <AndroidResource Include="Resources\drawable\ic_action_overview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
@@ -124,6 +146,7 @@
     <Folder Include="Resources\xml\" />
     <Folder Include="Data\" />
     <Folder Include="Util\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

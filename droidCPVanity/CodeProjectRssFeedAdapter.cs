@@ -9,6 +9,7 @@ using Android.Widget;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.portableCPVanity.RssFeeds;
 using be.trojkasoftware.Ripit.Core;
+using be.trojkasoftware.portableCPVanity.ViewModels;
 
 
 namespace be.trojkasoftware.droidCPVanity
@@ -42,7 +43,7 @@ namespace be.trojkasoftware.droidCPVanity
 			var rssItemDescription = view.FindViewById<TextView> (Resource.Id.textViewRssItemDescription);
 
 			rssItemTitle.Text = rssItemList[position].Title;
-			rssItemDescription.Text = rssItemList[position].Description;
+			rssItemDescription.Text = CodeProjectRssFeedViewModel.StripHTML(rssItemList[position].Description);
 
 			return view;
 		}
