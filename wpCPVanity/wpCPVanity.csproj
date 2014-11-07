@@ -72,9 +72,6 @@
     <Compile Include="..\monoCPVanity\Util\WebImageRetriever.cs">
       <Link>Util\WebImageRetriever.cs</Link>
     </Compile>
-    <Compile Include="..\monoCPVanity\ViewModels\ArticleFeedViewModel.cs">
-      <Link>ViewModels\ArticleFeedViewModel.cs</Link>
-    </Compile>
     <Compile Include="..\monoCPVanity\ViewModels\CodeProjectMemberArticlesViewModel.cs">
       <Link>ViewModels\CodeProjectMemberArticlesViewModel.cs</Link>
     </Compile>
@@ -104,6 +101,9 @@
     </Compile>
     <Compile Include="CodeprojectMemberProfilePage.xaml.cs">
       <DependentUpon>CodeprojectMemberProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CodeProjectMemberProfileControl.xaml.cs">
+      <DependentUpon>CodeProjectMemberProfileControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\CodeProjectDatabase.WP7.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -138,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CodeprojectMemberProfilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CodeProjectMemberProfileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

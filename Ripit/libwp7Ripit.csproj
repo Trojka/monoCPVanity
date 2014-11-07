@@ -58,7 +58,6 @@
     <Compile Include="Attributes\HttpSourceAttribute.cs" />
     <Compile Include="Attributes\PropertyCaptureAttribute.cs" />
     <Compile Include="Attributes\SourceRefAttribute.cs" />
-    <Compile Include="Attributes\TextActionInterface.cs" />
     <Compile Include="Core\ObjectBuilder.cs" />
     <Compile Include="Core\RSSItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
