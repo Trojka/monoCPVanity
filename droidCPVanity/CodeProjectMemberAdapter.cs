@@ -21,17 +21,7 @@ namespace be.trojkasoftware.droidCPVanity
 			this.list = list;
 		}
 
-//		public CodeProjectMember GetMember(int position)
-//		{
-//			return list[position];
-//		}
-
 		#region implemented abstract members of BaseAdapter
-
-//		public override Java.Lang.Object GetItem (int position)
-//		{
-//			return null;
-//		}
 
 		public override long GetItemId (int position)
 		{
@@ -56,10 +46,6 @@ namespace be.trojkasoftware.droidCPVanity
 			int textAppearanceSmall = TextAppearanceHeight (Android.Resource.Attribute.TextAppearanceSmall);
 
 			int bitmapSize = textAppearanceLarge + textAppearanceSmall;
-			//memberIcon.SetMaxHeight(textAppearanceLarge + textAppearanceSmall);
-			//memberIcon.SetMaxWidth(textAppearanceLarge + textAppearanceSmall);
-			//memberIcon.RequestLayout ();
-
 			CodeProjectDatabase database = new CodeProjectDatabase ();
 			byte[] gravatar = database.GetGravatar (list[position].Id);
 			if (gravatar != null) {
@@ -68,18 +54,6 @@ namespace be.trojkasoftware.droidCPVanity
 				memberIcon.SetImageBitmap (Bitmap.CreateScaledBitmap(image, bitmapSize, bitmapSize, false));
 				image.Recycle();
 			}
-
-//			string memberIconFilenam = list[position].Id.ToString () + ".png";
-//			var dir = new File(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryPictures), memberIconFilenam);
-//			if (dir.Exists ()) {
-//				try {
-//					var bitmap = BitmapFactory.DecodeFile (dir.AbsolutePath);
-//					var scaledBitmap = Bitmap.CreateScaledBitmap(bitmap, bitmap.Width/2, bitmap.Height/2, false);
-//					memberIcon.SetImageBitmap (scaledBitmap);
-//				} catch (Exception e) {
-//					Log.Error ("Error", e.Message);
-//				}
-//			}
 
 			return view;
 		}

@@ -8,7 +8,7 @@ using be.trojkasoftware.Ripit.Core;
 
 namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
-	public delegate void FeedLoaded(/*IList<RSSItem> FeedLoaded*/);
+	public delegate void FeedLoaded();
 
 	public class CodeProjectRssFeedViewModel
 	{
@@ -27,29 +27,14 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 			return paramList;
 		}
 
-//		public void ReloadData(TaskScheduler uiContext)
-//		{
-//			LoadFeed (uiContext);
-//		}
-
-		public void LoadFeed(TaskScheduler uiContext/*CodeProjectRssFeed feed*/) {
+		public void LoadFeed(TaskScheduler uiContext) {
 			ObjectBuilder builder = new ObjectBuilder ();
 
 			Task<IList<RSSItem>> loadFeedTask = builder.FillFeedAsync (ItemFeed, GetBuilderParams(), CancellationToken.None);
 
-			//var context = TaskScheduler.FromCurrentSynchronizationContext();
-
 			loadFeedTask.Start ();
 			loadFeedTask.ContinueWith (x => FeedLoaded(/*x.Result*/), uiContext);
 		}
-
-//		void FeedLoaded(IList<RSSItem> feed) {
-//
-//			//progressView.StopAnimating ();
-//
-//			//RSSItemTable.Source = new CodeProjectRSSDataSource(ItemFeed);
-//			//RSSItemTable.ReloadData ();
-//		}
 
 		// http://www.codeproject.com/Articles/11902/Convert-HTML-to-Plain-Text
 		public static string StripHTML(string source)

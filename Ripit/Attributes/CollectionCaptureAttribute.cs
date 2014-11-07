@@ -2,28 +2,12 @@
 
 namespace be.trojkasoftware.Ripit.Attributes
 {
-	public class CollectionCaptureAttribute : Attribute //, TextActionInterface
+	public class CollectionCaptureAttribute : Attribute
 	{
 		public CollectionCaptureAttribute (string regExCapture)
-		//:this(0, regExCapture)
 		{
 			CaptureExpression = regExCapture;
 		}
-
-//		public CollectionCaptureAttribute (int index, string regExCapture)
-//		{
-////			Index = index;
-//			CaptureExpression = regExCapture;
-//		}
-
-//		#region TextActionInterface implementation
-//
-////		public int Index {
-////			get;
-////			private set;
-////		}
-//
-//		#endregion
 
 		public string CaptureExpression {
 			get;

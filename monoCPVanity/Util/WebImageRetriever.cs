@@ -20,7 +20,6 @@ namespace be.trojkasoftware.monoCPVanity.Util
 
 			return getTask.ContinueWith (task => {
 				var res = task.Result;
-				//return res.GetResponseStream ();
 				return ReadFully(res.GetResponseStream ());
 			});
 		}

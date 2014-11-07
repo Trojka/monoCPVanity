@@ -42,13 +42,6 @@ namespace be.trojkasoftware.droidCPVanity
 			var context = TaskScheduler.FromCurrentSynchronizationContext();
 
 			viewModel.LoadMemberReputation (context);
-
-//			WebImageRetriever imageDownloader = new WebImageRetriever ();
-//			Task<Bitmap> loadGraphTask = imageDownloader.GetImageAsync (new Uri (MemberReputationGraph));
-//
-//			var context = TaskScheduler.FromCurrentSynchronizationContext();
-//
-//			loadGraphTask.ContinueWith (t => ReputationGraphLoaded(t.Result), context);
 		}
 
 		public void ReputationGraphLoaded(byte[] graph) {

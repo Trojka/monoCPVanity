@@ -23,13 +23,6 @@ namespace be.trojkasoftware.droidCPVanity
 	{
 		View view;
 
-//		public override void OnCreate (Bundle savedInstanceState)
-//		{
-//			base.OnCreate (savedInstanceState);
-//
-//			// Create your fragment here
-//		}
-
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			view = inflater.Inflate (Resource.Layout.CodeProjectRssFeedLayout, null);
@@ -41,18 +34,9 @@ namespace be.trojkasoftware.droidCPVanity
 			viewModel.FeedLoaded += this.FeedLoaded;
 
 
-			viewModel.ItemFeed = GetFeed (); //CodeProjectArticleFeed.GetFeed(CodeProjectArticleFeed.DefaultArticleCategory);
+			viewModel.ItemFeed = GetFeed ();
 
 			LoadFeed ();
-
-//			textView.Text = viewModel.ItemFeed.Name;
-//
-//			var context = TaskScheduler.FromCurrentSynchronizationContext();
-//			viewModel.LoadFeed (context);
-
-			//			ItemFeed = CodeProjectArticleFeed.GetFeed(CodeProjectArticleFeed.DefaultArticleCategory);
-
-			//			LoadFeed (ItemFeed);
 
 			return view;
 		}
@@ -71,13 +55,8 @@ namespace be.trojkasoftware.droidCPVanity
 		public virtual void SelectCategory() {
 		}
 
-		void FeedLoaded(/*IList<RSSItem> feed*/) {
-
-			//progressView.StopAnimating ();
-
+		void FeedLoaded() {
 			listView.Adapter = new CodeProjectRssFeedAdapter (this.Activity, viewModel.ItemFeed);
-			//RSSItemTable.Source = new CodeProjectRSSDataSource(ItemFeed);
-			//RSSItemTable.ReloadData ();
 		}
 
 		TextView textView;

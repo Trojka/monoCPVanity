@@ -11,7 +11,7 @@ using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace touchCPVanity
 {
-	public partial class CodeProjectMemberArticlesViewController : UIViewController//, IUITableViewDelegate, IUITableViewDataSource
+	public partial class CodeProjectMemberArticlesViewController : UIViewController
 	{
 		public CodeProjectMemberArticlesViewController (IntPtr handle) : base (handle)
 		{
@@ -25,7 +25,7 @@ namespace touchCPVanity
 			var cell = tableView.DequeueReusableCell ("ArticleCell");
 
 			(cell.ViewWithTag (100) as UILabel).Text = viewModel.MemberArticles[indexPath.Row].Title;
-			(cell.ViewWithTag (101) as UILabel).Text = viewModel.MemberArticles [indexPath.Row].DateUpdated; //.ToString("d MMM yyyy");
+			(cell.ViewWithTag (101) as UILabel).Text = viewModel.MemberArticles [indexPath.Row].DateUpdated; 
 
 			return cell;
 		}
@@ -57,15 +57,6 @@ namespace touchCPVanity
 					memberReputationController.SetMember(viewModel.Member);
 				}
 			}
-//			if (segue.Identifier == "MemberArticleSegue") {
-//
-//				var memberArticleViewController = segue.DestinationViewController as WebPageViewController;
-//
-//				if (memberArticleViewController != null) {
-//					NSIndexPath indexPath =  MemberArticlesTable.IndexPathForSelectedRow;
-//					memberArticleViewController.PageURL = MemberArticles [indexPath.Row].Link;
-//				}
-//			}
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -88,30 +79,19 @@ namespace touchCPVanity
 			viewModel.LoadMemberArticles (context);
 		}
 
-		void ArticlesLoaded(/*List<CodeProjectMemberArticleViewModel> memberArticles*/) {
+		void ArticlesLoaded() {
 
 			progressView.StopAnimating ();
 
 			MemberArticlesTable.WeakDataSource = this;
 			MemberArticlesTable.WeakDelegate = this;
 
-			//MemberArticles = memberArticles;
 			MemberArticlesTable.ReloadData ();
 		}
 
 		public void SetMember(CodeProjectMember member) {
 			viewModel.MemberId = member.Id;
 		}
-
-//		public CodeProjectMember Member {
-//			get;
-//			set;
-//		}
-//
-//		public CodeProjectMemberArticles MemberArticles {
-//			get;
-//			set;
-//		}
 
 		UIActivityIndicatorView progressView;
 		CodeProjectMemberArticlesViewModel viewModel;

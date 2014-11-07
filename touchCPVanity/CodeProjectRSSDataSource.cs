@@ -32,7 +32,6 @@ namespace touchCPVanity
 
 			(cell.ViewWithTag (titleTag) as UILabel).Text = rssItem.Title;
 			(cell.ViewWithTag (authorTag) as UILabel).Text = rssItem.Author;
-			//(cell.ViewWithTag (dateTag) as UILabel).Text = rssItem.Date;
 			(cell.ViewWithTag (descriptionTag) as UILabel).Text = StripHTML(rssItem.Description);
 
 			return cell;
@@ -83,7 +82,6 @@ namespace touchCPVanity
 
 		private static int titleTag = 100;
 		private static int authorTag = 101;
-		//private static int dateTag = 102;
 		private static int descriptionTag = 103;
 	}
 }

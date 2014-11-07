@@ -47,20 +47,6 @@ namespace be.trojkasoftware.droidCPVanity
 		}
 
 		private CommunityRssCategories categories = new CommunityRssCategories();
-
-//		View view;
-//
-////		public override void OnActivityCreated (Bundle savedInstanceState) 
-////		{
-////			base.OnActivityCreated (savedInstanceState);
-////		}
-//
-//		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-//		{
-//			view = inflater.Inflate (Resource.Layout.CodeProjectLoungeFeedLayout, null);
-//
-//			return view;
-//		}
 	}
 }
 

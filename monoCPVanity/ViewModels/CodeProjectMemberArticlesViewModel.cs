@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
-	public delegate void ArticlesLoaded(/*CodeProjectMemberArticles memberArticles*/);
+	public delegate void ArticlesLoaded();
 
 	public class CodeProjectMemberArticlesViewModel
 	{
@@ -21,11 +21,6 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 			set;
 		}
 
-//		public CodeProjectMemberArticles MemberArticles {
-//			get;
-//			set;
-//		}
-
 		public List<CodeProjectMemberArticleViewModel> MemberArticles {
 			get {
 				return memberArticles.Select (x => new CodeProjectMemberArticleViewModel (x)).ToList ();
@@ -35,9 +30,6 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 		public void LoadMemberArticles(TaskScheduler uiContext) {
 			memberArticles = new CodeProjectMemberArticles();
 
-//			CodeProjectMemberArticles memberArticles = new CodeProjectMemberArticles ();
-//			memberArticles.Id = Member.Id;
-
 			Dictionary<String, String> param = new Dictionary<string, string> ();
 			param.Add ("Id", MemberId.ToString());
 
@@ -46,7 +38,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
 
 			loadArticleTask.Start ();
-			loadArticleTask.ContinueWith (x => ArticlesLoaded (/*x.Result as CodeProjectMemberArticles*/), uiContext);
+			loadArticleTask.ContinueWith (x => ArticlesLoaded (), uiContext);
 		}
 
 		CodeProjectMemberArticles memberArticles;

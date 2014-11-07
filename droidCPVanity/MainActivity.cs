@@ -17,8 +17,7 @@ namespace be.trojkasoftware.droidCPVanity
 		enum Screen {
 			MemberList,
 			ArticleFeed,
-			LoungFeed	//,
-			// Preferences
+			LoungFeed
 		}
 
 		protected override void OnCreate (Bundle bundle)
@@ -27,7 +26,7 @@ namespace be.trojkasoftware.droidCPVanity
 
 			SetContentView (Resource.Layout.MainLayout);
 
-			String[] data = new String[]{ "Members", "Articles", "Community"/*, "Preferences"*/ };
+			String[] data = new String[]{ "Members", "Articles", "Community" };
 			ArrayAdapter list = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, data);
 
 			ActionBar.SetDisplayShowTitleEnabled (false);
@@ -39,15 +38,6 @@ namespace be.trojkasoftware.droidCPVanity
 				.Add(Resource.Id.frameLayoutFragmentContainer, codeProjectMemberListFragment).Commit();
 
 			currentScreen = Screen.MemberList;
-
-//			ISharedPreferences settings = PreferenceManager.GetDefaultSharedPreferences (this);
-//			String myId = settings.GetString ("me_id", String.Empty);
-//
-//			if (String.IsNullOrEmpty (myId)) {
-//				var intent = new Intent (this, typeof(CodeProjectSettingsActivity));
-//				//intent.AddFlags (ActivityFlags.ClearTop);
-//				StartActivity (intent);
-//			}
 		}
 
 		public bool OnNavigationItemSelected (int itemPosition, long itemId)
@@ -67,10 +57,6 @@ namespace be.trojkasoftware.droidCPVanity
 				fragment = new CodeProjectLoungeFeedFragment ();
 				currentScreen = Screen.LoungFeed;
 				break;
-//			case 3:
-//				fragment = new CodeProjectPreferencesFragment ();
-//				currentScreen = Screen.Preferences;
-//				break;
 			}
 
 			this.FragmentManager.BeginTransaction()

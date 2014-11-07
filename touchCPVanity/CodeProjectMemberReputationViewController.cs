@@ -35,11 +35,6 @@ namespace touchCPVanity
 			var context = TaskScheduler.FromCurrentSynchronizationContext();
 
 			viewModel.LoadMemberReputation (context);
-
-//			WebImageRetriever imageDownloader = new WebImageRetriever ();
-//			Task<UIImage> loadGraphTask = imageDownloader.GetImageAsync (new Uri (Member.ReputationGraph));
-//
-//			loadGraphTask.ContinueWith (t => ReputationGraphLoaded(t.Result), context);
 		}
 
 		public void ReputationGraphLoaded(byte[] graph) {
@@ -50,21 +45,9 @@ namespace touchCPVanity
 			this.ReputationGraph.Image = UIImage.LoadFromData (data, 1);
 		}
 
-//		public void ReputationGraphLoaded(UIImage graph) {
-//
-//			progressView.StopAnimating ();
-//
-//			this.ReputationGraph.Image = graph;
-//		}
-
 		public void SetMember(CodeProjectMember member) {
 			viewModel.MemberReputationGraph = member.ReputationGraph;
 		}
-
-//		public CodeProjectMember Member {
-//			get;
-//			set;
-//		}
 
 		UIActivityIndicatorView progressView;
 		CodeProjectMemberReputationViewModel viewModel;

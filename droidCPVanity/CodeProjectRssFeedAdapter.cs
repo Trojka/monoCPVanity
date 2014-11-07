@@ -24,11 +24,6 @@ namespace be.trojkasoftware.droidCPVanity
 
 		#region implemented abstract members of BaseAdapter
 
-		public override Java.Lang.Object GetItem (int position)
-		{
-			return null;
-		}
-
 		public override long GetItemId (int position)
 		{
 			return position;

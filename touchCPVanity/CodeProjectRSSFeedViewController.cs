@@ -29,48 +29,12 @@ namespace touchCPVanity
 			viewModel.ItemFeed = feed;
 		}
 
-//		public CodeProjectRssFeed ItemFeed 
-//		{
-//			get;
-//			set;
-//		}
-
-//		public virtual Dictionary<string, string> GetBuilderParams() {
-//			Dictionary<string, string> paramList = new Dictionary<string, string> ();
-//			return paramList;
-//		}
-
-//		public void LoadFeed(CodeProjectRssFeed feed) {
-//			progressView.StartAnimating ();
-//
-//			ObjectBuilder builder = new ObjectBuilder ();
-//
-//			Task<IList<RSSItem>> loadFeedTask = builder.FillFeedAsync (feed, GetBuilderParams(), CancellationToken.None);
-//
-//			var context = TaskScheduler.FromCurrentSynchronizationContext();
-//
-//			loadFeedTask.Start ();
-//			loadFeedTask.ContinueWith (x => FeedLoaded(x.Result), context);
-//		}
-
-		void FeedLoaded(/*IList<RSSItem> feed*/) {
+		void FeedLoaded() {
 
 			progressView.StopAnimating ();
 
 			RSSItemTable.Source = new CodeProjectRSSDataSource(viewModel.ItemFeed);
 			RSSItemTable.ReloadData ();
-		}
-
-		public override void DidReceiveMemoryWarning ()
-		{
-			base.DidReceiveMemoryWarning ();
-		}
-
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
-
-//			RSSItemTable.Source = new CodeProjectRSSDataSource(ItemFeed);
 		}
 
 		public override void ViewDidAppear (bool animated)
@@ -86,25 +50,13 @@ namespace touchCPVanity
 			var context = TaskScheduler.FromCurrentSynchronizationContext();
 
 			viewModel.LoadFeed (context);
-
-//			ReloadData ();
 		}
-
-//		public void ReloadData()
-//		{
-//			LoadFeed (ItemFeed);
-//		}
 
 		public RSSItem SelectedItem {
 			get {
 				return viewModel.ItemFeed [RSSItemTable.IndexPathForSelectedRow.Row];
 			}
 		}
-
-//		protected string CategoryText {
-//			get { return CategoryLabel.Text; }
-//			set { CategoryLabel.Text = value; }
-//		}
 
 		protected CodeProjectRssFeedViewModel viewModel;
 

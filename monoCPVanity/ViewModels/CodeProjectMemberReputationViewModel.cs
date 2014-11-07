@@ -20,11 +20,6 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 			set;
 		}
 
-//		public CodeProjectMember Member {
-//			get;
-//			set;
-//		}
-
 		public void LoadMemberReputation(TaskScheduler uiContext) {
 			WebImageRetriever imageDownloader = new WebImageRetriever ();
 

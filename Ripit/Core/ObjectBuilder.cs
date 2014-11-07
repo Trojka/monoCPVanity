@@ -24,11 +24,6 @@ namespace be.trojkasoftware.Ripit.Core
 			return returnValue;
 		}
 
-//		public IList<T> FillList<T>(IList<T> listToFill, Dictionary<String, String> paramList, Func<T> itemFactory) where T: class
-//		{
-//			return FillList<T>(listToFill, paramList, itemFactory, CancellationToken.None);
-//		}
-
 		public IList<T> FillList<T>(IList<T> listToFill, Dictionary<String, String> paramList, Func<T> itemFactory, CancellationToken ct) where T: class
 		{
 			Dictionary<int, string> globalSources = GetSources(listToFill, paramList, CancellationToken.None);
@@ -41,7 +36,7 @@ namespace be.trojkasoftware.Ripit.Core
 				return listToFill;
 			}
 
-			MatchCollection matches = Regex.Matches(globalSources[0 /*captureAttribute.Index*/], captureAttribute.CaptureExpression, RegexOptions.IgnoreCase);
+			MatchCollection matches = Regex.Matches(globalSources[0], captureAttribute.CaptureExpression, RegexOptions.IgnoreCase);
 			foreach (Match match in matches) {
 
 				if (ct != CancellationToken.None && ct.IsCancellationRequested) 
@@ -89,26 +84,18 @@ namespace be.trojkasoftware.Ripit.Core
 			return returnValue;
 		}
 
-//		public IList<RSSItem> FillFeed(IList<RSSItem> feedToFill, Dictionary<String, String> paramList)
-//		{
-//			return FillFeed (feedToFill, paramList, CancellationToken.None);
-//		}
-
 		public IList<RSSItem> FillFeed(IList<RSSItem> feedToFill, Dictionary<String, String> paramList, CancellationToken ct)
 		{
-			//List<RSSItem> feedToFillAsRSSFeed = feedToFill as List<RSSItem>;
 			Dictionary<int, string> globalSources = GetSourceUrls(feedToFill, paramList, ct);
 
 			HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create (globalSources[1]);
-			/*IAsyncResult reqResult =*/ myReq.BeginGetResponse (new AsyncCallback (FinishWebRequest), myReq);
+			myReq.BeginGetResponse (new AsyncCallback (FinishWebRequest), myReq);
 
 			allDone.WaitOne ();
 			allDone.Reset ();
 
 			List<RSSItem> result = LoadFeed (responseStream);
-			//responseStream.Dispose();
 
-			//feedToFillAsRSSFeed.AddRange (result);
 			foreach(var item in result)
 				feedToFill.Add (item);
 
@@ -120,16 +107,14 @@ namespace be.trojkasoftware.Ripit.Core
 			// http://stackoverflow.com/questions/5889954/linq-to-xml-parse-rss-feed
 			List<RSSItem> results = null;
 
-			//XNamespace ns = "http://purl.org/rss/1.0/";
 			XDocument xdoc = XDocument.Load(url);
-			results = (from feed in xdoc.Descendants(/*ns +*/ "item")
-				//orderby int.Parse(feed.Element(/*ns +*/  "guid").Value) descending
-				let desc = feed.Element(/*ns +*/  "description").Value
+			results = (from feed in xdoc.Descendants("item")
+				let desc = feed.Element("description").Value
 				select new RSSItem
 				{
-					Title = feed.Element(/*ns +*/  "title").Value,
+					Title = feed.Element("title").Value,
 					Description = desc,
-					Link = feed.Element(/*ns +*/  "link").Value
+					Link = feed.Element("link").Value
 				}).ToList();
 
 			return results;
@@ -231,7 +216,7 @@ namespace be.trojkasoftware.Ripit.Core
 
 				string sourceText = globalSources[sourceRef.SourceRefId];
 				bool foundValue = true;
-				foreach (Attribute textActionAttribute in propertyAttrList/*.OfType<TextActionInterface>().OrderBy(x => x.Index)*/) {
+				foreach (Attribute textActionAttribute in propertyAttrList) {
 					if((textActionAttribute is PropertyCaptureAttribute) && foundValue)
 					{
 						PropertyCaptureAttribute capture = (PropertyCaptureAttribute)textActionAttribute;

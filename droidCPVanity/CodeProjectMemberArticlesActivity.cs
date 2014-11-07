@@ -44,25 +44,9 @@ namespace be.trojkasoftware.droidCPVanity
 			viewModel.MemberId = MemberId;
 			viewModel.LoadMemberArticles (context);
 
-//			MemberArticles = new CodeProjectMemberArticles();
-//
-//			CodeProjectMemberArticles memberArticles = new CodeProjectMemberArticles ();
-//			memberArticles.Id = MemberId;
-//
-//			Dictionary<String, String> param = new Dictionary<string, string> ();
-//			param.Add ("Id", MemberId.ToString());
-//
-//			ObjectBuilder objectBuilder = new ObjectBuilder ();
-//			Task<IList<CodeProjectMemberArticle>> loadArticleTask = objectBuilder.FillListAsync (MemberArticles, param, () => new CodeProjectMemberArticle(), CancellationToken.None);
-//
-//			var context = TaskScheduler.FromCurrentSynchronizationContext();
-//
-//			loadArticleTask.Start ();
-//			loadArticleTask.ContinueWith (x => ArticlesLoaded (x.Result as CodeProjectMemberArticles), context);
-
 		}
 
-		void ArticlesLoaded(/*CodeProjectMemberArticles memberArticles*/) {
+		void ArticlesLoaded() {
 
 			spinner.Visibility = ViewStates.Gone;
 
@@ -111,11 +95,6 @@ namespace be.trojkasoftware.droidCPVanity
 			get;
 			set;
 		}
-
-//		public CodeProjectMemberArticles MemberArticles {
-//			get;
-//			set;
-//		}
 
 		ListView memberArticlesView;
 		ProgressBar spinner;

@@ -21,17 +21,7 @@ namespace be.trojkasoftware.droidCPVanity
 			this.list = list;
 		}
 
-//		public CodeProjectMemberArticle GetMember(int position)
-//		{
-//			return list[position];
-//		}
-
 		#region implemented abstract members of BaseAdapter
-
-//		public override Java.Lang.Object GetItem (int position)
-//		{
-//			return null;
-//		}
 
 		public override long GetItemId (int position)
 		{
@@ -49,7 +39,7 @@ namespace be.trojkasoftware.droidCPVanity
 			var articleVotes = view.FindViewById<TextView> (Resource.Id.textViewVotes);
 
 			articleTitle.Text = list[position].Title;
-			articleDate.Text = list[position].DateUpdated; //.ToString("d MMM yyyy");
+			articleDate.Text = list[position].DateUpdated;
 			//articleScore.Text = list[position].Rating;
 			//articleVotes.Text = list[position].Votes;
 

@@ -33,7 +33,6 @@ namespace be.trojkasoftware.droidCPVanity
 			ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
 				this.Activity,
 				Android.Resource.Layout.SelectDialogSingleChoice);
-			//arrayAdapter.AddAll (CodeProjectArticleFeed.Categories.Select(x => new CodeProjectArticleFeedCategoryViewModel(x)).ToList());
 			arrayAdapter.AddAll (CodeProjectArticleFeed.Categories);
 
 			builderSingle.SetAdapter (arrayAdapter, this.ItemClicked);
@@ -46,39 +45,6 @@ namespace be.trojkasoftware.droidCPVanity
 
 			LoadFeed ();
 		}
-
-//		public override void OnActivityCreated (Bundle savedInstanceState) 
-//		{
-//			base.OnActivityCreated (savedInstanceState);
-//		}
-
-//		public CodeProjectRssFeed ItemFeed 
-//		{
-//			get;
-//			set;
-//		}
-
-//		public virtual Dictionary<string, string> GetBuilderParams() {
-//			Dictionary<string, string> paramList = new Dictionary<string, string> ();
-//			return paramList;
-//		}
-
-//		public /*override*/ Dictionary<string, string> GetBuilderParams() {
-//			Dictionary<string, string> paramList = new Dictionary<string, string> ();
-//			paramList.Add ("Id", (ItemFeed as CodeProjectArticleFeed).Id.ToString());
-//			return paramList;
-//		}
-
-//		public void LoadFeed(CodeProjectRssFeed feed) {
-//			ObjectBuilder builder = new ObjectBuilder ();
-//
-//			Task<IList<RSSItem>> loadFeedTask = builder.FillFeedAsync (feed, GetBuilderParams(), CancellationToken.None);
-//
-//			var context = TaskScheduler.FromCurrentSynchronizationContext();
-//
-//			loadFeedTask.Start ();
-//			loadFeedTask.ContinueWith (x => FeedLoaded(x.Result), context);
-//		}
 	}
 }
 

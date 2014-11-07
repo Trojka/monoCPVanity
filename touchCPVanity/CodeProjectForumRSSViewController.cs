@@ -29,13 +29,6 @@ namespace touchCPVanity
 					forumCategoryController.FeedReceiver = this;
 				}
 			}
-//			if (segue.Identifier == "RSSForum") {
-//				var webPageController = segue.DestinationViewController as WebPageViewController;
-//
-//				if (webPageController != null) {
-//					webPageController.PageURL = SelectedItem.Link;
-//				}
-//			}
 		}
 
 	}

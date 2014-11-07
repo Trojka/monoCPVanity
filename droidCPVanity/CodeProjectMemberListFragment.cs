@@ -10,8 +10,6 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
-
-//using be.trojkasoftware.Ripit.Core;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.monoCPVanity.Data;
 
