@@ -56,7 +56,14 @@ namespace be.trojkasoftware.droidCPVanity
 			if (gravatar != null) {
 
 				Bitmap image = BitmapFactory.DecodeByteArray (gravatar, 0, gravatar.Length);
-				memberIcon.SetImageBitmap (Bitmap.CreateScaledBitmap(image, bitmapSize, bitmapSize, false));
+				int maxSide = Math.Max (image.Height, image.Width);
+
+				float scale = (float)bitmapSize / maxSide;
+
+				memberIcon.SetImageBitmap (Bitmap.CreateScaledBitmap(image, 
+					(int)Math.Ceiling(scale * image.Width), 
+					(int)Math.Ceiling(scale * image.Height), 
+					false));
 				image.Recycle();
 			}
 

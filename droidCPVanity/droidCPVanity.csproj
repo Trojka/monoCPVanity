@@ -98,7 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
-    <AndroidResource Include="Resources\drawable\Icon.png" />
     <AndroidResource Include="Resources\values\Styles.xml" />
     <AndroidResource Include="Resources\layout\CodeProjectMemberLayout.axml" />
     <AndroidResource Include="Resources\layout\MainLayout.axml" />
@@ -113,17 +112,15 @@
     <AndroidResource Include="Resources\menu\main_actions.xml" />
     <AndroidResource Include="Resources\xml\searchable.xml" />
     <AndroidResource Include="Resources\drawable\ic_action_new.png" />
-    <AndroidResource Include="Resources\xml\preferences.xml" />
     <AndroidResource Include="Resources\layout\CodeProjectMemberListItem.axml" />
-    <AndroidResource Include="Resources\drawable\member_div2.png" />
     <AndroidResource Include="Resources\layout\CodeProjectMemberArticlesItem.axml" />
     <AndroidResource Include="Resources\menu\codeproject_member_profile_actions.xml" />
     <AndroidResource Include="Resources\drawable\articles24.png" />
-    <AndroidResource Include="Resources\drawable\member_null.png" />
     <AndroidResource Include="Resources\menu\codeproject_member_articles_actions.xml" />
     <AndroidResource Include="Resources\layout\CodeProjectRssFeedLayout.axml" />
     <AndroidResource Include="Resources\layout\CodeProjectRssFeedItem.axml" />
     <AndroidResource Include="Resources\drawable\ic_action_overview.png" />
+    <AndroidResource Include="Resources\drawable\app_bob_96.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

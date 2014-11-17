@@ -45,31 +45,25 @@ namespace be.trojkasoftware.droidCPVanity
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int articles24 = 2130837504;
+			public const int app_bob_96 = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int ic_action_new = 2130837505;
+			public const int articles24 = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int ic_action_overview = 2130837506;
+			public const int ic_action_new = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int ic_action_refresh = 2130837507;
+			public const int ic_action_overview = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int ic_action_search = 2130837508;
+			public const int ic_action_refresh = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int Icon = 2130837509;
+			public const int ic_action_search = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int member_div2 = 2130837510;
-			
-			// aapt resource value: 0x7f020007
-			public const int member_null = 2130837511;
-			
-			// aapt resource value: 0x7f020008
-			public const int member_unknown = 2130837512;
+			public const int member_unknown = 2130837510;
 			
 			static Drawable()
 			{
@@ -264,14 +258,11 @@ namespace be.trojkasoftware.droidCPVanity
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f050001
-			public const int app_name = 2131034113;
-			
 			// aapt resource value: 0x7f050000
-			public const int hello = 2131034112;
+			public const int app_name = 2131034112;
 			
-			// aapt resource value: 0x7f050002
-			public const int search_hint = 2131034114;
+			// aapt resource value: 0x7f050001
+			public const int search_hint = 2131034113;
 			
 			static String()
 			{
@@ -306,10 +297,7 @@ namespace be.trojkasoftware.droidCPVanity
 		{
 			
 			// aapt resource value: 0x7f040000
-			public const int preferences = 2130968576;
-			
-			// aapt resource value: 0x7f040001
-			public const int searchable = 2130968577;
+			public const int searchable = 2130968576;
 			
 			static Xml()
 			{

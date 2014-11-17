@@ -12,6 +12,7 @@ using Android.App;
 [assembly: AssemblyCopyright ("SDesmedt")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
+[assembly: Application(Icon = "@drawable/app_bob_96")]
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,
 // and "{Major}.{Minor}.{Build}.*" will update just the revision.

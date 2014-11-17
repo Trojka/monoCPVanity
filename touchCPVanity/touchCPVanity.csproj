@@ -182,6 +182,7 @@
     <BundleResource Include="Resources\articlesalpha.png" />
     <BundleResource Include="Resources\communityalpha.png" />
     <BundleResource Include="Resources\memberalpha.png" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\portableCPVanity\portableCPVanity.csproj">
