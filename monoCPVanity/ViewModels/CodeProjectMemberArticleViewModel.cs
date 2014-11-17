@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using be.trojkasoftware.Ripit.Core;
+//using be.trojkasoftware.Ripit.Core;
 using System.Threading.Tasks;
 using be.trojkasoftware.monoCPVanity.Data;
 using be.trojkasoftware.monoCPVanity.Util;

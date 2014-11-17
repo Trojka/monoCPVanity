@@ -15,6 +15,12 @@
         android:ellipsize="end"
         android:maxLines="1" />
     <TextView
+        android:text="Author"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewRssItemAuthor" />
+    <TextView
         android:text="Description"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"

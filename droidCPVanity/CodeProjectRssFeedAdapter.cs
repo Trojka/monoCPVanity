@@ -24,6 +24,11 @@ namespace be.trojkasoftware.droidCPVanity
 
 		#region implemented abstract members of BaseAdapter
 
+		public override Java.Lang.Object GetItem (int position)
+		{
+			return null;
+		}
+
 		public override long GetItemId (int position)
 		{
 			return position;
@@ -35,9 +40,11 @@ namespace be.trojkasoftware.droidCPVanity
 			var view = convertView ?? activity.LayoutInflater.Inflate (
 				Resource.Layout.CodeProjectRssFeedItem, parent, false);
 			var rssItemTitle = view.FindViewById<TextView> (Resource.Id.textViewRssItemTitle);
+			var rssItemAuthor = view.FindViewById<TextView> (Resource.Id.textViewRssItemAuthor);
 			var rssItemDescription = view.FindViewById<TextView> (Resource.Id.textViewRssItemDescription);
 
 			rssItemTitle.Text = rssItemList[position].Title;
+			rssItemAuthor.Text = rssItemList[position].Author;
 			rssItemDescription.Text = CodeProjectRssFeedViewModel.StripHTML(rssItemList[position].Description);
 
 			return view;

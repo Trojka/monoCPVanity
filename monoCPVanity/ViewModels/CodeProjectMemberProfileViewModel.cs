@@ -22,7 +22,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
 		public CodeProjectMember Member {
 			get;
-			set;
+			private set;
 		}
 
 		public void OnLoaded() {

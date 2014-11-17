@@ -21,6 +21,17 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 			set;
 		}
 
+
+		public string MemberReputationGraphUrl {
+			get;
+			set;
+		}
+
+//		public CodeProjectMember Member {
+//			get;
+//			set;
+//		}
+
 		public List<CodeProjectMemberArticleViewModel> MemberArticles {
 			get {
 				return memberArticles.Select (x => new CodeProjectMemberArticleViewModel (x)).ToList ();

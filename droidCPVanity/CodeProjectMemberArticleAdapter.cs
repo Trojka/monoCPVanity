@@ -23,6 +23,11 @@ namespace be.trojkasoftware.droidCPVanity
 
 		#region implemented abstract members of BaseAdapter
 
+		public override Java.Lang.Object GetItem (int position)
+		{
+			return null;
+		}
+
 		public override long GetItemId (int position)
 		{
 			return position;
@@ -35,8 +40,8 @@ namespace be.trojkasoftware.droidCPVanity
 				Resource.Layout.CodeProjectMemberArticlesItem, parent, false);
 			var articleTitle = view.FindViewById<TextView> (Resource.Id.textViewTitle);
 			var articleDate = view.FindViewById<TextView> (Resource.Id.textViewDate);
-			var articleScore = view.FindViewById<TextView> (Resource.Id.textViewScore);
-			var articleVotes = view.FindViewById<TextView> (Resource.Id.textViewVotes);
+			//var articleScore = view.FindViewById<TextView> (Resource.Id.textViewScore);
+			//var articleVotes = view.FindViewById<TextView> (Resource.Id.textViewVotes);
 
 			articleTitle.Text = list[position].Title;
 			articleDate.Text = list[position].DateUpdated;

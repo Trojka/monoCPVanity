@@ -113,6 +113,7 @@ namespace be.trojkasoftware.Ripit.Core
 				select new RSSItem
 				{
 					Title = feed.Element("title").Value,
+					Author = feed.Element("author").Value,
 					Description = desc,
 					Link = feed.Element("link").Value
 				}).ToList();

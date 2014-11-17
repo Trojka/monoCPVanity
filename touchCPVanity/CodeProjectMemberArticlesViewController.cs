@@ -3,7 +3,7 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using be.trojkasoftware.portableCPVanity;
-using be.trojkasoftware.Ripit.Core;
+//using be.trojkasoftware.Ripit.Core;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -54,7 +54,7 @@ namespace touchCPVanity
 				var memberReputationController = segue.DestinationViewController as CodeProjectMemberReputationViewController;
 
 				if (memberReputationController != null) {
-					memberReputationController.SetMember(viewModel.Member);
+					memberReputationController.SetMemberReputationGraphUrl(viewModel.MemberReputationGraphUrl);
 				}
 			}
 		}
@@ -91,6 +91,8 @@ namespace touchCPVanity
 
 		public void SetMember(CodeProjectMember member) {
 			viewModel.MemberId = member.Id;
+			viewModel.MemberReputationGraphUrl = member.ReputationGraph;
+			//viewModel.Member = member;
 		}
 
 		UIActivityIndicatorView progressView;

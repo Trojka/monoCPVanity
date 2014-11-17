@@ -162,7 +162,7 @@ namespace be.trojkasoftware.monoCPVanity.Data
 			member.ArticleCount = int.Parse(r ["ArticleCnt"].ToString());
 			member.BlogCount = int.Parse(r ["BlogCnt"].ToString());
 			member.Reputation = r ["Reputation"].ToString ();
-			member.IsMe = (r ["IsMe"].ToString () == "1")?true:false;
+			//member.IsMe = (r ["IsMe"].ToString () == "1")?true:false;
 		}
 
 	}

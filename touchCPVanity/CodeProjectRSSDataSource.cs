@@ -5,6 +5,7 @@ using be.trojkasoftware.portableCPVanity.RssFeeds;
 using be.trojkasoftware.Ripit.Core;
 using MonoTouch.Foundation;
 using System.Drawing;
+using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace touchCPVanity
 {
@@ -32,7 +33,7 @@ namespace touchCPVanity
 
 			(cell.ViewWithTag (titleTag) as UILabel).Text = rssItem.Title;
 			(cell.ViewWithTag (authorTag) as UILabel).Text = rssItem.Author;
-			(cell.ViewWithTag (descriptionTag) as UILabel).Text = StripHTML(rssItem.Description);
+			(cell.ViewWithTag (descriptionTag) as UILabel).Text = CodeProjectRssFeedViewModel.StripHTML(rssItem.Description);
 
 			return cell;
 		}
@@ -41,7 +42,7 @@ namespace touchCPVanity
 		{
 			RSSItem rssItem = RSSItemList[indexPath.Row];
 
-			float textHeight = HeightOfText(StripHTML(rssItem.Description), 267);
+			float textHeight = HeightOfText(CodeProjectRssFeedViewModel.StripHTML(rssItem.Description), 267);
 
 			float height = RoundValueToNearestMultiple(textHeight, 18.5f) + 50;
 

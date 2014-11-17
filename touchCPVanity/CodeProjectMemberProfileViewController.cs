@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
-using be.trojkasoftware.Ripit.Core;
+//using be.trojkasoftware.Ripit.Core;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.monoCPVanity.Data;
 using be.trojkasoftware.monoCPVanity.Util;

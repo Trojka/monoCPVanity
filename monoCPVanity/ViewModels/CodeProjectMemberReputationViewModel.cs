@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using be.trojkasoftware.Ripit.Core;
+//using be.trojkasoftware.Ripit.Core;
 using System.Threading.Tasks;
 using be.trojkasoftware.monoCPVanity.Data;
 using be.trojkasoftware.monoCPVanity.Util;
@@ -15,7 +15,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 	{
 		public ReputationGraphLoaded ReputationGraphLoaded;
 
-		public string MemberReputationGraph {
+		public string MemberReputationGraphUrl {
 			get;
 			set;
 		}
@@ -23,7 +23,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 		public void LoadMemberReputation(TaskScheduler uiContext) {
 			WebImageRetriever imageDownloader = new WebImageRetriever ();
 
-			Task<byte[]> loadGraphTask = imageDownloader.GetImageStreamAsync (new Uri (MemberReputationGraph));
+			Task<byte[]> loadGraphTask = imageDownloader.GetImageStreamAsync (new Uri (MemberReputationGraphUrl));
 
 			loadGraphTask.ContinueWith (t => ReputationGraphLoaded(t.Result), uiContext);
 		}

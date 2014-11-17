@@ -162,18 +162,9 @@
     <Compile Include="..\monoCPVanity\ViewModels\CodeProjectMemberArticleViewModel.cs">
       <Link>ViewModels\CodeProjectMemberArticleViewModel.cs</Link>
     </Compile>
+    <Compile Include="Util\FileStorageService.iOS.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\portableCPVanity\portableCPVanity.csproj">
-      <Project>{45CBF82E-1974-49DA-870A-C4FF4BC6D497}</Project>
-      <Name>portableCPVanity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ripit\Ripit.csproj">
-      <Project>{6A1DEFE7-38CC-402B-9625-9947D8F5165D}</Project>
-      <Name>Ripit</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard_iPhone.storyboard" />
   </ItemGroup>
@@ -191,5 +182,15 @@
     <BundleResource Include="Resources\articlesalpha.png" />
     <BundleResource Include="Resources\communityalpha.png" />
     <BundleResource Include="Resources\memberalpha.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\portableCPVanity\portableCPVanity.csproj">
+      <Project>{45CBF82E-1974-49DA-870A-C4FF4BC6D497}</Project>
+      <Name>portableCPVanity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ripit\Ripit.csproj">
+      <Project>{6A1DEFE7-38CC-402B-9625-9947D8F5165D}</Project>
+      <Name>Ripit</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

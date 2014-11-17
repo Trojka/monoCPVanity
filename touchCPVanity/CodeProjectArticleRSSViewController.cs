@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.portableCPVanity.RssFeeds;
-using be.trojkasoftware.Ripit.Core;
+//using be.trojkasoftware.Ripit.Core;
 
 namespace touchCPVanity
 {

@@ -35,7 +35,7 @@ namespace be.trojkasoftware.droidCPVanity
 			viewModel = new CodeProjectMemberReputationViewModel ();
 			viewModel.ReputationGraphLoaded += this.ReputationGraphLoaded;
 
-			viewModel.MemberReputationGraph = Intent.Extras.GetString (CodeProjectMemberProfileActivity.MemberReputationGraphKey);
+			viewModel.MemberReputationGraphUrl = Intent.Extras.GetString (CodeProjectMemberProfileActivity.MemberReputationGraphKey);
 
 			spinner.Visibility = ViewStates.Visible;
 

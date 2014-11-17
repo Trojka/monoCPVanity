@@ -45,8 +45,8 @@ namespace touchCPVanity
 			this.ReputationGraph.Image = UIImage.LoadFromData (data, 1);
 		}
 
-		public void SetMember(CodeProjectMember member) {
-			viewModel.MemberReputationGraph = member.ReputationGraph;
+		public void SetMemberReputationGraphUrl(string memberReputationGraphUrl) {
+			viewModel.MemberReputationGraphUrl = memberReputationGraphUrl;
 		}
 
 		UIActivityIndicatorView progressView;
