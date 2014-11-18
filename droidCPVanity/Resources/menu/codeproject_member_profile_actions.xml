@@ -6,7 +6,6 @@
           android:title="Add" 
           android:showAsAction="ifRoom" />
     <item android:id="@+id/action_member_articles"
-          android:icon="@drawable/articles24"
           android:title="Articles" 
           android:showAsAction="ifRoom" />
 </menu>

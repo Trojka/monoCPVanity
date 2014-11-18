@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:id="@+id/action_member_reputation"
-          android:icon="@drawable/articles24"
           android:title="Reputation" 
           android:showAsAction="ifRoom" />
 </menu>
