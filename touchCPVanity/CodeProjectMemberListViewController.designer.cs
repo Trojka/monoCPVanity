@@ -20,17 +20,9 @@ namespace touchCPVanity
 
 		[Outlet]
 		MonoTouch.UIKit.UISearchDisplayController MemberSearchBarController { get; set; }
-
-		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem RefreshBtn { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (RefreshBtn != null) {
-				RefreshBtn.Dispose ();
-				RefreshBtn = null;
-			}
-
 			if (MemberListTable != null) {
 				MemberListTable.Dispose ();
 				MemberListTable = null;

@@ -153,8 +153,6 @@ namespace touchCPVanity
 			progressView.Center = new PointF (this.View.Frame.Width / 2, this.View.Frame.Height / 2);
 			this.View.AddSubview (progressView);
 
-			this.RefreshBtn.Clicked += OnRefreshClicked;
-
 			CodeProjectDatabase db = new CodeProjectDatabase ();
 			MemberList = db.GetMembers();
 
@@ -168,17 +166,6 @@ namespace touchCPVanity
 		public override void ViewDidAppear (bool animated)
 		{
 			Refresh ();
-		}
-
-		void OnRefreshClicked(object sender, EventArgs E)
-		{
-			if (!isLoading) {
-				isLoading = true;
-				Refresh ();
-			} else {
-				isLoading = false;
-				CancelRefresh ();
-			}
 		}
 
 		void Refresh()
@@ -209,7 +196,6 @@ namespace touchCPVanity
 		String searchString;
 
 		UIActivityIndicatorView progressView;
-		Boolean isLoading = false;
 	}
 }
 

@@ -88,14 +88,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="BNr-t4-kGs">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="cNa-gW-pME"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="BNr-t4-kGs"/>
                     <connections>
                         <outlet property="MemberListTable" destination="HYI-8O-SR1" id="w7d-5H-Fz1"/>
                         <outlet property="MemberSearchBar" destination="47v-TW-w6m" id="VOO-O4-4GN"/>
                         <outlet property="MemberSearchBarController" destination="Niv-Hj-jwU" id="wwW-Yh-tBU"/>
-                        <outlet property="RefreshBtn" destination="cNa-gW-pME" id="LMM-i1-nrP"/>
                         <outlet property="searchDisplayController" destination="Niv-Hj-jwU" id="03z-j3-zOD"/>
                     </connections>
                 </viewController>
@@ -431,9 +428,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="All Articles" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="29h-N2-YGT">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="All Articles" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="29h-N2-YGT">
                                 <rect key="frame" x="0.0" y="68" width="320" height="53"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="ban-IT-VKM"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="40"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -497,8 +497,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="29h-N2-YGT" firstAttribute="leading" secondItem="gMD-aP-Fq6" secondAttribute="leading" constant="20" symbolic="YES" id="4te-rk-9Fp"/>
-                            <constraint firstAttribute="trailing" secondItem="29h-N2-YGT" secondAttribute="trailing" constant="20" symbolic="YES" id="FIx-Zl-RBr"/>
+                            <constraint firstAttribute="trailing" secondItem="29h-N2-YGT" secondAttribute="trailing" id="OBb-Sh-GOP"/>
+                            <constraint firstItem="29h-N2-YGT" firstAttribute="leading" secondItem="gMD-aP-Fq6" secondAttribute="leading" id="TLz-Fu-9Se"/>
+                            <constraint firstItem="29h-N2-YGT" firstAttribute="top" secondItem="7L5-yW-Eml" secondAttribute="bottom" constant="4" id="orZ-Bg-eop"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="Z7h-1E-pvt"/>
@@ -616,9 +617,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="Forum" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ceh-VQ-yM3">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Forum" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ceh-VQ-yM3">
                                 <rect key="frame" x="0.0" y="68" width="320" height="53"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="H9W-xu-oLM"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="40"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -682,8 +686,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ceh-VQ-yM3" firstAttribute="leading" secondItem="BgB-hw-ZEY" secondAttribute="leading" constant="20" symbolic="YES" id="Bnt-Gm-w6e"/>
-                            <constraint firstAttribute="trailing" secondItem="ceh-VQ-yM3" secondAttribute="trailing" constant="20" symbolic="YES" id="IJ7-22-7ZF"/>
+                            <constraint firstAttribute="trailing" secondItem="ceh-VQ-yM3" secondAttribute="trailing" id="L8u-3g-f2B"/>
+                            <constraint firstItem="ceh-VQ-yM3" firstAttribute="leading" secondItem="BgB-hw-ZEY" secondAttribute="leading" id="i1C-Mp-gBZ"/>
+                            <constraint firstItem="ceh-VQ-yM3" firstAttribute="top" secondItem="zok-5U-HAt" secondAttribute="bottom" constant="4" id="vKv-MW-HKc"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="fvW-GB-Odi"/>
