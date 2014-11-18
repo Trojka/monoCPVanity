@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Drawing;
+using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using be.trojkasoftware.Ripit.Core;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.portableCPVanity.RssFeeds;
-using be.trojkasoftware.Ripit.Core;
-using MonoTouch.Foundation;
-using System.Drawing;
 using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace touchCPVanity

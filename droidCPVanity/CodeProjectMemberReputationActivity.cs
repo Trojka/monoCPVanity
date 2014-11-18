@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using be.trojkasoftware.portableCPVanity;
-using be.trojkasoftware.monoCPVanity.Util;
-using System.Threading.Tasks;
-using Android.Graphics;
 using be.trojkasoftware.monoCPVanity.Data;
+using be.trojkasoftware.monoCPVanity.Util;
 using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace be.trojkasoftware.droidCPVanity

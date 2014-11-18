@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using be.trojkasoftware.portableCPVanity;
-//using be.trojkasoftware.Ripit.Core;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace touchCPVanity
@@ -92,7 +91,6 @@ namespace touchCPVanity
 		public void SetMember(CodeProjectMember member) {
 			viewModel.MemberId = member.Id;
 			viewModel.MemberReputationGraphUrl = member.ReputationGraph;
-			//viewModel.Member = member;
 		}
 
 		UIActivityIndicatorView progressView;

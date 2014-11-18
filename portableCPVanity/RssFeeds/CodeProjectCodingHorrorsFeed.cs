@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using be.trojkasoftware.Ripit.Core;
 using be.trojkasoftware.Ripit.Attributes;
+using be.trojkasoftware.Ripit.Core;
 
 namespace be.trojkasoftware.portableCPVanity.RssFeeds
 {

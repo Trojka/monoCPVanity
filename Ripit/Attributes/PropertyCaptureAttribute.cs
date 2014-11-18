@@ -2,7 +2,7 @@
 
 namespace be.trojkasoftware.Ripit.Attributes
 {
-	public class PropertyCaptureAttribute : Attribute //, TextActionInterface
+	public class PropertyCaptureAttribute : Attribute 
 	{
 		public PropertyCaptureAttribute (string regExCapture, int group, bool isOptional)
 		{

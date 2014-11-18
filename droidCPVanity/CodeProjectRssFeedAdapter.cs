@@ -6,9 +6,9 @@ using Android.Content.Res;
 using Android.Graphics;
 using Android.Util;
 using Android.Widget;
+using be.trojkasoftware.Ripit.Core;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.portableCPVanity.RssFeeds;
-using be.trojkasoftware.Ripit.Core;
 using be.trojkasoftware.portableCPVanity.ViewModels;
 
 

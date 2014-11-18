@@ -40,13 +40,9 @@ namespace be.trojkasoftware.droidCPVanity
 				Resource.Layout.CodeProjectMemberArticlesItem, parent, false);
 			var articleTitle = view.FindViewById<TextView> (Resource.Id.textViewTitle);
 			var articleDate = view.FindViewById<TextView> (Resource.Id.textViewDate);
-			//var articleScore = view.FindViewById<TextView> (Resource.Id.textViewScore);
-			//var articleVotes = view.FindViewById<TextView> (Resource.Id.textViewVotes);
 
 			articleTitle.Text = list[position].Title;
 			articleDate.Text = list[position].DateUpdated;
-			//articleScore.Text = list[position].Rating;
-			//articleVotes.Text = list[position].Votes;
 
 			return view;
 		}

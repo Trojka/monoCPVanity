@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.monoCPVanity.Util;
-using System.Threading.Tasks;
 using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace touchCPVanity

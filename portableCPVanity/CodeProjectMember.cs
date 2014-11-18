@@ -12,12 +12,6 @@ namespace be.trojkasoftware.portableCPVanity
 			set;
 		}
 
-//		public bool IsMe
-//		{
-//			get;
-//			set;
-//		}
-
 		[SourceRef(1)]
 		// Articles by Serge Desmedt (Articles: 6, Technical Blogs: 2)
 		[PropertyCapture(@"rticles by ([^\(]*)\(", 1, false)]

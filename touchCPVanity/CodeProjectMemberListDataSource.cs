@@ -1,10 +1,10 @@
 ﻿using System;
-using MonoTouch.UIKit;
 using System.Collections.Generic;
-using be.trojkasoftware.portableCPVanity;
 using MonoTouch.Foundation;
-using be.trojkasoftware.monoCPVanity.Util;
+using MonoTouch.UIKit;
+using be.trojkasoftware.portableCPVanity;
 using be.trojkasoftware.monoCPVanity.Data;
+using be.trojkasoftware.monoCPVanity.Util;
 
 namespace touchCPVanity
 {
@@ -47,7 +47,7 @@ namespace touchCPVanity
 
 		public override bool CanEditRow (UITableView tableView, NSIndexPath indexPath)
 		{
-			return true; // return false if you wish to disable editing for a specific indexPath or for all rows
+			return true;
 		}
 
 		public override UITableViewCellEditingStyle EditingStyleForRow (UITableView tableView, NSIndexPath indexPath)
