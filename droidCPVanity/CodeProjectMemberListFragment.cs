@@ -19,6 +19,7 @@ namespace be.trojkasoftware.droidCPVanity
 	{
 		public override void OnActivityCreated(Bundle savedInstanceState) {
 			base.OnActivityCreated(savedInstanceState);
+			RegisterForContextMenu(ListView);
 
 			LoadMembers ();
 		}
@@ -33,6 +34,24 @@ namespace be.trojkasoftware.droidCPVanity
 			intent.PutExtras(bundle);
 
 			StartActivity (intent);
+		}
+
+		public override void OnCreateContextMenu (IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+		{
+			menu.Add ("Delete");
+		}
+
+		public override bool OnContextItemSelected (IMenuItem item)
+		{
+			AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.MenuInfo;
+			CodeProjectMember memberToDelete = members [info.Position];
+			CodeProjectDatabase db = new CodeProjectDatabase ();
+			db.DeleteMember (memberToDelete.Id);
+
+			members = db.GetMembers ();
+			ListAdapter = new CodeProjectMemberAdapter (this.Activity, members);
+
+			return true;
 		}
 
 		public void LoadMembers() {
