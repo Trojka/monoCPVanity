@@ -5,6 +5,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+    xmlns:c="clr-namespace:wpCPVanity.Util"
 >
 
     <!--Application Resources-->
@@ -29,8 +30,11 @@
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="MemberListTemplate">
-            <ListBox Name="ContentsListBox" ItemsSource="{Binding Members}" Margin="25,0,0,0" ItemTemplate="{StaticResource MemberItem}">
-            </ListBox>
+            <StackPanel>
+                <TextBox Text="{Binding Filter, Mode=TwoWay}" Margin="0,0,0,15" c:UpdateTextOnTextChanged.UpdateSourceOnChange="True" c:MoveFocusUpOnKeyEnter.MoveUpOnEnter="True" />
+                <ListBox Name="ContentsListBox" ItemsSource="{Binding Members}" Margin="25,0,0,0" ItemTemplate="{StaticResource MemberItem}">
+                </ListBox>
+            </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="MemberProfileTemplate">
             <StackPanel>

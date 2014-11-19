@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using wpCPVanity;
 using be.trojkasoftware.monoCPVanity.Data;
@@ -25,14 +26,51 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
         public void Load()
         {
             Name = "Members";
+            //filter = "None";
 
             CodeProjectDatabase database = new CodeProjectDatabase();
-            var memberList = database.GetMembers().Select(x => new CodeprojectMemberViewModel(x, gotoPageAction)).ToList();
+            allMembers = database.GetMembers();
 
-            Members = new ObservableCollection<CodeprojectMemberViewModel>(memberList);
+            var members = allMembers.Select(x => new CodeprojectMemberViewModel(x, gotoPageAction)).ToList();
+            Members = new ObservableCollection<CodeprojectMemberViewModel>(members);
         }
 
-        public ObservableCollection<CodeprojectMemberViewModel> Members { get; set; }
+        public string Filter {
+            get 
+            { 
+                return filter; 
+            }
+            set 
+            {
+                SetField(ref filter, value, "filter");
+
+                Members = new ObservableCollection<CodeprojectMemberViewModel>();
+
+                int searchId;
+                if (int.TryParse(filter, out searchId))
+                {
+                    CodeProjectMember dummyMember = new CodeProjectMember();
+                    dummyMember.Id = searchId;
+                    dummyMember.Name = "Load member " + filter;
+                    Members.Add(new CodeprojectMemberViewModel(dummyMember, gotoPageAction));
+                }
+
+                var members = allMembers.Where(x => x.Name.Contains(filter)).Select(x => new CodeprojectMemberViewModel(x, gotoPageAction)).ToList();
+                members.ForEach(x => Members.Add(x));
+            }
+        }
+
+        public ObservableCollection<CodeprojectMemberViewModel> Members 
+        {
+            get
+            {
+                return members;
+            }
+            set
+            {
+                SetField(ref members, value, "Members");
+            }
+        }
 
         public DataTemplate ItemDataTemplate
         {
@@ -48,5 +86,10 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
         }
 
         private Action<string> gotoPageAction;
+
+        private List<CodeProjectMember> allMembers;
+
+        private ObservableCollection<CodeprojectMemberViewModel> members;
+        private string filter;
     }
 }

@@ -114,6 +114,8 @@
     <Compile Include="Data\SQLite.cs" />
     <Compile Include="Data\SQLite.Implementation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\MoveFocusUpOnKeyEnter.cs" />
+    <Compile Include="Util\UpdateTextOnTextChanged.cs" />
     <Compile Include="Util\ButtonCommandBinding.cs" />
     <Compile Include="Util\FileStorageService.WP7.cs" />
     <Compile Include="ViewModels\CodeprojectBaseViewModel.cs" />
