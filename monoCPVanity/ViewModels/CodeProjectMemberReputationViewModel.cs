@@ -11,7 +11,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
 	public delegate void ReputationGraphLoaded(byte[] graph);
 
-	public class CodeProjectMemberReputationViewModel
+	public partial class CodeProjectMemberReputationViewModel
 	{
 		public ReputationGraphLoaded ReputationGraphLoaded;
 

@@ -23,7 +23,6 @@ namespace wpCPVanity.Util
             d.SetValue(MoveUpOnEnterProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for …
         public static readonly DependencyProperty
           MoveUpOnEnterProperty =
             DependencyProperty.RegisterAttached(

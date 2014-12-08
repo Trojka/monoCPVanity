@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using be.trojkasoftware.portableCPVanity.ViewModels;
+using be.trojkasoftware.portableCPVanity;
 
 namespace wpCPVanity.XamlViewModels
 {
@@ -23,9 +24,20 @@ namespace wpCPVanity.XamlViewModels
             Items = new ObservableCollection<CodeprojectBaseViewModel>();
 
             memberProfilePage = new CodeProjectMemberProfileViewModel();
+            memberProfilePage.Load();
             memberProfilePage.MemberLoaded = memberProfilePage.OnMemberLoaded;
 
+            memberArticlesPage = new CodeProjectMemberArticlesViewModel();
+            memberArticlesPage.Load();
+            memberArticlesPage.ArticlesLoaded = memberArticlesPage.OnMemberArticlesLoaded;
+
+            memberReputationPage = new CodeProjectMemberReputationViewModel();
+            memberReputationPage.Load();
+            memberReputationPage.ReputationGraphLoaded = memberReputationPage.OnReputationGraphLoaded;
+
             Items.Add(memberProfilePage);
+            Items.Add(memberArticlesPage);
+            Items.Add(memberReputationPage);
         }
 
         public ObservableCollection<CodeprojectBaseViewModel> Items
@@ -43,13 +55,16 @@ namespace wpCPVanity.XamlViewModels
             set
             {
                 memberProfilePage.MemberId = value;
-                memberProfilePage.LoadMember(TaskScheduler.FromCurrentSynchronizationContext());
+                memberArticlesPage.MemberId = value;
+                memberReputationPage.MemberReputationGraphUrl = CodeProjectMember.GetReputationGraph(value);
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         private CodeProjectMemberProfileViewModel memberProfilePage;
+        private CodeProjectMemberArticlesViewModel memberArticlesPage;
+        private CodeProjectMemberReputationViewModel memberReputationPage;
 
     }
 }

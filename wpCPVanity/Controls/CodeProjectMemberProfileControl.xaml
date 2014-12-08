@@ -10,6 +10,27 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot">
-        <TextBlock Height="30" HorizontalAlignment="Left" Margin="30,30,0,0" Name="textBlock1" Text="TextBlock" VerticalAlignment="Top" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Content="Save"  Command="{Binding SaveMemberCommand}" CommandParameter ="{Binding Member}"></Button>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding MemberName}" Style="{StaticResource PhoneTextTitle2Style}" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" />
+            <Image Grid.Column="1" Source="{Binding MemberGravatarImage}" Height="150" HorizontalAlignment="Left" Margin="10,10,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="134" />
+        </Grid>
+        <StackPanel Grid.Row="2">
+            <TextBlock Text="Reputation" Style="{StaticResource PhoneTextTitle2Style}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Bottom" />
+            <TextBlock Text="{Binding MemberReputation}" Style="{StaticResource PhoneTextTitle2Style}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Bottom" />
+            <TextBlock Text="{Binding MemberArticleCount}" Style="{StaticResource PhoneTextTitle2Style}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Bottom" />
+            <TextBlock Text="{Binding MemberAvgArticleRating}" Style="{StaticResource PhoneTextTitle3Style}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Bottom" />
+            <TextBlock Text="{Binding MemberBlogCount}" Style="{StaticResource PhoneTextTitle2Style}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Bottom" />
+            <TextBlock Text="{Binding MemberAvgBlogRating}" Style="{StaticResource PhoneTextTitle3Style}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Bottom" />
+        </StackPanel>
     </Grid>
 </UserControl>

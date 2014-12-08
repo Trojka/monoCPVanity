@@ -18,8 +18,8 @@ namespace be.trojkasoftware.monoCPVanity.Data
     {
         public CodeProjectDatabase()
         {
-            members.Add(new CodeProjectMember() { Id=15715,  Name = "Serge Desmedt" });
-            members.Add(new CodeProjectMember() { Id=1, Name = "Bernadette Maerten" });
+            //members.Add(new CodeProjectMember() { Id=15715,  Name = "Serge Desmedt" });
+            //members.Add(new CodeProjectMember() { Id=1, Name = "Bernadette Maerten" });
         }
 
 		public bool AddMember(CodeProjectMember member, bool isMe)

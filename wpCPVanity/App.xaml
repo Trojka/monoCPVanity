@@ -5,7 +5,8 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
-    xmlns:c="clr-namespace:wpCPVanity.Util"
+    xmlns:util="clr-namespace:wpCPVanity.Util"
+    xmlns:ctrl="clr-namespace:wpCPVanity.Controls"
 >
 
     <!--Application Resources-->
@@ -23,6 +24,42 @@
             <ListBox Name="ContentsListBox" ItemsSource="{Binding AvailablePages}" Margin="25,0,0,0" ItemTemplate="{StaticResource TOC}">
             </ListBox>
         </DataTemplate>
+        <DataTemplate x:Key="RssFeedItem">
+            <StackPanel>
+                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Title}" Margin="0,0,0,15" />
+                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="RssFeedTemplate">
+            <Grid>
+                <ListBox Name="ContentsListBox" ItemsSource="{Binding RssFeedList}" Margin="25,0,0,0" ItemTemplate="{StaticResource RssFeedItem}">
+                </ListBox>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="CodeProjectForumCategoryItem">
+            <StackPanel>
+                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
+                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="CodeProjectForumFeedListTemplate">
+            <Grid>
+                <ListBox Name="ContentsListBox" ItemsSource="{Binding ForumCategories}" Margin="25,0,0,0" ItemTemplate="{StaticResource CodeProjectForumCategoryItem}">
+                </ListBox>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="CodeProjectArticleCategoryItem">
+            <StackPanel>
+                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
+                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="CodeProjectArticleFeedListTemplate">
+            <Grid>
+                <ListBox Name="ContentsListBox" ItemsSource="{Binding ArticleCategories}" Margin="25,0,0,0" ItemTemplate="{StaticResource CodeProjectArticleCategoryItem}">
+                </ListBox>
+            </Grid>
+        </DataTemplate>
         <DataTemplate x:Key="MemberItem">
             <StackPanel>
                 <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
@@ -31,14 +68,40 @@
         </DataTemplate>
         <DataTemplate x:Key="MemberListTemplate">
             <StackPanel>
-                <TextBox Text="{Binding Filter, Mode=TwoWay}" Margin="0,0,0,15" c:UpdateTextOnTextChanged.UpdateSourceOnChange="True" c:MoveFocusUpOnKeyEnter.MoveUpOnEnter="True" />
+                <TextBox Text="{Binding Filter, Mode=TwoWay}" Margin="0,0,0,15" util:UpdateTextOnTextChanged.UpdateSourceOnChange="True" util:MoveFocusUpOnKeyEnter.MoveUpOnEnter="True" />
                 <ListBox Name="ContentsListBox" ItemsSource="{Binding Members}" Margin="25,0,0,0" ItemTemplate="{StaticResource MemberItem}">
                 </ListBox>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="MemberProfileTemplate">
             <StackPanel>
-                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
+                <ctrl:CodeProjectMemberProfileControl />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="MemberArticleItem">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Title}" Margin="0,0,0,15" />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding DateUpdated}" Margin="0,0,0,0" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="MemberArticleListTemplate">
+            <StackPanel>
+                <ListBox Name="ContentsListBox" ItemsSource="{Binding MemberArticlesList}" Margin="25,0,0,0" ItemTemplate="{StaticResource MemberArticleItem}">
+                </ListBox>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="MemberReputationTemplate">
+            <StackPanel>
+                <Image Source="{Binding MemberReputationGraphImage}" HorizontalAlignment="Left" Stretch="Fill" VerticalAlignment="Top" />
             </StackPanel>
         </DataTemplate>
     </Application.Resources>

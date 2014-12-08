@@ -12,7 +12,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
 	public delegate void ArticlesLoaded();
 
-	public class CodeProjectMemberArticlesViewModel
+	public partial class CodeProjectMemberArticlesViewModel
 	{
 		public ArticlesLoaded ArticlesLoaded;
 

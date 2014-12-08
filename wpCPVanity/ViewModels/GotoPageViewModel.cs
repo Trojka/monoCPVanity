@@ -28,9 +28,5 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
         public ButtonCommandBinding<string> GotoPageCommand { get; private set; }
 
-        //private void GotoPage(string pageName)
-        //{
-        //    NavigationService.Navigate(new Uri(pageName, UriKind.Relative));
-        //}
     }
 }

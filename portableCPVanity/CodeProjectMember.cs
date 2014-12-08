@@ -66,9 +66,14 @@ namespace be.trojkasoftware.portableCPVanity
 
 		public string ReputationGraph {
 			get {
-				return "http://www.codeproject.com/script/Reputation/ReputationGraph.aspx?mid=" + Id;
+				return GetReputationGraph(Id);
 			}
 		}
+
+        public static string GetReputationGraph(int id)
+        {
+            return "http://www.codeproject.com/script/Reputation/ReputationGraph.aspx?mid=" + id;
+        }
 
 		[SourceRef(2)]
 		// <img id="ctl00_MC_Prof_MemberImage" class="padded-top" src="/script/Membership/Images/member_unknown.gif"

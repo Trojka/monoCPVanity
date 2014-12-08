@@ -45,8 +45,8 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
 			fillMemberTask.Start ();
 			fillMemberTask
-				.ContinueWith (x => LoadGravatar (/*x.Result as CodeProjectMember*/))
-				.ContinueWith (x => MemberLoaded (/*x.Result*/), uiContext);
+				.ContinueWith (x => LoadGravatar ())
+				.ContinueWith (x => MemberLoaded (), uiContext);
 		}
 
 		CodeProjectMember LoadGravatar() {

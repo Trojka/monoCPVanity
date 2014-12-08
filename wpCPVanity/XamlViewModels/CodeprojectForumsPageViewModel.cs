@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using be.trojkasoftware.portableCPVanity.ViewModels;
+using wpCPVanity.ViewModels;
 
 namespace wpCPVanity.XamlViewModels
 {
@@ -28,13 +29,11 @@ namespace wpCPVanity.XamlViewModels
 
             Items.Add(availablePagesWM);
 
-            //var memberListPage = new CodeprojectMemberListViewModel();
-            //memberListPage.Name = "Members";
-            //memberListPage.Members = new ObservableCollection<CodeprojectMemberViewModel>();
-            //memberListPage.Members.Add(new CodeprojectMemberViewModel(){ Name = "Serge Desmedt"});
-            //memberListPage.Members.Add(new CodeprojectMemberViewModel(){ Name = "Detje Maerten"});
+            var rssFeedListPage = new CodeProjectForumFeedListViewModel(gotoPageAction);
+            rssFeedListPage.Load("Categories");
+            //rssFeedPage.FeedLoaded = rssFeedPage.OnFeedLoaded;
 
-            //Items.Add(memberListPage);
+            Items.Add(rssFeedListPage);
         }
 
         public ObservableCollection<CodeprojectBaseViewModel> Items

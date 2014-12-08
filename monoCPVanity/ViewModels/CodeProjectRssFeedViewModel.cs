@@ -10,7 +10,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
 	public delegate void FeedLoaded();
 
-	public class CodeProjectRssFeedViewModel
+	public partial class CodeProjectRssFeedViewModel
 	{
 		public FeedLoaded FeedLoaded;
 

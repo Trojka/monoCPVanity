@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using wpCPVanity.XamlViewModels;
+using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace wpCPVanity
 {
@@ -41,6 +42,10 @@ namespace wpCPVanity
 
         private void Pivoter_LoadingPivotItem(object sender, PivotItemEventArgs e)
         {
+            if (e.Item.DataContext is CodeprojectBaseViewModel)
+            {
+                (e.Item.DataContext as CodeprojectBaseViewModel).OnLoad();
+            }
         }
     }
 }

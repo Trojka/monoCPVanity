@@ -15,9 +15,9 @@ using be.trojkasoftware.portableCPVanity.ViewModels;
 
 namespace wpCPVanity
 {
-    public partial class CodeprojectArticlesPage : PhoneApplicationPage
+    public partial class CodeprojectArticleFeedPage : PhoneApplicationPage
     {
-        public CodeprojectArticlesPage()
+        public CodeprojectArticleFeedPage()
         {
             InitializeComponent();
 
@@ -26,14 +26,20 @@ namespace wpCPVanity
 
         public void AttachDataSource()
         {
-            var viewModel = new CodeprojectArticlesPageViewModel(this.GotoPage);
-            //viewModel.GotoPageAction = this.GotoPage;
+            viewModel = new CodeprojectArticleFeedPageViewModel(GotoPage);
             this.DataContext = viewModel;
         }
 
         private void GotoPage(string page)
         {
             NavigationService.Navigate(new Uri(page, UriKind.Relative));
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            String id = NavigationContext.QueryString["id"];
+            viewModel.FeedId = int.Parse(id);
         }
 
         private void Pivoter_UnloadingPivotItem(object sender, PivotItemEventArgs e)
@@ -47,5 +53,7 @@ namespace wpCPVanity
                 (e.Item.DataContext as CodeprojectBaseViewModel).OnLoad();
             }
         }
+
+        CodeprojectArticleFeedPageViewModel viewModel;
     }
 }

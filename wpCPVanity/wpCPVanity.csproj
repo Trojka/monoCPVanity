@@ -93,8 +93,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CodeprojectArticleFeedPage.xaml.cs">
+      <DependentUpon>CodeprojectArticleFeedPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CodeprojectArticlesPage.xaml.cs">
       <DependentUpon>CodeprojectArticlesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CodeprojectForumFeedPage.xaml.cs">
+      <DependentUpon>CodeprojectForumFeedPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="CodeprojectForumsPage.xaml.cs">
       <DependentUpon>CodeprojectForumsPage.xaml</DependentUpon>
@@ -118,11 +124,23 @@
     <Compile Include="Util\UpdateTextOnTextChanged.cs" />
     <Compile Include="Util\ButtonCommandBinding.cs" />
     <Compile Include="Util\FileStorageService.WP7.cs" />
+    <Compile Include="ViewModels\CodeProjectArticleCategoryViewModel.cs" />
+    <Compile Include="ViewModels\CodeProjectArticleFeedViewModel.cs" />
     <Compile Include="ViewModels\CodeprojectBaseViewModel.cs" />
+    <Compile Include="ViewModels\CodeProjectForumCategoryViewModel.cs" />
+    <Compile Include="ViewModels\CodeProjectForumFeedListViewModel.cs" />
+    <Compile Include="ViewModels\CodeProjectForumFeedViewModel.cs" />
+    <Compile Include="ViewModels\CodeProjectMemberArticlesViewModel.WP7.cs" />
     <Compile Include="ViewModels\CodeProjectMemberListViewModel.WP7.cs" />
     <Compile Include="ViewModels\AvailablePagesViewModel.cs" />
     <Compile Include="ViewModels\CodeProjectMemberProfileViewModel.WP7.cs" />
+    <Compile Include="ViewModels\CodeProjectMemberReputationViewModel.WP7.cs" />
+    <Compile Include="ViewModels\CodeProjectArticleFeedListViewModel.cs" />
+    <Compile Include="ViewModels\CodeProjectRssFeedViewModel.WP7.cs" />
+    <Compile Include="ViewModels\CodeProjectRssItemViewModel.cs" />
+    <Compile Include="XamlViewModels\CodeprojectArticleFeedPageViewModel.cs" />
     <Compile Include="XamlViewModels\CodeprojectArticlesPageViewModel.cs" />
+    <Compile Include="XamlViewModels\CodeprojectForumFeedPageViewModel.cs" />
     <Compile Include="XamlViewModels\CodeprojectForumsPageViewModel.cs" />
     <Compile Include="XamlViewModels\CodeprojectMemberPageViewModel.cs" />
     <Compile Include="ViewModels\CodeprojectMemberViewModel.cs" />
@@ -134,7 +152,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="CodeprojectArticleFeedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CodeprojectArticlesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CodeprojectForumFeedPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -29,7 +29,7 @@ namespace be.trojkasoftware.Ripit.Core
 			Dictionary<int, string> globalSources = GetSources(listToFill, paramList, CancellationToken.None);
 
 			Type objectType = listToFill.GetType();
-			Attribute[] objectAttrs = (System.Attribute[])objectType.GetCustomAttributes (false);
+			object[] objectAttrs = objectType.GetCustomAttributes (false);
 			CollectionCaptureAttribute captureAttribute = objectAttrs.OfType<CollectionCaptureAttribute> ().SingleOrDefault ();
 			if(captureAttribute == null)
 			{
@@ -126,7 +126,8 @@ namespace be.trojkasoftware.Ripit.Core
 			Dictionary<int, string> urlSources = new Dictionary<int, string> ();
 
 			Type objectType = objectToFill.GetType();
-			Attribute[] objectAttrs = (System.Attribute[])objectType.GetCustomAttributes (false);
+            object[] objectAttrs = objectType.GetCustomAttributes(false);
+            //Attribute[] objectAttrs = (System.Attribute[])attributes;
 			foreach (HttpSourceAttribute httpSource in objectAttrs.ToList().OfType<HttpSourceAttribute>()) {
 
 				if (ct != CancellationToken.None && ct.IsCancellationRequested) 
@@ -204,11 +205,11 @@ namespace be.trojkasoftware.Ripit.Core
 
 				pageText = "";
 
-				Attribute[] propertyAttrs = (System.Attribute[])property.GetCustomAttributes(false);
+				object[] propertyAttrs = property.GetCustomAttributes(false);
 				if (propertyAttrs.Length == 0)
 					continue;
 
-				List<Attribute> propertyAttrList = propertyAttrs.ToList ();
+                List<Attribute> propertyAttrList = propertyAttrs.OfType<Attribute>().ToList();
 
 				SourceRefAttribute sourceRef = (SourceRefAttribute)propertyAttrList.OfType<SourceRefAttribute>().SingleOrDefault();
 				if (sourceRef == null || !globalSources.ContainsKey(sourceRef.SourceRefId)) {
