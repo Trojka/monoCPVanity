@@ -62,6 +62,8 @@ namespace wpCPVanity.Util
         public void Execute(object parameter)
         {
             //calls the respective method that has been registered with the handler
+            if (handler == null)
+                return;
             handler(parameter as T);
         }
     }

@@ -23,6 +23,10 @@ namespace wpCPVanity.ViewModels
 
         public string Title { get { return item.Title; } }
 
+        public string Author { get { return item.Author; } }
+
+        public string Description { get { return item.Description; } }
+
         public string TargetPage { get { return "" /* "/CodeprojectMemberProfilePage.xaml?id=" + member.Id*/ ; } }
 
         public ButtonCommandBinding<string> GotoPageCommand { get; private set; }

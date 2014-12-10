@@ -17,8 +17,35 @@ namespace be.trojkasoftware.monoCPVanity.Util
         {
             get
             {
-                return Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                return "";
             }
+        }
+
+        public void WriteBytes(byte[] data, string filename)
+        {
+        }
+
+        public byte[] ReadBytes(string filename)
+        {
+            return null;
+        }
+
+        public void DeleteFile(string filename)
+        {
+        }
+
+        public bool FileExists(string filename)
+        {
+            return false;
+        }
+
+        public static void WriteAllBytes(string path, byte[] bytes)
+        {
+        }
+
+        public static byte[] ReadAllBytes(string path)
+        {
+            return null;
         }
     }
 }

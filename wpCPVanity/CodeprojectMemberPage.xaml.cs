@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using wpCPVanity.XamlViewModels;
 using be.trojkasoftware.portableCPVanity.ViewModels;
+using System.Windows.Navigation;
 
 namespace wpCPVanity
 {
@@ -33,6 +34,15 @@ namespace wpCPVanity
         private void GotoPage(string page)
         {
             NavigationService.Navigate(new Uri(page, UriKind.Relative));
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            object selectedItem = Pivoter.SelectedItem;
+            if(selectedItem != null && selectedItem is CodeprojectBaseViewModel)
+            {
+                (selectedItem as CodeprojectBaseViewModel).OnLoad();
+            }
         }
 
         private void Pivoter_UnloadingPivotItem(object sender, PivotItemEventArgs e)

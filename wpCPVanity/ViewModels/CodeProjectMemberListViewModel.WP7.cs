@@ -31,7 +31,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
             CodeProjectDatabase database = new CodeProjectDatabase();
             allMembers = database.GetMembers();
 
-            var members = allMembers.Select(x => new CodeprojectMemberViewModel(x, gotoPageAction)).ToList();
+            var members = allMembers.Select(x => new CodeprojectMemberViewModel(x, gotoPageAction, this.DeleteMember)).ToList();
             Members = new ObservableCollection<CodeprojectMemberViewModel>(members);
         }
 
@@ -52,10 +52,10 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
                     CodeProjectMember dummyMember = new CodeProjectMember();
                     dummyMember.Id = searchId;
                     dummyMember.Name = "Load member " + filter;
-                    Members.Add(new CodeprojectMemberViewModel(dummyMember, gotoPageAction));
+                    Members.Add(new CodeprojectMemberViewModel(dummyMember, gotoPageAction, null));
                 }
 
-                var members = allMembers.Where(x => x.Name.Contains(filter)).Select(x => new CodeprojectMemberViewModel(x, gotoPageAction)).ToList();
+                var members = allMembers.Where(x => x.Name.Contains(filter)).Select(x => new CodeprojectMemberViewModel(x, gotoPageAction, this.DeleteMember)).ToList();
                 members.ForEach(x => Members.Add(x));
             }
         }
@@ -82,7 +82,15 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
         public override void OnLoad()
         {
-            //throw new NotImplementedException();
+            Load();
+        }
+
+        public void DeleteMember(string memberId)
+        {
+            CodeProjectDatabase db = new CodeProjectDatabase();
+            db.DeleteMember(int.Parse(memberId));
+
+            Load();
         }
 
         private Action<string> gotoPageAction;

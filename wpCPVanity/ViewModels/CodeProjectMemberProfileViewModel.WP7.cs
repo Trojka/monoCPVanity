@@ -82,6 +82,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
         public void SaveMember(CodeProjectMember member)
         {
+            SaveMember();
         }
 
         public DataTemplate ItemDataTemplate

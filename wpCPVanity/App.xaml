@@ -7,6 +7,7 @@
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
     xmlns:util="clr-namespace:wpCPVanity.Util"
     xmlns:ctrl="clr-namespace:wpCPVanity.Controls"
+	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"  
 >
 
     <!--Application Resources-->
@@ -16,8 +17,14 @@
         </DataTemplate>
         <DataTemplate x:Key="TOC">
             <StackPanel>
-                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
-                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}"/>
+                <!--<TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />-->
+                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="AvailablePagesTemplate">
@@ -26,8 +33,18 @@
         </DataTemplate>
         <DataTemplate x:Key="RssFeedItem">
             <StackPanel>
-                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Title}" Margin="0,0,0,15" />
-                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}"/>
+                <!--<TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Title}" Margin="0,0,0,15" />-->
+                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Title}" Margin="0,0,0,15" />
+                                <TextBlock Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding Author}" Margin="0,0,0,15" />
+                                <TextBlock Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding Description}" TextWrapping="Wrap" Margin="0,0,0,15" />
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="RssFeedTemplate">
@@ -38,8 +55,14 @@
         </DataTemplate>
         <DataTemplate x:Key="CodeProjectForumCategoryItem">
             <StackPanel>
-                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
-                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}"/>
+                <!--<TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />-->
+                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="CodeProjectForumFeedListTemplate">
@@ -50,8 +73,14 @@
         </DataTemplate>
         <DataTemplate x:Key="CodeProjectArticleCategoryItem">
             <StackPanel>
-                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
-                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}"/>
+                <!--<TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />-->
+                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="CodeProjectArticleFeedListTemplate">
@@ -62,8 +91,31 @@
         </DataTemplate>
         <DataTemplate x:Key="MemberItem">
             <StackPanel>
-                <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
-                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}"/>
+                <!--<TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />-->
+                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
+                                <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding Reputation}" Margin="0,0,0,15" />
+                                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding Posts}" Margin="0,0,0,15" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu>
+                        <toolkit:MenuItem Header="Delete" Command="{Binding DeleteMemberCommand}" CommandParameter="{Binding IdAsString}"/>
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="MemberListTemplate">
@@ -101,7 +153,7 @@
         </DataTemplate>
         <DataTemplate x:Key="MemberReputationTemplate">
             <StackPanel>
-                <Image Source="{Binding MemberReputationGraphImage}" HorizontalAlignment="Left" Stretch="Fill" VerticalAlignment="Top" />
+                <Image Source="{Binding MemberReputationGraphImage}" HorizontalAlignment="Center" Stretch="UniformToFill" VerticalAlignment="Center" />
             </StackPanel>
         </DataTemplate>
     </Application.Resources>
