@@ -53,10 +53,16 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
                     dummyMember.Id = searchId;
                     dummyMember.Name = "Load member " + filter;
                     Members.Add(new CodeprojectMemberViewModel(dummyMember, gotoPageAction, null));
+
+                    var members = allMembers.Where(x => x.Id == searchId).Select(x => new CodeprojectMemberViewModel(x, gotoPageAction, this.DeleteMember)).ToList();
+                    members.ForEach(x => Members.Add(x));
+                }
+                else
+                {
+                    var members = allMembers.Where(x => x.Name.Contains(filter)).Select(x => new CodeprojectMemberViewModel(x, gotoPageAction, this.DeleteMember)).ToList();
+                    members.ForEach(x => Members.Add(x));
                 }
 
-                var members = allMembers.Where(x => x.Name.Contains(filter)).Select(x => new CodeprojectMemberViewModel(x, gotoPageAction, this.DeleteMember)).ToList();
-                members.ForEach(x => Members.Add(x));
             }
         }
 
