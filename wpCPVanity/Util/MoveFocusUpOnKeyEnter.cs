@@ -57,7 +57,6 @@ namespace wpCPVanity.Util
                 if(parent != null)
                 {
                     //parent.;
-
                 }
             }
         }
