@@ -10,15 +10,17 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using wpCPVanity.Util;
 using be.trojkasoftware.Ripit.Core;
+using Microsoft.Phone.Tasks;
 
 namespace wpCPVanity.ViewModels
 {
     public class CodeProjectRssItemViewModel
     {
-        public CodeProjectRssItemViewModel(RSSItem item, Action<string> gotoPageAction)
+        public CodeProjectRssItemViewModel(RSSItem item /*, Action<string> gotoPageAction*/)
         {
-            this.GotoPageCommand = new ButtonCommandBinding<string>(gotoPageAction);
+            //this.GotoPageCommand = new ButtonCommandBinding<string>(NavigateToLink);
             this.item = item;
+            Link = new Uri(item.Link, UriKind.Absolute);
         }
 
         public string Title { get { return item.Title; } }
@@ -27,9 +29,28 @@ namespace wpCPVanity.ViewModels
 
         public string Description { get { return item.Description; } }
 
-        public string TargetPage { get { return "" /* "/CodeprojectMemberProfilePage.xaml?id=" + member.Id*/ ; } }
+        public Uri Link { private set; get; }
 
-        public ButtonCommandBinding<string> GotoPageCommand { get; private set; }
+        ButtonCommandBinding<string> gotoPageCommand = null;
+        public ButtonCommandBinding<string> GotoPageCommand 
+        { 
+            get 
+            { 
+                if(gotoPageCommand == null)
+                    gotoPageCommand = new ButtonCommandBinding<string>(NavigateToLink);
+
+                return gotoPageCommand; 
+            } 
+        }
+
+        public string TargetPage { get { return item.Link; } }
+
+        public void NavigateToLink(string url)
+        {
+            WebBrowserTask webBrowserTask = new WebBrowserTask();
+            webBrowserTask.Uri = new Uri(url);
+            webBrowserTask.Show(); 
+        }
 
         private RSSItem item;
 

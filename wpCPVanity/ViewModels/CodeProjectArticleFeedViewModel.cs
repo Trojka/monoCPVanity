@@ -15,8 +15,8 @@ namespace wpCPVanity.ViewModels
 {
     public class CodeProjectArticleFeedViewModel : CodeProjectRssFeedViewModel
     {
-        public CodeProjectArticleFeedViewModel(Action<string> gotoPageAction) :
-            base(gotoPageAction)
+        public CodeProjectArticleFeedViewModel(/*Action<string> gotoPageAction*/) //:
+            //base(gotoPageAction)
         {
         }
 

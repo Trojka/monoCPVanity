@@ -133,6 +133,7 @@
     <Compile Include="ViewModels\CodeProjectForumFeedListViewModel.cs" />
     <Compile Include="ViewModels\CodeProjectForumFeedViewModel.cs" />
     <Compile Include="ViewModels\CodeProjectMemberArticlesViewModel.WP7.cs" />
+    <Compile Include="ViewModels\CodeProjectMemberArticleViewModel.WP7.cs" />
     <Compile Include="ViewModels\CodeProjectMemberListViewModel.WP7.cs" />
     <Compile Include="ViewModels\AvailablePagesViewModel.cs" />
     <Compile Include="ViewModels\CodeProjectMemberProfileViewModel.WP7.cs" />

@@ -9,7 +9,7 @@ using System.IO;
 
 namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
-	public class CodeProjectMemberArticleViewModel
+    public partial class CodeProjectMemberArticleViewModel
 	{
 		public CodeProjectMemberArticleViewModel(CodeProjectMemberArticle article) {
 			this.article = article;

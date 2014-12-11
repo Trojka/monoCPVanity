@@ -14,8 +14,8 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
     public class CodeProjectForumFeedViewModel : CodeProjectRssFeedViewModel
     {
-        public CodeProjectForumFeedViewModel(Action<string> gotoPageAction):
-            base(gotoPageAction)
+        public CodeProjectForumFeedViewModel(/*Action<string> gotoPageAction*/) //:
+//            base(/*gotoPageAction*/)
         {
             //this.ItemFeed = new CodeProjectLoungeFeed();
         }

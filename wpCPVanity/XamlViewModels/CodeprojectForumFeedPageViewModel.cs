@@ -16,11 +16,11 @@ namespace wpCPVanity.XamlViewModels
 {
     public class CodeprojectForumFeedPageViewModel : INotifyPropertyChanged
     {
-        public CodeprojectForumFeedPageViewModel(Action<string> gotoPageAction)
+        public CodeprojectForumFeedPageViewModel(/*Action<string> gotoPageAction*/)
         {
             Items = new ObservableCollection<CodeprojectBaseViewModel>();
 
-            rssFeedListPage = new CodeProjectForumFeedViewModel(gotoPageAction);
+            rssFeedListPage = new CodeProjectForumFeedViewModel(/*gotoPageAction*/);
             rssFeedListPage.FeedLoaded = rssFeedListPage.OnFeedLoaded;
 
             Items.Add(rssFeedListPage);

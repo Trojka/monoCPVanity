@@ -21,9 +21,9 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
     public partial class CodeProjectRssFeedViewModel : CodeprojectBaseViewModel
     {
-        public CodeProjectRssFeedViewModel(Action<string> gotoPageAction)
+        public CodeProjectRssFeedViewModel(/*Action<string> gotoPageAction*/)
         {
-            this.gotoPageAction = gotoPageAction;
+            //this.gotoPageAction = gotoPageAction;
         }
 
         //public void Load(string name)
@@ -48,7 +48,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
         public void OnFeedLoaded()
         {
-            RssFeedList = ItemFeed.Select(x => new CodeProjectRssItemViewModel(x, gotoPageAction)).ToList();
+            RssFeedList = ItemFeed.Select(x => new CodeProjectRssItemViewModel(x /*, gotoPageAction*/)).ToList();
         }
 
         public override void OnLoad()
@@ -56,6 +56,6 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
             LoadFeed(TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        private Action<string> gotoPageAction;
+        //private Action<string> gotoPageAction;
     }
 }

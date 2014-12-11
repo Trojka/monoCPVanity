@@ -26,14 +26,14 @@ namespace wpCPVanity
 
         public void AttachDataSource()
         {
-            viewModel = new CodeprojectArticleFeedPageViewModel(GotoPage);
+            viewModel = new CodeprojectArticleFeedPageViewModel(/*GotoPage*/);
             this.DataContext = viewModel;
         }
 
-        private void GotoPage(string page)
-        {
-            NavigationService.Navigate(new Uri(page, UriKind.Relative));
-        }
+        //private void GotoPage(string page)
+        //{
+        //    NavigationService.Navigate(new Uri(page, UriKind.Relative));
+        //}
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
