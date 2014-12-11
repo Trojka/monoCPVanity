@@ -148,11 +148,11 @@ namespace be.trojkasoftware.monoCPVanity.Data
 		public byte[] GetGravatar(int memberId)
 		{
             FileStorageService storage = new FileStorageService();
-            //if (storage.FileExists(memberId.ToString()))
-            //{
-            //    return storage.ReadBytes(memberId.ToString());
-            //}
-            //else
+            if (storage.FileExists(memberId.ToString()))
+            {
+                return storage.ReadBytes(memberId.ToString());
+            }
+            else
             {
                 return null;
             }

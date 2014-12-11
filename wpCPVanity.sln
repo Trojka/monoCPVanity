@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libwp7Ripit", "Ripit\libwp7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libCPVanity", "portableCPVanity\libCPVanity.csproj", "{D896EEAC-7DDF-4847-B1D1-2F695F4831B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WP7SampleProjectT54", "..\..\MyProjectsForDotnet\wp7sampleprojectt54_1\WP7SampleProjectT54\WP7SampleProjectT54\WP7SampleProjectT54.csproj", "{C365C1A0-525A-47BF-8980-2169DCBE54CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,14 @@ Global
 		{D896EEAC-7DDF-4847-B1D1-2F695F4831B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D896EEAC-7DDF-4847-B1D1-2F695F4831B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D896EEAC-7DDF-4847-B1D1-2F695F4831B6}.Release|x86.ActiveCfg = Release|Any CPU
+		{C365C1A0-525A-47BF-8980-2169DCBE54CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C365C1A0-525A-47BF-8980-2169DCBE54CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C365C1A0-525A-47BF-8980-2169DCBE54CB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C365C1A0-525A-47BF-8980-2169DCBE54CB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C365C1A0-525A-47BF-8980-2169DCBE54CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C365C1A0-525A-47BF-8980-2169DCBE54CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C365C1A0-525A-47BF-8980-2169DCBE54CB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C365C1A0-525A-47BF-8980-2169DCBE54CB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
