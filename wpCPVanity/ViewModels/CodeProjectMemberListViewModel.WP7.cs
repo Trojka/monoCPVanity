@@ -18,6 +18,8 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
     public class CodeprojectMemberListViewModel : CodeprojectBaseViewModel
     {
+        public static string LOAD_MEMBER = "Load member ";
+
         public CodeprojectMemberListViewModel(Action<string> gotoPageAction)
         {
             this.gotoPageAction = gotoPageAction;
@@ -51,7 +53,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
                 {
                     CodeProjectMember dummyMember = new CodeProjectMember();
                     dummyMember.Id = searchId;
-                    dummyMember.Name = "Load member " + filter;
+                    dummyMember.Name = LOAD_MEMBER + filter;
                     Members.Add(new CodeprojectMemberViewModel(dummyMember, gotoPageAction, null));
 
                     var members = allMembers.Where(x => x.Id == searchId).Select(x => new CodeprojectMemberViewModel(x, gotoPageAction, this.DeleteMember)).ToList();

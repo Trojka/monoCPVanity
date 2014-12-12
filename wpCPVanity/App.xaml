@@ -14,7 +14,7 @@
             <ContentControl Content="{Binding .}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ContentTemplate="{Binding Path=ItemDataTemplate}" />
         </DataTemplate>
         <DataTemplate x:Key="AvailablePagesTemplate">
-            <ListBox Name="ContentsListBox" ItemsSource="{Binding AvailablePages}" Margin="25,0,0,0">
+            <ListBox Name="AvailablePagesListBox" ItemsSource="{Binding AvailablePages}" Margin="25,0,0,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
@@ -32,7 +32,7 @@
         </DataTemplate>
         <DataTemplate x:Key="RssFeedTemplate">
             <Grid>
-                <ListBox Name="ContentsListBox" ItemsSource="{Binding RssFeedList}" Margin="25,0,0,0" >
+                <ListBox Name="RssFeedListBox" ItemsSource="{Binding RssFeedList}" Margin="25,0,0,0" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
@@ -55,7 +55,7 @@
         </DataTemplate>
         <DataTemplate x:Key="CodeProjectForumFeedListTemplate">
             <Grid>
-                <ListBox Name="ContentsListBox" ItemsSource="{Binding ForumCategories}" Margin="25,0,0,0">
+                <ListBox Name="CodeProjectForumFeedListBox" ItemsSource="{Binding ForumCategories}" Margin="25,0,0,0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
@@ -74,7 +74,7 @@
         </DataTemplate>
         <DataTemplate x:Key="CodeProjectArticleFeedListTemplate">
             <Grid>
-                <ListBox Name="ContentsListBox" ItemsSource="{Binding ArticleCategories}" Margin="25,0,0,0">
+                <ListBox Name="CodeProjectArticleFeedListBox" ItemsSource="{Binding ArticleCategories}" Margin="25,0,0,0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
@@ -94,35 +94,54 @@
         <DataTemplate x:Key="MemberListTemplate">
             <StackPanel>
                 <TextBox Text="{Binding Filter, Mode=TwoWay}" Margin="0,0,0,15" util:UpdateTextOnTextChanged.UpdateSourceOnChange="True" util:MoveFocusUpOnKeyEnter.MoveUpOnEnter="True" />
-                <ListBox Name="ContentsListBox" ItemsSource="{Binding Members}" Margin="25,0,0,0">
+                <ListBox Name="MemberListBox" ItemsSource="{Binding Members}" Margin="25,0,0,0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}">
-                                    <Button.Template>
-                                        <ControlTemplate>
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*"></RowDefinition>
-                                                    <RowDefinition Height="*"></RowDefinition>
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
-                                                <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding Reputation}" Margin="0,0,0,15" />
-                                                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding Posts}" Margin="0,0,0,15" />
-                                            </Grid>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                                <toolkit:ContextMenuService.ContextMenu>
-                                    <toolkit:ContextMenu>
-                                        <toolkit:MenuItem Header="Delete" Command="{Binding DeleteMemberCommand}" CommandParameter="{Binding IdAsString}"/>
-                                    </toolkit:ContextMenu>
-                                </toolkit:ContextMenuService.ContextMenu>
-                            </StackPanel>
+                            <util:CodeprojectMemberTemplateSelector Content="{Binding}">
+                                <util:CodeprojectMemberTemplateSelector.KnownMemberTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}">
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Grid>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="*"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="*" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
+                                                            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding Reputation}" Margin="0,0,0,15" />
+                                                            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding Posts}" Margin="0,0,0,15" />
+                                                        </Grid>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                            <toolkit:ContextMenuService.ContextMenu>
+                                                <toolkit:ContextMenu>
+                                                    <toolkit:MenuItem Header="Delete" Command="{Binding DeleteMemberCommand}" CommandParameter="{Binding IdAsString}"/>
+                                                </toolkit:ContextMenu>
+                                            </toolkit:ContextMenuService.ContextMenu>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </util:CodeprojectMemberTemplateSelector.KnownMemberTemplate>
+                                <util:CodeprojectMemberTemplateSelector.NewMemberTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Command="{Binding GotoPageCommand}" CommandParameter ="{Binding TargetPage}">
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </util:CodeprojectMemberTemplateSelector.NewMemberTemplate>
+                            </util:CodeprojectMemberTemplateSelector>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -135,7 +154,7 @@
         </DataTemplate>
         <DataTemplate x:Key="MemberArticleListTemplate">
             <StackPanel>
-                <ListBox Name="ContentsListBox" ItemsSource="{Binding MemberArticlesList}" Margin="25,0,0,0" >
+                <ListBox Name="MemberArticleListBox" ItemsSource="{Binding MemberArticlesList}" Margin="25,0,0,0" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
