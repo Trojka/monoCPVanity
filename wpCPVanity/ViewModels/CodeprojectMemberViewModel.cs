@@ -12,6 +12,8 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using wpCPVanity.Util;
 using be.trojkasoftware.monoCPVanity.Data;
+using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
@@ -22,6 +24,18 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
             this.GotoPageCommand = new ButtonCommandBinding<string>(gotoPageAction);
             this.DeleteMemberCommand = new ButtonCommandBinding<string>(deleteMember);
             this.member = member;
+
+            var db = new CodeProjectDatabase();
+            byte[] avatar = db.GetGravatar(this.member.Id);
+
+            if (avatar != null)
+            {
+                BitmapImage bitmapImage = new BitmapImage();
+                MemoryStream ms = new MemoryStream(avatar);
+                bitmapImage.SetSource(ms);
+
+                AvatarImage = bitmapImage;
+            }
         }
 
         public int Id { get { return member.Id; } }
@@ -31,6 +45,12 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
         public string Reputation { get { return member.Reputation; } }
 
         public string Posts { get { return "Posts: " + (member.ArticleCount + member.BlogCount); } }
+
+        public BitmapImage AvatarImage
+        {
+            get;
+            set;
+        }
 
         public string TargetPage { get { return "/CodeprojectMemberProfilePage.xaml?id=" + member.Id; } }
 

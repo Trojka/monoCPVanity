@@ -106,16 +106,18 @@
                                                     <ControlTemplate>
                                                         <Grid>
                                                             <Grid.RowDefinitions>
-                                                                <RowDefinition Height="*"></RowDefinition>
-                                                                <RowDefinition Height="*"></RowDefinition>
+                                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                                <RowDefinition Height="Auto"></RowDefinition>
                                                             </Grid.RowDefinitions>
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="*" />
                                                                 <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="*" />
                                                             </Grid.ColumnDefinitions>
-                                                            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" Margin="0,0,0,15" />
-                                                            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding Reputation}" Margin="0,0,0,15" />
-                                                            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding Posts}" Margin="0,0,0,15" />
+                                                            <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Source="{Binding AvatarImage}" Height="Auto" Margin="10,10,0,0" Name="image1" Stretch="UniformToFill" />
+                                                            <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource PhoneTextTitle2Style}" Text="{Binding Name}" VerticalAlignment="Center" Margin="20,0,0,0" />
+                                                            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding Reputation}" VerticalAlignment="Center" Margin="20,0,0,0" />
+                                                            <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource PhoneTextTitle3Style}" Text="{Binding Posts}" VerticalAlignment="Center" Margin="0,0,0,0" />
                                                         </Grid>
                                                     </ControlTemplate>
                                                 </Button.Template>
@@ -153,7 +155,7 @@
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="MemberArticleListTemplate">
-            <StackPanel>
+            <Grid>
                 <ListBox Name="MemberArticleListBox" ItemsSource="{Binding MemberArticlesList}" Margin="25,0,0,0" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -172,7 +174,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-            </StackPanel>
+            </Grid>
         </DataTemplate>
         <DataTemplate x:Key="MemberReputationTemplate">
             <StackPanel>
