@@ -29,6 +29,13 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
             this.SaveMemberCommand = new ButtonCommandBinding<CodeProjectMember>(this.SaveMember);
         }
 
+        private bool isLoading;
+        public bool IsLoading
+        {
+            get { return isLoading; }
+            set { SetField(ref isLoading, value, "IsLoading"); }
+        }
+
         private string memberName;
         public string MemberName
         {
@@ -95,6 +102,8 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
         public void OnMemberLoaded()
         {
+            IsLoading = false;
+
             MemberName = Member.Name;
             MemberReputation = Member.Reputation;
             MemberArticleCount = "Articles: " + Member.ArticleCount;
@@ -113,6 +122,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
         public override void OnLoad()
         {
             LoadMember(TaskScheduler.FromCurrentSynchronizationContext());
+            IsLoading = true;
         }
 
     }

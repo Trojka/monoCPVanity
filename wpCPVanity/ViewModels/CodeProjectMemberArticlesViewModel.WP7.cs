@@ -25,6 +25,13 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
             Name = "Articles";
         }
 
+        private bool isLoading;
+        public bool IsLoading
+        {
+            get { return isLoading; }
+            set { SetField(ref isLoading, value, "IsLoading"); }
+        }
+
         private List<CodeProjectMemberArticleViewModel> memberArticlesList;
         public List<CodeProjectMemberArticleViewModel> MemberArticlesList
         {
@@ -42,12 +49,15 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
         public void OnMemberArticlesLoaded()
         {
+            IsLoading = false;
+
             MemberArticlesList = MemberArticles;
         }
 
         public override void OnLoad()
         {
             LoadMemberArticles(TaskScheduler.FromCurrentSynchronizationContext());
+            IsLoading = true;
         }
     }
 }

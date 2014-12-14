@@ -24,6 +24,13 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
             Name = "Reputation";
         }
 
+        private bool isLoading;
+        public bool IsLoading
+        {
+            get { return isLoading; }
+            set { SetField(ref isLoading, value, "IsLoading"); }
+        }
+
         private BitmapImage memberReputationGraphImage;
         public BitmapImage MemberReputationGraphImage
         {
@@ -41,6 +48,8 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
         public void OnReputationGraphLoaded(byte[] graph)
         {
+            IsLoading = false;
+
             BitmapImage bitmapImage = new BitmapImage();
             MemoryStream ms = new MemoryStream(graph);
             bitmapImage.SetSource(ms);
@@ -51,6 +60,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
         public override void OnLoad()
         {
             LoadMemberReputation(TaskScheduler.FromCurrentSynchronizationContext());
+            IsLoading = true;
         }
     }
 }
