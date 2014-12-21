@@ -30,7 +30,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 
 		public void SaveMember() {
 			CodeProjectDatabase db = new CodeProjectDatabase ();
-			db.AddMember (Member, false);
+			db.AddMember (Member);
 		}
 
 		public void LoadMember(TaskScheduler uiContext) {

@@ -3,8 +3,14 @@ using System.IO;
 
 namespace be.trojkasoftware.monoCPVanity.Util
 {
-	public partial class FileStorageService
+	public class FileStorageService
 	{
+		public string BaseFolder {
+			get {
+				return Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
+			}
+		}
+
 		public void WriteBytes(byte[] data, string filename)
 		{
 			var filePath = Path.Combine (BaseFolder, filename);

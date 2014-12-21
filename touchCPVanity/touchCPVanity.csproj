@@ -162,7 +162,6 @@
     <Compile Include="..\monoCPVanity\ViewModels\CodeProjectMemberArticleViewModel.cs">
       <Link>ViewModels\CodeProjectMemberArticleViewModel.cs</Link>
     </Compile>
-    <Compile Include="Util\FileStorageService.iOS.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -26,7 +26,7 @@ namespace be.trojkasoftware.Ripit.Core
 
 		public IList<T> FillList<T>(IList<T> listToFill, Dictionary<String, String> paramList, Func<T> itemFactory, CancellationToken ct) where T: class
 		{
-			Dictionary<int, string> globalSources = GetSources(listToFill, paramList, CancellationToken.None);
+			Dictionary<int, string> globalSources = GetSources(listToFill, paramList, ct);
 
 			Type objectType = listToFill.GetType();
 			object[] objectAttrs = objectType.GetCustomAttributes (false);
@@ -61,11 +61,6 @@ namespace be.trojkasoftware.Ripit.Core
 		{
 			Task<object> returnValue = new Task<object> (x => Fill (objectToFill, paramList, ct), ct);
 			return returnValue;
-		}
-
-		public object Fill(object objectToFill, Dictionary<String, String> paramList)
-		{
-			return Fill (objectToFill, paramList, CancellationToken.None);
 		}
 
 		public object Fill(object objectToFill, Dictionary<String, String> paramList, CancellationToken ct)
@@ -164,9 +159,6 @@ namespace be.trojkasoftware.Ripit.Core
 		private Dictionary<int, string> GetSources(object objectToFill, Dictionary<String, String> paramList, CancellationToken ct)
 		{
 			Dictionary<int, string> urlSources = GetSourceUrls(objectToFill, paramList, ct);
-			if(urlSources == null) 
-			{
-			}
 			Dictionary<int, string> globalSources = new Dictionary<int, string> ();
 
 			foreach (KeyValuePair<int, string> entry in urlSources) {

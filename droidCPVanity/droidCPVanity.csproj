@@ -70,7 +70,6 @@
     <Compile Include="..\monoCPVanity\Util\WebImageRetriever.cs">
       <Link>Util\WebImageRetriever.cs</Link>
     </Compile>
-    <Compile Include="Util\FileStorageService.Android.cs" />
     <Compile Include="..\monoCPVanity\ViewModels\CodeProjectMemberArticlesViewModel.cs">
       <Link>ViewModels\CodeProjectMemberArticlesViewModel.cs</Link>
     </Compile>

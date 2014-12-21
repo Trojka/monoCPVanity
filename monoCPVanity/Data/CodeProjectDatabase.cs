@@ -38,19 +38,10 @@ namespace be.trojkasoftware.monoCPVanity.Data
 			}
 		}
 
-		public bool AddMember(CodeProjectMember member, bool isMe)
+		public bool AddMember(CodeProjectMember member)
 		{
 			var connection = new SqliteConnection ("Data Source=" + dbPath);
 			connection.Open ();
-
-			if (isMe) {
-				// set all to not me, the correct one will be set later
-				using (var uc = connection.CreateCommand ()) {
-					uc.CommandText = "UPDATE [Member] SET " +
-						" [IsMe] = 0";
-					uc.ExecuteNonQuery ();
-				}
-			}
 
 			using (var command = connection.CreateCommand ()) {
 				command.CommandText = "SELECT [Key] FROM [Member] WHERE [Key]=" + member.Id;
@@ -62,14 +53,13 @@ namespace be.trojkasoftware.monoCPVanity.Data
 							" [ArticleCnt] = '" + member.ArticleCount + "'," +
 							" [BlogCnt] = '" + member.BlogCount + "'," +
 							" [Reputation] = '" + member.Reputation + "'," +
-							" [IsMe] = " + (isMe ? "1" : "0") + 
 							" WHERE [Key]=" + member.Id;
 						uc.ExecuteNonQuery ();
 					}
 				} else {
 					using (var ic = connection.CreateCommand ()) {
-						ic.CommandText = "INSERT INTO [Member] ([Key], [Name], [ArticleCnt], [BlogCnt], [Reputation], [IsMe])"
-							+ " VALUES(" + member.Id + ", '" + member.Name + "', '" + member.ArticleCount + "', '" + member.BlogCount + "', '" + member.Reputation + "', " + (isMe ? "1" : "0") + ")";
+						ic.CommandText = "INSERT INTO [Member] ([Key], [Name], [ArticleCnt], [BlogCnt], [Reputation])"
+							+ " VALUES(" + member.Id + ", '" + member.Name + "', '" + member.ArticleCount + "', '" + member.BlogCount + "', '" + member.Reputation + ")";
 						ic.ExecuteNonQuery ();
 					}
 				}
@@ -162,7 +152,6 @@ namespace be.trojkasoftware.monoCPVanity.Data
 			member.ArticleCount = int.Parse(r ["ArticleCnt"].ToString());
 			member.BlogCount = int.Parse(r ["BlogCnt"].ToString());
 			member.Reputation = r ["Reputation"].ToString ();
-			//member.IsMe = (r ["IsMe"].ToString () == "1")?true:false;
 		}
 
 	}
