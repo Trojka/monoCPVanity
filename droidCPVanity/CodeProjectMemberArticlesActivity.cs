@@ -26,6 +26,13 @@ namespace be.trojkasoftware.droidCPVanity
 			SetContentView (Resource.Layout.CodeProjectMemberArticlesLayout);
 
 			memberArticlesView = this.FindViewById<ListView>(Resource.Id.listViewArticles);
+			memberArticlesView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => 
+			{
+				var memberArticle = viewModel.MemberArticles[e.Position];
+
+				Intent browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(memberArticle.Link));
+				StartActivity(browserIntent);
+			};
 
 			// Not really happy with this but it'll have to do
 			MemberId = Intent.Extras.GetInt (CodeProjectMemberProfileActivity.MemberIdKey);

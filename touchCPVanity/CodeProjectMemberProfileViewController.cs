@@ -34,11 +34,11 @@ namespace touchCPVanity
 		{
 			base.ViewDidLoad ();
 
+			this.SaveBtn.TouchUpInside += HandleTouchUpInside;
+
 			progressView = new UIActivityIndicatorView(UIActivityIndicatorViewStyle.Gray);
 			progressView.Center = new PointF (this.View.Frame.Width / 2, this.View.Frame.Height / 2);
 			this.View.AddSubview (progressView);
-
-			this.SaveBtn.TouchUpInside += HandleTouchUpInside;
 
 			progressView.StartAnimating ();
 

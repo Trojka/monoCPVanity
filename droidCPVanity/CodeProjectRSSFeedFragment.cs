@@ -29,6 +29,13 @@ namespace be.trojkasoftware.droidCPVanity
 
 			textView = view.FindViewById<TextView>(Resource.Id.textViewFeedName);
 			listView = view.FindViewById<ListView> (Resource.Id.listViewFeed);
+			listView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => 
+			{
+				var item = viewModel.ItemFeed[e.Position];
+
+				Intent browserIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(item.Link));
+				StartActivity(browserIntent);
+			};
 
 			viewModel = new CodeProjectRssFeedViewModel ();
 			viewModel.FeedLoaded += this.FeedLoaded;

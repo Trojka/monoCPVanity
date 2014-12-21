@@ -59,7 +59,7 @@ namespace be.trojkasoftware.monoCPVanity.Data
 				} else {
 					using (var ic = connection.CreateCommand ()) {
 						ic.CommandText = "INSERT INTO [Member] ([Key], [Name], [ArticleCnt], [BlogCnt], [Reputation])"
-							+ " VALUES(" + member.Id + ", '" + member.Name + "', '" + member.ArticleCount + "', '" + member.BlogCount + "', '" + member.Reputation + ")";
+							+ " VALUES(" + member.Id + ", '" + member.Name + "', '" + member.ArticleCount + "', '" + member.BlogCount + "', '" + member.Reputation + "')";
 						ic.ExecuteNonQuery ();
 					}
 				}

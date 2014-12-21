@@ -25,8 +25,8 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 			private set;
 		}
 
-		public void OnLoaded() {
-		}
+//		public void OnLoaded() {
+//		}
 
 		public void SaveMember() {
 			CodeProjectDatabase db = new CodeProjectDatabase ();
