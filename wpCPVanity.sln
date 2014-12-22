@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libwp7Ripit", "Ripit\libwp7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libCPVanity", "portableCPVanity\libCPVanity.csproj", "{D896EEAC-7DDF-4847-B1D1-2F695F4831B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneApp1", "PhoneApp1\PhoneApp1.csproj", "{03F28F84-4436-4D66-ADB1-388DB78A0E9E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,14 +35,6 @@ Global
 		{D896EEAC-7DDF-4847-B1D1-2F695F4831B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D896EEAC-7DDF-4847-B1D1-2F695F4831B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D896EEAC-7DDF-4847-B1D1-2F695F4831B6}.Release|x86.ActiveCfg = Release|Any CPU
-		{03F28F84-4436-4D66-ADB1-388DB78A0E9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03F28F84-4436-4D66-ADB1-388DB78A0E9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03F28F84-4436-4D66-ADB1-388DB78A0E9E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{03F28F84-4436-4D66-ADB1-388DB78A0E9E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{03F28F84-4436-4D66-ADB1-388DB78A0E9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03F28F84-4436-4D66-ADB1-388DB78A0E9E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03F28F84-4436-4D66-ADB1-388DB78A0E9E}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{03F28F84-4436-4D66-ADB1-388DB78A0E9E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
