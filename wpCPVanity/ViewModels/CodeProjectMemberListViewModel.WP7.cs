@@ -11,7 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using wpCPVanity;
+using be.trojkasoftware.wpCPVanity;
 using be.trojkasoftware.monoCPVanity.Data;
 
 namespace be.trojkasoftware.portableCPVanity.ViewModels

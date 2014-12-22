@@ -10,11 +10,11 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using wpCPVanity.XamlViewModels;
+using be.trojkasoftware.wpCPVanity.XamlViewModels;
 using be.trojkasoftware.portableCPVanity.ViewModels;
 using System.Windows.Navigation;
 
-namespace wpCPVanity
+namespace be.trojkasoftware.wpCPVanity
 {
     public partial class CodeprojectMemberPage : PhoneApplicationPage
     {

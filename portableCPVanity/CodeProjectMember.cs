@@ -83,7 +83,7 @@ namespace be.trojkasoftware.portableCPVanity
 			set;
 		}
 
-		public byte[] Gravatar {
+		public byte[] Avatar {
 			get;
 			set;
 		}

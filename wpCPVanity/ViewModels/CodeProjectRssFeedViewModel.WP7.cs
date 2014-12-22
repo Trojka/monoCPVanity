@@ -12,9 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using be.trojkasoftware.portableCPVanity.ViewModels;
-using wpCPVanity;
-using wpCPVanity.ViewModels;
+using be.trojkasoftware.wpCPVanity;
 using be.trojkasoftware.portableCPVanity.RssFeeds;
 
 namespace be.trojkasoftware.portableCPVanity.ViewModels

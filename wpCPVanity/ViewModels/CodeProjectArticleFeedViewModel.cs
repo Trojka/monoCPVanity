@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 using be.trojkasoftware.portableCPVanity.ViewModels;
 using be.trojkasoftware.portableCPVanity.RssFeeds;
 
-namespace wpCPVanity.ViewModels
+namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
     public class CodeProjectArticleFeedViewModel : CodeProjectRssFeedViewModel
     {

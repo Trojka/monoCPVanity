@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.IO;
 using wpCPVanity;
+using be.trojkasoftware.wpCPVanity;
 
 namespace be.trojkasoftware.portableCPVanity.ViewModels
 {

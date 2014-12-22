@@ -52,20 +52,20 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
 		CodeProjectMember LoadGravatar() {
 
 			var db = new CodeProjectDatabase ();
-			byte[] gravatar = db.GetGravatar(Member.Id);
-			if (gravatar != null) {
+			byte[] avatar = db.GetGravatar(Member.Id);
+			if (avatar != null) {
 
 			} else {
 				WebImageRetriever imageDownloader = new WebImageRetriever ();
 				Task imageDownload = imageDownloader.GetImageStreamAsync (new Uri (Member.ImageUrl)).ContinueWith (t => {
 
-					gravatar = t.Result;
+					avatar = t.Result;
 				});
 
 				imageDownload.Wait ();
 			}
 
-			Member.Gravatar = gravatar;
+			Member.Avatar = avatar;
 			return Member;
 		}
 	}

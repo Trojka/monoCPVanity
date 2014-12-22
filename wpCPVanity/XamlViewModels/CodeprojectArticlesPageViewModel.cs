@@ -11,9 +11,9 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using be.trojkasoftware.portableCPVanity.ViewModels;
-using wpCPVanity.ViewModels;
 
-namespace wpCPVanity.XamlViewModels
+
+namespace be.trojkasoftware.wpCPVanity.XamlViewModels
 {
     public class CodeprojectArticlesPageViewModel : INotifyPropertyChanged
     {

@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace be.trojkasoftware.wpCPVanity
+namespace PhoneApp1
 {
     public partial class App : Application
     {

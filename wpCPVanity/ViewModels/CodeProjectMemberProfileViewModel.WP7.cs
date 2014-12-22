@@ -17,6 +17,7 @@ using be.trojkasoftware.portableCPVanity.ViewModels;
 using wpCPVanity;
 using System.Collections.Generic;
 using wpCPVanity.Util;
+using be.trojkasoftware.wpCPVanity;
 
 namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
@@ -112,7 +113,7 @@ namespace be.trojkasoftware.portableCPVanity.ViewModels
             MemberAvgBlogRating = "Average blog rating: " + Member.AverageBlogRating;
 
             BitmapImage bitmapImage = new BitmapImage();
-            MemoryStream ms = new MemoryStream(Member.Gravatar);
+            MemoryStream ms = new MemoryStream(Member.Avatar);
             bitmapImage.SetSource(ms);
 
             MemberGravatarImage = bitmapImage;

@@ -12,7 +12,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using be.trojkasoftware.portableCPVanity.ViewModels;
 
-namespace wpCPVanity.XamlViewModels
+namespace be.trojkasoftware.wpCPVanity.XamlViewModels
 {
     public class CodeprojectForumFeedPageViewModel : INotifyPropertyChanged
     {

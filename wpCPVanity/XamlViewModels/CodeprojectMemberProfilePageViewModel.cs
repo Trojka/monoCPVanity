@@ -16,7 +16,7 @@ using be.trojkasoftware.portableCPVanity.ViewModels;
 using be.trojkasoftware.portableCPVanity;
 using System.Collections.Generic;
 
-namespace wpCPVanity.XamlViewModels
+namespace be.trojkasoftware.wpCPVanity.XamlViewModels
 {
     public class CodeprojectMemberProfilePageViewModel : INotifyPropertyChanged
     {

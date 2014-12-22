@@ -12,7 +12,7 @@ using System.ComponentModel;
 using be.trojkasoftware.portableCPVanity.RssFeeds;
 using wpCPVanity.Util;
 
-namespace wpCPVanity.ViewModels
+namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
     public class CodeProjectArticleCategoryViewModel : INotifyPropertyChanged
     {

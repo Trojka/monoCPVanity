@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using wpCPVanity.Util;
 
-namespace wpCPVanity.ViewModels
+namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
     public class CodeProjectForumCategoryViewModel : INotifyPropertyChanged
     {

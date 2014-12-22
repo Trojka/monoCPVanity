@@ -12,7 +12,7 @@ using wpCPVanity.Util;
 using be.trojkasoftware.Ripit.Core;
 using Microsoft.Phone.Tasks;
 
-namespace wpCPVanity.ViewModels
+namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
     public class CodeProjectRssItemViewModel
     {

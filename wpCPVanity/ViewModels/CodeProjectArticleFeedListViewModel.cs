@@ -13,8 +13,9 @@ using be.trojkasoftware.portableCPVanity.ViewModels;
 using be.trojkasoftware.portableCPVanity.RssFeeds;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using be.trojkasoftware.wpCPVanity;
 
-namespace wpCPVanity.ViewModels
+namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
     public class CodeProjectArticleFeedListViewModel : CodeprojectBaseViewModel
     {

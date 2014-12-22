@@ -14,6 +14,7 @@ using be.trojkasoftware.portableCPVanity.ViewModels;
 using System.Collections.ObjectModel;
 using wpCPVanity;
 using System.Collections.Generic;
+using be.trojkasoftware.wpCPVanity;
 
 namespace be.trojkasoftware.portableCPVanity.ViewModels
 {
