@@ -86,9 +86,6 @@
       <Link>ViewModels\CodeProjectRssFeedViewModel.cs</Link>
     </Compile>
     <Compile Include="CodeProjectRSSFeedFragment.cs" />
-    <Compile Include="..\monoCPVanity\ViewModels\CodeProjectArticleFeedCategoryViewModel.cs">
-      <Link>ViewModels\CodeProjectArticleFeedCategoryViewModel.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

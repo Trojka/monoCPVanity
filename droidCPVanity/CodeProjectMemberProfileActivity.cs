@@ -141,8 +141,8 @@ namespace be.trojkasoftware.droidCPVanity
 			TextView avgBlogRating = this.FindViewById<TextView>(Resource.Id.textViewBlogRating);
 			avgBlogRating.Text = "Average blog rating: " + viewModel.Member.AverageBlogRating;
 
-			if (viewModel.Member.Gravatar != null) {
-				Bitmap bitmap = BitmapFactory.DecodeByteArray (viewModel.Member.Gravatar, 0, viewModel.Member.Gravatar.Length);
+			if (viewModel.Member.Avatar != null) {
+				Bitmap bitmap = BitmapFactory.DecodeByteArray (viewModel.Member.Avatar, 0, viewModel.Member.Avatar.Length);
 				memberIcon.SetImageBitmap (bitmap);
 			}
 		}

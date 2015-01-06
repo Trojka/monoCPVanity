@@ -78,8 +78,8 @@ namespace touchCPVanity
 			this.BlogCountLbl.Text = "Blogs: " + viewModel.Member.BlogCount;
 			this.AvgBlogRatingLbl.Text = "Average blog rating: " + viewModel.Member.AverageBlogRating;
 
-			if (viewModel.Member.Gravatar != null) {
-				NSData data = NSData.FromArray (viewModel.Member.Gravatar);
+			if (viewModel.Member.Avatar != null) {
+				NSData data = NSData.FromArray (viewModel.Member.Avatar);
 				this.MemberImage.Image = UIImage.LoadFromData (data, 1);
 			}
 		}

@@ -68,8 +68,8 @@ namespace be.trojkasoftware.monoCPVanity.Data
 			connection.Close ();
 
 			FileStorageService storage = new FileStorageService ();
-			if(member.Gravatar != null) {
-				storage.WriteBytes(member.Gravatar, member.Id.ToString());
+			if(member.Avatar != null) {
+				storage.WriteBytes(member.Avatar, member.Id.ToString());
 			}
 
 			return true;
